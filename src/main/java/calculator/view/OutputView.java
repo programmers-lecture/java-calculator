@@ -1,6 +1,6 @@
 package calculator.view;
 
-public class OutputView {
+public class OutputView{
 
     public static void showResult(String result) {
         System.out.println(result);

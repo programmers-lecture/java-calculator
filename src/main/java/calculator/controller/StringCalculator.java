@@ -2,14 +2,16 @@ package calculator.controller;
 
 import calculator.domain.Calculator;
 import calculator.view.InputView;
+import calculator.view.InputViewImpl;
 import calculator.view.OutputView;
 
 public class StringCalculator {
 
     public void run() {
-        Calculator ccc = new Calculator(InputView.inputFormula());
-        ccc.hasPriority();
-        ccc.hasNonePriority();
-        OutputView.showResult(ccc.getResult());
+        InputView inputView = new InputViewImpl();
+        Calculator calculator = new Calculator(inputView.inputFormula());
+        calculator.hasPriority();
+        calculator.hasNonePriority();
+        OutputView.showResult(calculator.getResult());
     }
 }

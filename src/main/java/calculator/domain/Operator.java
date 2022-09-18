@@ -1,43 +1,37 @@
 package calculator.domain;
 
-public class Operator {
+import java.util.Arrays;
+import java.util.function.BiFunction;
+
+public enum Operator {
+    PLUS(Calculator.PLUS_OPERATOR, (startOperand, endOperand) -> startOperand + endOperand),
+    MINUS(Calculator.MINUS_OPERATOR, (startOperand, endOperand) -> startOperand - endOperand),
+    MULTIPLY(Calculator.MULTIPLY_OPERATOR, (startOperand, endOperand) -> startOperand * endOperand),
+    DIVIDE(Calculator.DIVIDE_OPERATOR, (startOperand, endOperand) -> startOperand / endOperand);
+
+    private String operator;
+    private BiFunction<Integer, Integer, Integer> expression;
 
 
-    public String intCalculator(String startValue, String endValue, String operator) {
-        if ("+".equals(operator)) {
-            return plus(startValue, endValue);
-        }
-        if ("-".equals(operator)) {
-            return minus(startValue, endValue);
-        }
-        if ("*".equals(operator)) {
-            return multiply(startValue, endValue);
-        }
-        if ("/".equals(operator)) {
-            return divide(startValue, endValue);
-        }
-        throw new IllegalArgumentException("올바르지 않은 연산자가 있습니다.");
+
+    Operator(String operator, BiFunction<Integer, Integer, Integer> expression) {
+        this.operator = operator;
+        this.expression = expression;
     }
 
-    private String plus(String startValue, String endValue) {
-        return String.valueOf(Integer.valueOf(startValue) + Integer.valueOf(endValue));
+    public static String calculate(String operator, int startOperand, int endOperand) {
+        return String.valueOf(
+            getOperator(operator).getExpression().apply(startOperand, endOperand));
     }
 
-    private String minus(String startValue, String endValue) {
-        return String.valueOf(Integer.valueOf(startValue) - Integer.valueOf(endValue));
+    private static Operator getOperator(String operator) {
+        return Arrays.stream(values())
+            .filter(i -> i.operator.equals(operator))
+            .findFirst().get();
     }
 
-    public String multiply(String startValue, String endValue) {
-        return String.valueOf(Integer.valueOf(startValue) * Integer.valueOf(endValue));
-    }
-
-    private String divide(String startValue, String endValue) {
-        try{
-            return String.valueOf(Integer.valueOf(startValue) / Integer.valueOf(endValue));
-        } catch (Exception e){
-            System.out.println("0으로 나눌 수 없습니다!");
-        }
-        return "";
+    private BiFunction<Integer, Integer, Integer> getExpression() {
+        return expression;
     }
 
 }
