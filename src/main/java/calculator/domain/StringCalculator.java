@@ -1,23 +1,32 @@
 package calculator.domain;
 
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.stream.Collectors;
 
 public class StringCalculator {
 
+    private static Deque<String> stack = new ArrayDeque<>();
     public double calculate(String[] elements){
         PostfixConvertor postfixConvertor = new PostfixConvertor();
-        String[] strings = postfixConvertor.convertFormula(elements);
-        for(String s : strings){
-            System.out.println(s);
+        String[] postfixValue = postfixConvertor.convertFormula(elements);
+        for(String value : postfixValue){
+            if(Character.isDigit(value.charAt(0))){
+                stack.push(value);
+                continue;
+            }
+            operateAndPush(value);
+
         }
-        double result = Double.parseDouble(elements[0]);
-        for(int i=1; i<elements.length; i+=2){
-            String op = elements[i];
-            result = operate(result, Double.parseDouble(elements[i+1]),op);
-        }
-        return result;
+        return Double.parseDouble(stack.pop());
+    }
+
+    public void operateAndPush(String op){
+        double operand1 = Double.parseDouble(stack.pop());
+        double operand2 = Double.parseDouble(stack.pop());
+        stack.push(Double.toString(operate(operand1,operand2,op)));
     }
 
     public double operate(double operand1, double operand2, String op){

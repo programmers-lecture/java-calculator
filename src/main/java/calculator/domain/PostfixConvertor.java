@@ -17,15 +17,9 @@ public class PostfixConvertor {
         return convertArray;
     }
 
-    public boolean isOperator(String element){
-        if (element.equals("+") || element.equals("-") || element.equals("*") || element.equals("/")){
-            return true;
-        }
-        return false;
-    }
 
     public void comparePriority(String[] convertArray, String element){
-        if(!isOperator(element)){
+        if(Character.isDigit(element.charAt(0))){
             convertArray[idx++] = element;
             return;
         }
