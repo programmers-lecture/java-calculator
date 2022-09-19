@@ -1,13 +1,11 @@
 import calculator.Calculator;
 import converter.FormulaConverter;
-import view.Reader;
 import view.Sender;
 
 import java.util.List;
 
-import static view.Reader.*;
+import static view.Reader.read;
 
-// 12412 - 1348 + 134 * 10 - (10 / 10 * 20 + 10 - 4) + 10 - 20 / 2
 public class MainApplication {
 
     public static void main(String[] args) {
