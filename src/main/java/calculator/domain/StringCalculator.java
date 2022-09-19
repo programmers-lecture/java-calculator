@@ -5,16 +5,16 @@ import java.util.List;
 
 public class StringCalculator {
 
-    public int calculate(String[] elements){
-        int result = Integer.parseInt(elements[0]);
+    public double calculate(String[] elements){
+        double result = Double.parseDouble(elements[0]);
         for(int i=1; i<elements.length; i+=2){
             String op = elements[i];
-            result = operate(result, Integer.parseInt(elements[i+1]),op);
+            result = operate(result, Double.parseDouble(elements[i+1]),op);
         }
         return result;
     }
 
-    public int operate(int operand1, int operand2, String op){
+    public double operate(double operand1, double operand2, String op){
         Operator operator = findOperator(op);
         return operator.apply(operand1, operand2);
     }

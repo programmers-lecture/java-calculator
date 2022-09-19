@@ -10,7 +10,7 @@ public class Application {
         StringCalculator stringCalculator = new StringCalculator();
 
         String[] input = inputView.inputFormula();
-        int ans = stringCalculator.calculate(input);
+        double ans = stringCalculator.calculate(input);
         System.out.print(ans);
     }
 }
