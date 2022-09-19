@@ -1,20 +1,21 @@
-package domain;
+package view;
 
+import operator.Operator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static domain.Operator.*;
+import static operator.Operator.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class OperatorTest {
 
     @Test
     @DisplayName("연산자 찾기 테스트")
-    void checkOperatorTest() {
-        Operator checkPlus = checkOperator("+");
-        Operator checkMinus = checkOperator("-");
-        Operator checkMultiply = checkOperator("*");
-        Operator checkDivide = checkOperator("/");
+    void getOperatorTest() {
+        Operator checkPlus = getOperator("+");
+        Operator checkMinus = getOperator("-");
+        Operator checkMultiply = getOperator("*");
+        Operator checkDivide = getOperator("/");
 
         assertEquals(PLUS, checkPlus);
         assertEquals(MINUS, checkMinus);
