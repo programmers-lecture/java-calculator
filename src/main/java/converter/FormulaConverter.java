@@ -2,7 +2,6 @@ package converter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 import static operator.Operator.checkOperator;
 
@@ -13,41 +12,41 @@ public class FormulaConverter {
     }
 
     private List<String> separateString(List<String> strings) {
-        List<String> stack = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         StringBuilder numberBuilder = new StringBuilder();
 
         for (String value : strings) {
             checkDigitThenSaveAtNumberBuilderTemporary(numberBuilder, value);
-            checkNumberBuilderCanBePushed(stack, numberBuilder, value);
-            checkOperatorThenPush(stack, value);
-            checkBracketThenPush(stack, value);
+            checkNumberBuilderCanBePushed(list, numberBuilder, value);
+            checkOperatorThenPush(list, value);
+            checkBracketThenPush(list, value);
         }
-        addLeftNumber(stack, numberBuilder);
+        addLeftNumber(list, numberBuilder);
 
-        return stack;
+        return list;
     }
 
-    private void addLeftNumber(List<String> stack, StringBuilder numberBuilder) {
+    private void addLeftNumber(List<String> list, StringBuilder numberBuilder) {
         if (checkLeftNumberBuilder(numberBuilder)) {
-            stack.add(numberBuilder.toString());
+            list.add(numberBuilder.toString());
         }
     }
 
-    private void checkBracketThenPush(List<String> stack, String o) {
-        if (checkBracket(o)) stack.add(o);
+    private void checkBracketThenPush(List<String> list, String o) {
+        if (checkBracket(o)) list.add(o);
     }
 
-    private void checkOperatorThenPush(List<String> stack, String o) {
-        if (checkOperator(o)) stack.add(o);
+    private void checkOperatorThenPush(List<String> list, String o) {
+        if (checkOperator(o)) list.add(o);
     }
 
     private void checkDigitThenSaveAtNumberBuilderTemporary(StringBuilder numberBuilder, String o) {
         if (checkDigit(o)) numberBuilder.append(o);
     }
 
-    private void checkNumberBuilderCanBePushed(List<String> stack, StringBuilder numberBuilder, String o) {
+    private void checkNumberBuilderCanBePushed(List<String> list, StringBuilder numberBuilder, String o) {
         if (checkLeftNumberBuilder(numberBuilder) && !checkDigit(o)) {
-            stack.add(numberBuilder.toString());
+            list.add(numberBuilder.toString());
             numberBuilder.delete(0, numberBuilder.length());
         }
     }

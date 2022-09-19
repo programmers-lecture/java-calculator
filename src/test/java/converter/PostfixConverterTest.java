@@ -2,10 +2,9 @@ package converter;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import view.Reader;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,14 +17,8 @@ class PostfixConverterTest {
     public void postfixFormatTest() {
 
         String str = " 1-4+2+(3*2+(1+1)-1)";
-        List<String> format = converter.getFormat(getStringList(str));
+        List<String> format = converter.getFormat(Reader.splitWithoutSpace(str));
 
         assertEquals("[1, 4, -, 2, +, 3, 2, *, 1, 1, +, +, 1, -, +]", format.toString());
-    }
-
-    private List<String> getStringList(String str) {
-        return Stream.of(str.split(""))
-                .filter(o -> !o.equals(" "))
-                .collect(Collectors.toList());
     }
 }

@@ -11,12 +11,16 @@ public class Reader {
 
     static public List<String> read() {
         try {
-            return Stream.of(br.readLine().split(""))
-                    .filter(Reader::isNotSpace)
-                    .collect(Collectors.toList());
+            return splitWithoutSpace(br.readLine());
         } catch (Exception e) {
             throw new NullPointerException("입력이 부정확합니다.");
         }
+    }
+
+    static public List<String> splitWithoutSpace(String str) {
+        return Stream.of(str.split(""))
+                .filter(Reader::isNotSpace)
+                .collect(Collectors.toList());
     }
     private static boolean isNotSpace(String spell) {
         return !spell.equals(" ");

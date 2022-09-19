@@ -29,12 +29,9 @@ public class Calculator {
 
     private void handleOperator(Stack<String> stack, String value) {
         if (checkOperator(value)) {
-            stack.push(String.valueOf(
-                    Operator.calculate(
-                            Integer.parseInt(stack.pop()),
-                            value,
-                            Integer.parseInt(stack.pop()))
-            ));
+            int b = Integer.parseInt(stack.pop());
+            int a = Integer.parseInt(stack.pop());
+            stack.push(String.valueOf(Operator.calculate(a, value, b)));
         }
     }
 
