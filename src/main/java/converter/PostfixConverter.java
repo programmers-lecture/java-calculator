@@ -2,82 +2,88 @@ package converter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Stack;
 
 import static operator.Operator.*;
 
 public class PostfixConverter {
 
-    public List<String> getPostfixFormat(List<String> list) {
-        Stack<String> operStack = new Stack<>();
-        List<String> postfixFormat = new ArrayList<>();
+    public List<String> getFormat(List<String> list) {
+        Stack<String> operatorStack = new Stack<>();
+        List<String> format = new ArrayList<>();
 
         for (String value : list) {
-            addPostfixDigit(postfixFormat, value);
-            addPostfixOperator(operStack, postfixFormat, value);
-            pushLeftBracket(postfixFormat, value);
-            addPostfixUntilBracketEnd(operStack, postfixFormat, value);
-            pushWhenStackEmpty(operStack, value);
+            pushOperator(operatorStack, format, value);
+            addDigit(format, value);
+            pushLeftBracket(operatorStack, value);
+            handleRightBracket(operatorStack, format, value);
         }
-        addPostfixLeft(operStack, postfixFormat);
+        addLeftStack(operatorStack, format);
 
-        return postfixFormat;
+        return format;
     }
 
-    private void addPostfixLeft(Stack<String> operStack, List<String> postfixFormat) {
-        while (!operStack.isEmpty()) {
-            postfixFormat.add(operStack.pop());
-        }
+    private void pushLeftBracket(Stack<String> operatorStack, String value) {
+        if (checkLeftBracket(value)) operatorStack.push(value);
     }
 
-    private void addPostfixDigit(List<String> postfixFormat, String value) {
-        if (checkDigit(value)) {
-            postfixFormat.add(value);
+    private void handleRightBracket(Stack<String> operatorStack, List<String> format, String value) {
+        if (!checkRightBracket(value)) return;
+        while (!operatorStack.isEmpty() && getOperator(operatorStack.peek()) != LEFT_BRACKET) {
+            format.add(operatorStack.pop());
         }
+        if(!operatorStack.isEmpty()) operatorStack.pop();
+
     }
 
-    private void addPostfixOperator(Stack<String> operStack, List<String> postfixFormat, String value) {
-        if (!checkDigit(value) && checkStackNotEmpty(operStack) && checkNotBracket(getOperator(value))) {
-            while (checkStackNotEmpty(operStack) && !checkCurrPriorityIsSmallerThanInStack(operStack, value)) {
-                postfixFormat.add(operStack.pop());
-            }
+    private void pushOperator(Stack<String> operatorStack, List<String> format, String value) {
+        if (!checkOperator(value)) return;
+        while (!operatorStack.isEmpty() && checkPriorityBigger(operatorStack, value)) {
+            format.add(operatorStack.pop());
         }
+        operatorStack.add(value);
     }
 
-    private void pushLeftBracket(List<String> postfixFormat, String value) {
-        if (!checkDigit(value) && checkLeftBracket(getOperator(value))) {
-            postfixFormat.add(value);
-        }
+    private void addDigit(List<String> format, String value) {
+        if (checkOperator(value)) return;
+        if (checkBracket(value)) return;
+        format.add(value);
     }
 
-    private void addPostfixUntilBracketEnd(Stack<String> operStack, List<String> postfixFormat, String value) {
-        if (!checkDigit(value) && checkStackNotEmpty(operStack) && checkRightBracket(getOperator(value))) {
-            while (checkStackNotEmpty(operStack) && checkNotLeftBracket(operStack)) {
-                postfixFormat.add(operStack.pop());
-            }
-            if (checkStackNotEmpty(operStack)) operStack.pop();
+    private void addLeftStack(Stack<String> operatorStack, List<String> format) {
+        while (!operatorStack.isEmpty()) {
+            format.add(operatorStack.pop());
         }
     }
 
-    private void pushWhenStackEmpty(Stack<String> operStack, String value) {
-        if (!checkDigit(value) && !checkStackNotEmpty(operStack)) {
-            operStack.push(value);
-        }
+    private boolean checkLeftBracket(String value) {
+        if (checkDigit(value)) return false;
+        return Optional.ofNullable(getOperator(value))
+                .orElseThrow(NullPointerException::new) == LEFT_BRACKET;
     }
 
-    private boolean checkNotLeftBracket(Stack<String> operStack) {
-        return !operStack.peek().equals(LEFT_BRACKET.getType());
+    private boolean checkRightBracket(String value) {
+        if (checkDigit(value)) return false;
+        return Optional.ofNullable(getOperator(value))
+                .orElseThrow(NullPointerException::new) == RIGHT_BRACKET;
     }
 
-    private boolean checkCurrPriorityIsSmallerThanInStack(Stack<String> operStack, String value) {
-        return getOperator(operStack.peek()).getPriority() > getOperator(value).getPriority();
-    }
-
-    private boolean checkStackNotEmpty(Stack<String> operStack) {
-        return !operStack.isEmpty();
+    private boolean checkBracket(String value) {
+        return checkLeftBracket(value) || checkRightBracket(value);
     }
 
     private boolean checkDigit(String value) {
-        return Character.isDigit(value.charAt(0));
+        return Character.isDigit(Optional.ofNullable(value).orElseThrow().charAt(0));
+    }
+
+    private boolean checkOperator(String value) {
+        return !checkBracket(value) && !checkDigit(value);
+    }
+
+    private boolean checkPriorityBigger(Stack<String> operatorStack, String value) {
+        if (checkDigit(value)) return false;
+        if (operatorStack.isEmpty()) return false;
+        return getOperator(operatorStack.peek()).getPriority() >= getOperator(value).getPriority();
     }
 }
