@@ -39,7 +39,7 @@ cf) 추가 요구사항은 순서대로 적용해보시고, 필수 요구사항�
     
     [객체지향 생활 체조 총정리](https://developerfarm.wordpress.com/2012/02/03/object_calisthenics_summary/)
 
-view/InputView => 문자열을 받아 배열로 반환하는 객체입니다.
-domain/Operator => 연산을 수행하는 enum 객체입니다.
-domain/StringCalculator => 사칙연산을 수행하는 객체입니다.
-domain/PosfixConvertor => 중위표현식을 후위표현식으로 바꾸어주는 객체입니다.
+view/InputView => 문자열을 받아 배열로 반환하는 객체입니다.  
+domain/Operator => 연산을 수행하는 enum 객체입니다.  
+domain/StringCalculator => 사칙연산을 수행하는 객체입니다.  
+domain/PosfixConvertor => 중위표현식을 후위표현식으로 바꾸어주는 객체입니다.  
