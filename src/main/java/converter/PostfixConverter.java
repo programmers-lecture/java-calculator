@@ -1,8 +1,9 @@
 package converter;
 
+import operator.Operator;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Stack;
 
 import static operator.Operator.*;
@@ -59,22 +60,17 @@ public class PostfixConverter {
 
     private boolean checkLeftBracket(String value) {
         if (checkDigit(value)) return false;
-        return Optional.ofNullable(getOperator(value))
-                .orElseThrow(NullPointerException::new) == LEFT_BRACKET;
+        return Operator.checkLeftBracket(getOperator(value));
     }
 
     private boolean checkRightBracket(String value) {
         if (checkDigit(value)) return false;
-        return Optional.ofNullable(getOperator(value))
-                .orElseThrow(NullPointerException::new) == RIGHT_BRACKET;
+        return Operator.checkRightBracket(getOperator(value));
     }
 
     private boolean checkBracket(String value) {
+        if (checkDigit(value)) return false;
         return checkLeftBracket(value) || checkRightBracket(value);
-    }
-
-    private boolean checkDigit(String value) {
-        return Character.isDigit(Optional.ofNullable(value).orElseThrow().charAt(0));
     }
 
     private boolean checkOperator(String value) {

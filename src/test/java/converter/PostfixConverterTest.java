@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class PostfixConverterTest {
 
     private final PostfixConverter converter = new PostfixConverter();
@@ -15,18 +17,10 @@ class PostfixConverterTest {
     @DisplayName("후위 표기식 작성 메서드 테스트")
     public void postfixFormatTest() {
 
-
         String str = " 1-4+2+(3*2+(1+1)-1)";
-
-        List<String> stringList = getStringList(str);
-        for (String s : stringList) {
-            System.out.print(s);
-        }
-        System.out.println();
-
         List<String> format = converter.getFormat(getStringList(str));
 
-        System.out.println("format = " + format);
+        assertEquals("[1, 4, -, 2, +, 3, 2, *, 1, 1, +, +, 1, -, +]", format.toString());
     }
 
     private List<String> getStringList(String str) {

@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.BiFunction;
 
+import static java.lang.Character.isDigit;
+
 public enum Operator {
 
     LEFT_BRACKET("(", 0, (a, b) -> 0),
@@ -44,16 +46,22 @@ public enum Operator {
     public static Integer calculate(Integer a, String operatorType, Integer b) {
         return getOperator(operatorType).calculate(a, b);
     }
-    public static boolean checkNotBracket(Operator operator) {
-        return operator != LEFT_BRACKET && operator != RIGHT_BRACKET;
+    public static boolean checkBracket(Operator operator) {
+        return checkLeftBracket(operator) || checkRightBracket(operator);
     }
 
     public static boolean checkLeftBracket(Operator operator) {
-        return operator == LEFT_BRACKET;
+        return Optional.ofNullable(operator)
+                .orElseThrow(NullPointerException::new) == LEFT_BRACKET;
     }
 
     public static boolean checkRightBracket(Operator operator) {
-        return operator == RIGHT_BRACKET;
+        return Optional.ofNullable(operator)
+                .orElseThrow(NullPointerException::new) == RIGHT_BRACKET;
+    }
+
+    public static boolean checkDigit(String value) {
+        return isDigit(Optional.ofNullable(value).orElseThrow().charAt(0));
     }
 
 
