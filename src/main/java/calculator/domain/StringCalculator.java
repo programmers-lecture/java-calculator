@@ -24,8 +24,8 @@ public class StringCalculator {
     }
 
     public void operateAndPush(String op){
-        double operand1 = Double.parseDouble(stack.pop());
         double operand2 = Double.parseDouble(stack.pop());
+        double operand1 = Double.parseDouble(stack.pop());
         stack.push(Double.toString(operate(operand1,operand2,op)));
     }
 
