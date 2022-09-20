@@ -12,8 +12,8 @@ import static stringcalculator.view.Reader.read;
 public class MainApplication {
 
     public static void main(String[] args) {
-        List<String> formulaList = new FormConverter().getFormula(read());
-        Integer result = new PostfixCalculator().getResult(formulaList);
+        List<String> formulas = new FormConverter().getFormula(read());
+        Integer result = new PostfixCalculator().getResult(formulas);
         Sender.sendCalResultMessage(result.toString());
     }
 }

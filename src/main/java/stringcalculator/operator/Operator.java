@@ -10,12 +10,12 @@ import static java.lang.Character.isDigit;
 
 public enum Operator {
 
-    LEFT_BRACKET("(", 0, (a, b) -> 0),
-    RIGHT_BRACKET(")", 0, (a, b) -> 0),
-    PLUS("+",1, (a, b) -> a + b),
-    MINUS("-",1, (a, b) -> a - b),
-    MULTIPLY("*",2, (a, b) -> a * b),
-    DIVIDE("/",2, (a, b) -> a / b);
+    LEFT_BRACKET("(", 0, (operandLeft, operandRight) -> 0),
+    RIGHT_BRACKET(")", 0, (operandLeft, operandRight) -> 0),
+    PLUS("+",1, (operandLeft, operandRight) -> operandLeft + operandRight),
+    MINUS("-",1, (operandLeft, operandRight) -> operandLeft - operandRight),
+    MULTIPLY("*",2, (operandLeft, operandRight) -> operandLeft * operandRight),
+    DIVIDE("/",2, (operandLeft, operandRight) -> operandLeft / operandRight);
 
     private static final Map<String, Operator> MY_OPERATOR = new HashMap<>();
 
@@ -26,7 +26,6 @@ public enum Operator {
 
     private final String type;
     private final int priority;
-
     private final BiFunction<Integer, Integer, Integer> simpleCalculator;
 
     Operator(String type, int priority, BiFunction<Integer, Integer, Integer> simpleCalculator) {
@@ -72,7 +71,6 @@ public enum Operator {
                 .charAt(0)
                 );
     }
-
 
     public Integer calculate(Integer operandLeft, Integer operandRight) {
         return this.simpleCalculator.apply(operandLeft, operandRight);

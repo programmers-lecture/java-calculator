@@ -10,50 +10,50 @@ import static stringcalculator.operator.Operator.*;
 
 public class PostfixConverter implements Converter {
 
-    public List<String> getFormula(List<String> formulaList) {
-        ArrayDeque<String> operatorDeque = new ArrayDeque<>(formulaList.size());
-        List<String> operandList = new ArrayList<>();
+    public List<String> getFormula(List<String> formulas) {
+        ArrayDeque<String> operatorDeque = new ArrayDeque<>(formulas.size());
+        List<String> operands = new ArrayList<>();
 
-        for (String formula : formulaList) {
-            pushOperator(operatorDeque, operandList, formula);
-            addDigit(operandList, formula);
+        for (String formula : formulas) {
+            pushOperator(operatorDeque, operands, formula);
+            addDigit(operands, formula);
             pushLeftBracket(operatorDeque, formula);
-            handleRightBracket(operatorDeque, operandList, formula);
+            handleRightBracket(operatorDeque, operands, formula);
         }
-        addLeftStack(operatorDeque, operandList);
+        addLeftStack(operatorDeque, operands);
 
-        return operandList;
+        return operands;
     }
 
     private void pushLeftBracket(ArrayDeque<String> operatorDeque, String formula) {
         if (checkLeftBracket(formula)) operatorDeque.addLast(formula);
     }
 
-    private void handleRightBracket(ArrayDeque<String> operatorDeque, List<String> operandList, String formula) {
+    private void handleRightBracket(ArrayDeque<String> operatorDeque, List<String> operands, String formula) {
         if (!checkRightBracket(formula)) return;
         while (!operatorDeque.isEmpty() && getOperator(operatorDeque.peekLast()) != LEFT_BRACKET) {
-            operandList.add(operatorDeque.removeLast());
+            operands.add(operatorDeque.removeLast());
         }
         if(!operatorDeque.isEmpty()) operatorDeque.removeLast();
     }
 
-    private void pushOperator(ArrayDeque<String> operatorDeque, List<String> operandList, String formula) {
+    private void pushOperator(ArrayDeque<String> operatorDeque, List<String> operands, String formula) {
         if (!checkOperator(formula)) return;
         while (!operatorDeque.isEmpty() && checkPriorityBigger(operatorDeque, formula)) {
-            operandList.add(operatorDeque.removeLast());
+            operands.add(operatorDeque.removeLast());
         }
         operatorDeque.addLast(formula);
     }
 
-    private void addDigit(List<String> operandList, String formula) {
+    private void addDigit(List<String> operands, String formula) {
         if (checkOperator(formula)) return;
         if (checkBracket(formula)) return;
-        operandList.add(formula);
+        operands.add(formula);
     }
 
-    private void addLeftStack(ArrayDeque<String> operatorDeque, List<String> operandList) {
+    private void addLeftStack(ArrayDeque<String> operatorDeque, List<String> operands) {
         while (!operatorDeque.isEmpty()) {
-            operandList.add(operatorDeque.removeLast());
+            operands.add(operatorDeque.removeLast());
         }
     }
 

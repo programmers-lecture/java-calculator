@@ -7,46 +7,46 @@ import static stringcalculator.operator.Operator.checkOperator;
 
 public class FormConverter implements Converter {
 
-    public List<String> getFormula(List<String> formulaList) {
-        return separateString(formulaList);
+    public List<String> getFormula(List<String> formulas) {
+        return separateString(formulas);
     }
 
-    private List<String> separateString(List<String> formulaList) {
-        List<String> operatorList = new ArrayList<>();
+    private List<String> separateString(List<String> formulas) {
+        List<String> operators = new ArrayList<>();
         StringBuilder operandBuilder = new StringBuilder();
 
-        for (String formula : formulaList) {
+        for (String formula : formulas) {
             checkDigitThenSaveAtNumberBuilderTemporary(operandBuilder, formula);
-            checkOperandBuilderCanBePushed(operatorList, operandBuilder, formula);
-            checkOperatorThenPush(operatorList, formula);
-            checkBracketThenPush(operatorList, formula);
+            checkOperandBuilderCanBePushed(operators, operandBuilder, formula);
+            checkOperatorThenPush(operators, formula);
+            checkBracketThenPush(operators, formula);
         }
-        addLeftOperand(operatorList, operandBuilder);
+        addLeftOperand(operators, operandBuilder);
 
-        return operatorList;
+        return operators;
     }
 
-    private void addLeftOperand(List<String> operatorList, StringBuilder operandBuilder) {
+    private void addLeftOperand(List<String> operators, StringBuilder operandBuilder) {
         if (checkLeftNumberBuilder(operandBuilder)) {
-            operatorList.add(operandBuilder.toString());
+            operators.add(operandBuilder.toString());
         }
     }
 
-    private void checkBracketThenPush(List<String> operatorList, String formula) {
-        if (checkBracket(formula)) operatorList.add(formula);
+    private void checkBracketThenPush(List<String> operators, String formula) {
+        if (checkBracket(formula)) operators.add(formula);
     }
 
-    private void checkOperatorThenPush(List<String> operatorList, String formula) {
-        if (checkOperator(formula)) operatorList.add(formula);
+    private void checkOperatorThenPush(List<String> operators, String formula) {
+        if (checkOperator(formula)) operators.add(formula);
     }
 
     private void checkDigitThenSaveAtNumberBuilderTemporary(StringBuilder operandBuilder, String formula) {
         if (checkDigit(formula)) operandBuilder.append(formula);
     }
 
-    private void checkOperandBuilderCanBePushed(List<String> operatorList, StringBuilder operandBuilder, String formula) {
+    private void checkOperandBuilderCanBePushed(List<String> operators, StringBuilder operandBuilder, String formula) {
         if (checkLeftNumberBuilder(operandBuilder) && !checkDigit(formula)) {
-            operatorList.add(operandBuilder.toString());
+            operators.add(operandBuilder.toString());
             operandBuilder.delete(0, operandBuilder.length());
         }
     }

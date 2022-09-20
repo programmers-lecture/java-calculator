@@ -16,10 +16,10 @@ public class PostfixCalculator implements Calculator {
     }
 
     public Integer getResult(List<String> formulaList) {
-        List<String> postfixFormulaList = postfixConverter.getFormula(formulaList);
+        List<String> postfixFormulas = postfixConverter.getFormula(formulaList);
         ArrayDeque<String> operandDeque = new ArrayDeque<>(formulaList.size());
 
-        for (String formula : postfixFormulaList) {
+        for (String formula : postfixFormulas) {
             handleDigit(operandDeque, formula);
             handleOperator(operandDeque, formula);
         }
