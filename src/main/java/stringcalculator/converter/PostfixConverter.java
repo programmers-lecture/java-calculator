@@ -2,48 +2,47 @@ package stringcalculator.converter;
 
 import stringcalculator.operator.Operator;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 import static stringcalculator.operator.Operator.*;
 
 public class PostfixConverter implements Converter {
 
     public List<String> getFormula(List<String> formulaList) {
-        Stack<String> operatorStack = new Stack<>();
+        ArrayDeque<String> operatorDeque = new ArrayDeque<>(formulaList.size());
         List<String> operandList = new ArrayList<>();
 
         for (String formula : formulaList) {
-            pushOperator(operatorStack, operandList, formula);
+            pushOperator(operatorDeque, operandList, formula);
             addDigit(operandList, formula);
-            pushLeftBracket(operatorStack, formula);
-            handleRightBracket(operatorStack, operandList, formula);
+            pushLeftBracket(operatorDeque, formula);
+            handleRightBracket(operatorDeque, operandList, formula);
         }
-        addLeftStack(operatorStack, operandList);
+        addLeftStack(operatorDeque, operandList);
 
         return operandList;
     }
 
-    private void pushLeftBracket(Stack<String> operatorStack, String formula) {
-        if (checkLeftBracket(formula)) operatorStack.push(formula);
+    private void pushLeftBracket(ArrayDeque<String> operatorDeque, String formula) {
+        if (checkLeftBracket(formula)) operatorDeque.addLast(formula);
     }
 
-    private void handleRightBracket(Stack<String> operatorStack, List<String> operandList, String formula) {
+    private void handleRightBracket(ArrayDeque<String> operatorDeque, List<String> operandList, String formula) {
         if (!checkRightBracket(formula)) return;
-        while (!operatorStack.isEmpty() && getOperator(operatorStack.peek()) != LEFT_BRACKET) {
-            operandList.add(operatorStack.pop());
+        while (!operatorDeque.isEmpty() && getOperator(operatorDeque.peekLast()) != LEFT_BRACKET) {
+            operandList.add(operatorDeque.removeLast());
         }
-        if(!operatorStack.isEmpty()) operatorStack.pop();
-
+        if(!operatorDeque.isEmpty()) operatorDeque.removeLast();
     }
 
-    private void pushOperator(Stack<String> operatorStack, List<String> operandList, String formula) {
+    private void pushOperator(ArrayDeque<String> operatorDeque, List<String> operandList, String formula) {
         if (!checkOperator(formula)) return;
-        while (!operatorStack.isEmpty() && checkPriorityBigger(operatorStack, formula)) {
-            operandList.add(operatorStack.pop());
+        while (!operatorDeque.isEmpty() && checkPriorityBigger(operatorDeque, formula)) {
+            operandList.add(operatorDeque.removeLast());
         }
-        operatorStack.add(formula);
+        operatorDeque.addLast(formula);
     }
 
     private void addDigit(List<String> operandList, String formula) {
@@ -52,9 +51,9 @@ public class PostfixConverter implements Converter {
         operandList.add(formula);
     }
 
-    private void addLeftStack(Stack<String> operatorStack, List<String> operandList) {
-        while (!operatorStack.isEmpty()) {
-            operandList.add(operatorStack.pop());
+    private void addLeftStack(ArrayDeque<String> operatorDeque, List<String> operandList) {
+        while (!operatorDeque.isEmpty()) {
+            operandList.add(operatorDeque.removeLast());
         }
     }
 
@@ -77,9 +76,9 @@ public class PostfixConverter implements Converter {
         return !checkBracket(formula) && !checkDigit(formula);
     }
 
-    private boolean checkPriorityBigger(Stack<String> operatorStack, String formula) {
+    private boolean checkPriorityBigger(ArrayDeque<String> operatorDeque, String formula) {
         if (checkDigit(formula)) return false;
-        if (operatorStack.isEmpty()) return false;
-        return getOperator(operatorStack.peek()).getPriority() >= getOperator(formula).getPriority();
+        if (operatorDeque.isEmpty()) return false;
+        return getOperator(operatorDeque.peekLast()).getPriority() >= getOperator(formula).getPriority();
     }
 }

@@ -1,11 +1,9 @@
 package stringcalculator.calculator;
 
-import stringcalculator.converter.FormConverter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import stringcalculator.converter.FormConverter;
 import stringcalculator.view.Reader;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -21,16 +19,16 @@ class CalculatorTest {
         String str2 = "10 + 10";
         String str3 = "525 + 475";
 
-        Optional<Integer> result1 =
+        Integer result1 =
                 calculator.getResult(formulaConverter.getFormula(Reader.splitWithoutSpace(str1)));
-        Optional<Integer> result2 =
+        Integer result2 =
                 calculator.getResult(formulaConverter.getFormula(Reader.splitWithoutSpace(str2)));
-        Optional<Integer> result3 =
+        Integer result3 =
                 calculator.getResult(formulaConverter.getFormula(Reader.splitWithoutSpace(str3)));
 
-        assertEquals(4, result1.get());
-        assertEquals(20, result2.get());
-        assertEquals(1000, result3.get());
+        assertEquals(4, result1);
+        assertEquals(20, result2);
+        assertEquals(1000, result3);
     }
 
     @Test
@@ -40,16 +38,16 @@ class CalculatorTest {
         String str2 = "10 - 10";
         String str3 = "525 - 475";
 
-        Optional<Integer> result1 =
+        Integer result1 =
                 calculator.getResult(formulaConverter.getFormula(Reader.splitWithoutSpace(str1)));
-        Optional<Integer> result2 =
+        Integer result2 =
                 calculator.getResult(formulaConverter.getFormula(Reader.splitWithoutSpace(str2)));
-        Optional<Integer> result3 =
+        Integer result3 =
                 calculator.getResult(formulaConverter.getFormula(Reader.splitWithoutSpace(str3)));
 
-        assertEquals(-2, result1.get());
-        assertEquals(0, result2.get());
-        assertEquals(50, result3.get());
+        assertEquals(-2, result1);
+        assertEquals(0, result2);
+        assertEquals(50, result3);
     }
 
     @Test
@@ -57,10 +55,10 @@ class CalculatorTest {
     void complicatedTest() {
         String str = "1123 + 10 - 2 - 0 * (10 / 10 * 10 - 20 / 20 * 10 / 1 + (10 * 10 - 10)) + 100000 + 12000 * 10 - 120000";
 
-        Optional<Integer> result =
+        Integer result =
                 calculator.getResult(formulaConverter.getFormula(Reader.splitWithoutSpace(str)));
 
-        assertEquals(101131, result.get());
+        assertEquals(101131, result);
     }
 
     @Test
@@ -68,9 +66,9 @@ class CalculatorTest {
     void complicatedSpaceTest() {
         String str = "1                                        + (1 0 + 22 0 0 0 0 ) + 10";
 
-        Optional<Integer> result =
+        Integer result =
                 calculator.getResult(formulaConverter.getFormula(Reader.splitWithoutSpace(str)));
 
-        assertEquals(220021, result.get());
+        assertEquals(220021, result);
     }
 }

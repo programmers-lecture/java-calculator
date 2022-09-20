@@ -3,9 +3,9 @@ package stringcalculator.calculator;
 import stringcalculator.converter.PostfixConverter;
 import stringcalculator.operator.Operator;
 
+import java.util.ArrayDeque;
 import java.util.List;
 import java.util.Optional;
-import java.util.Stack;
 
 public class PostfixCalculator implements Calculator {
 
@@ -15,28 +15,36 @@ public class PostfixCalculator implements Calculator {
         this.postfixConverter = new PostfixConverter();
     }
 
-    public Optional<Integer> getResult(List<String> formulaList) {
+    public Integer getResult(List<String> formulaList) {
         List<String> postfixFormulaList = postfixConverter.getFormula(formulaList);
-        Stack<String> operandStack = new Stack<>();
+        ArrayDeque<String> operandDeque = new ArrayDeque<>(formulaList.size());
 
         for (String formula : postfixFormulaList) {
-            handleDigit(operandStack, formula);
-            handleOperator(operandStack, formula);
+            handleDigit(operandDeque, formula);
+            handleOperator(operandDeque, formula);
         }
 
-        return Optional.of(Integer.parseInt(operandStack.pop()));
+        return Integer.parseInt(Optional
+                .of(operandDeque.removeLast())
+                .orElseThrow(() -> new NullPointerException("입력하신 연산식이 잘못되어 오류가 발생하였습니다.")));
     }
 
-    private void handleOperator(Stack<String> operandStack, String formula) {
+    private void handleOperator(ArrayDeque<String> operandDeque, String formula) {
         if (checkOperator(formula)) {
-            int operandRight = Integer.parseInt(operandStack.pop());
-            int operandLeft = Integer.parseInt(operandStack.pop());
-            operandStack.push(String.valueOf(Operator.calculate(operandLeft, formula, operandRight)));
+            int operandRight =
+                    Integer.parseInt(Optional
+                            .of(operandDeque.removeLast())
+                            .orElseThrow(() -> new NullPointerException("입력하신 연산식이 잘못되어 오류가 발생하였습니다.")));
+            int operandLeft =
+                    Integer.parseInt(Optional
+                            .of(operandDeque.removeLast())
+                            .orElseThrow(() -> new NullPointerException("입력하신 연산식이 잘못되어 오류가 발생하였습니다.")));
+            operandDeque.addLast(String.valueOf(Operator.calculate(operandLeft, formula, operandRight)));
         }
     }
 
-    private void handleDigit(Stack<String> operandStack, String formula) {
-        if (checkDigit(formula)) operandStack.push(formula);
+    private void handleDigit(ArrayDeque<String> operandDeque, String formula) {
+        if (checkDigit(formula)) operandDeque.addLast(formula);
     }
 
     private boolean checkDigit(String formula) {
@@ -44,7 +52,7 @@ public class PostfixCalculator implements Calculator {
                 .ofNullable(formula)
                 .orElseThrow()
                 .charAt(0)
-                );
+        );
     }
 
     private boolean checkOperator(String formula) {

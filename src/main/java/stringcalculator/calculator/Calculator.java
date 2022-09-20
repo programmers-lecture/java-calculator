@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface Calculator {
 
-    Optional<Integer> getResult(List<String> formulaList);
+    Integer getResult(List<String> formulaList);
 }
