@@ -32,8 +32,8 @@ public class PostfixConvertor {
 
     private void addOperatorInPostfixFormula(String formulaStr) {
         if (Util.isOperator(formulaStr)) {
-            Operator operator = Operator.findOperator(formulaStr);
             if(!operators.isEmpty()) {
+                Operator operator = Operator.findOperator(formulaStr);
                 Operator previousOperator = Operator.findOperator(operators.peek());
                 if (operator.getPriority() <= previousOperator.getPriority())
                     postfixFormula.add(operators.pop());
