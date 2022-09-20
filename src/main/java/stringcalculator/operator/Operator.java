@@ -17,7 +17,7 @@ public enum Operator {
     MULTIPLY("*",2, (a, b) -> a * b),
     DIVIDE("/",2, (a, b) -> a / b);
 
-    final static private Map<String, Operator> MY_OPERATOR = new HashMap<>();
+    private static final Map<String, Operator> MY_OPERATOR = new HashMap<>();
 
     static {
         Arrays.stream(Operator.values())

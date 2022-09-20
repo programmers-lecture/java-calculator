@@ -9,7 +9,7 @@ import java.util.Stack;
 
 public class PostfixCalculator implements Calculator {
 
-    final private PostfixConverter postfixConverter;
+    private final PostfixConverter postfixConverter;
 
     public PostfixCalculator() {
         this.postfixConverter = new PostfixConverter();
