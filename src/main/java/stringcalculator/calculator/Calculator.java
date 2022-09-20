@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface Calculator {
 
-    Integer getResult(List<String> formulas);
+    int getResult(List<String> formulas);
 }

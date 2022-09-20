@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.BiFunction;
+import java.util.function.IntBinaryOperator;
 
 import static java.lang.Character.isDigit;
 
@@ -26,9 +27,9 @@ public enum Operator {
 
     private final String type;
     private final int priority;
-    private final BiFunction<Integer, Integer, Integer> simpleCalculator;
+    private final IntBinaryOperator simpleCalculator;
 
-    Operator(String type, int priority, BiFunction<Integer, Integer, Integer> simpleCalculator) {
+    Operator(String type, int priority, IntBinaryOperator simpleCalculator) {
         this.type = type;
         this.priority = priority;
         this.simpleCalculator = simpleCalculator;
@@ -46,7 +47,7 @@ public enum Operator {
                 .isPresent();
     }
 
-    public static Integer calculate(Integer operandLeft, String operator, Integer operandRight) {
+    public static int calculate(int operandLeft, String operator, int operandRight) {
         return getOperator(operator).calculate(operandLeft, operandRight);
     }
 
@@ -74,8 +75,8 @@ public enum Operator {
                 .orElseThrow(() -> new NullPointerException("확인되지 않은 연산자 입니다."));
     }
 
-    public Integer calculate(Integer operandLeft, Integer operandRight) {
-        return this.simpleCalculator.apply(operandLeft, operandRight);
+    public int calculate(int operandLeft, int operandRight) {
+        return this.simpleCalculator.applyAsInt(operandLeft, operandRight);
     }
 
     public int getPriority() {

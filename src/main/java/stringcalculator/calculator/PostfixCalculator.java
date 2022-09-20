@@ -17,7 +17,7 @@ public class PostfixCalculator implements Calculator {
         this.postfixConverter = new PostfixConverter();
     }
 
-    public Integer getResult(List<String> formulaList) {
+    public int getResult(List<String> formulaList) {
         List<String> postfixFormulas = postfixConverter.getFormula(formulaList);
         ArrayDeque<String> operandDeque = new ArrayDeque<>(formulaList.size());
 
