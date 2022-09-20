@@ -13,9 +13,9 @@ public enum Operator {
     });
 
     private final String operator;
-    private final BiFunction<Integer, Integer, Integer> expression;
+    private final BiFunction<Double, Double, Double> expression;
 
-    Operator(String operator, BiFunction<Integer, Integer, Integer> expression) {
+    Operator(String operator, BiFunction<Double, Double, Double> expression) {
         this.operator = operator;
         this.expression = expression;
     }
@@ -36,7 +36,7 @@ public enum Operator {
         return operator;
     }
 
-    public Integer operate(Integer firstOperand, Integer secondOperand) {
+    public Double operate(Double firstOperand, Double secondOperand) {
         return expression.apply(firstOperand, secondOperand);
     }
 }

@@ -9,13 +9,13 @@ import java.util.Stack;
 public class Calculator {
 
     private List<String> postfixFormula;
-    private Stack<Integer> numbers = new Stack<>();
+    private Stack<Double> numbers = new Stack<>();
 
     public Calculator(List<String> postfixFormula) {
         this.postfixFormula = postfixFormula;
     }
 
-    public Integer calculate() {
+    public Double calculate() {
         for(String postfixFormulaStr: postfixFormula) {
             addNumberInNumbers(postfixFormulaStr);
             addCalculatedNumberInNumbers(postfixFormulaStr);
@@ -27,15 +27,15 @@ public class Calculator {
 
     private void addNumberInNumbers(String postfixFormulaStr) {
         if (Util.isNumber(postfixFormulaStr))
-            numbers.push(Integer.parseInt(postfixFormulaStr));
+            numbers.push(Double.parseDouble(postfixFormulaStr));
     }
 
     private void addCalculatedNumberInNumbers(String postfixFormulaStr) {
         if (Util.isOperator(postfixFormulaStr)) {
             checkNumbersHasTwoNumber();
-            Integer secondOperand = numbers.pop();
-            Integer firstOperand = numbers.pop();
-            Integer result = Operator.findOperator(postfixFormulaStr).operate(firstOperand, secondOperand);
+            Double secondOperand = numbers.pop();
+            Double firstOperand = numbers.pop();
+            Double result = Operator.findOperator(postfixFormulaStr).operate(firstOperand, secondOperand);
             numbers.push(result);
         }
     }

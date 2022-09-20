@@ -13,7 +13,7 @@ public class CalculatorController {
         PostfixConvertor postfixConvertor = new PostfixConvertor();
         List<String> postfixFormula = postfixConvertor.convertPostfixFormula(formula);
         Calculator calculator = new Calculator(postfixFormula);
-        Integer result = calculator.calculate();
+        Double result = calculator.calculate();
         OutputView.printCalculatorResult(result);
     }
 }

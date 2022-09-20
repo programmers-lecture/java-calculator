@@ -11,6 +11,11 @@ public class Util {
     }
 
     public static boolean isNumber(String number) {
-        return number.chars().allMatch(Character::isDigit);
+        try {
+            Double.parseDouble(number);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
