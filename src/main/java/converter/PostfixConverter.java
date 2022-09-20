@@ -8,78 +8,78 @@ import java.util.Stack;
 
 import static operator.Operator.*;
 
-public class PostfixConverter {
+public class PostfixConverter implements Converter {
 
-    public List<String> getFormat(List<String> list) {
+    public List<String> getFormula(List<String> formulaList) {
         Stack<String> operatorStack = new Stack<>();
-        List<String> format = new ArrayList<>();
+        List<String> operandList = new ArrayList<>();
 
-        for (String value : list) {
-            pushOperator(operatorStack, format, value);
-            addDigit(format, value);
-            pushLeftBracket(operatorStack, value);
-            handleRightBracket(operatorStack, format, value);
+        for (String formula : formulaList) {
+            pushOperator(operatorStack, operandList, formula);
+            addDigit(operandList, formula);
+            pushLeftBracket(operatorStack, formula);
+            handleRightBracket(operatorStack, operandList, formula);
         }
-        addLeftStack(operatorStack, format);
+        addLeftStack(operatorStack, operandList);
 
-        return format;
+        return operandList;
     }
 
-    private void pushLeftBracket(Stack<String> operatorStack, String value) {
-        if (checkLeftBracket(value)) operatorStack.push(value);
+    private void pushLeftBracket(Stack<String> operatorStack, String formula) {
+        if (checkLeftBracket(formula)) operatorStack.push(formula);
     }
 
-    private void handleRightBracket(Stack<String> operatorStack, List<String> format, String value) {
-        if (!checkRightBracket(value)) return;
+    private void handleRightBracket(Stack<String> operatorStack, List<String> operandList, String formula) {
+        if (!checkRightBracket(formula)) return;
         while (!operatorStack.isEmpty() && getOperator(operatorStack.peek()) != LEFT_BRACKET) {
-            format.add(operatorStack.pop());
+            operandList.add(operatorStack.pop());
         }
         if(!operatorStack.isEmpty()) operatorStack.pop();
 
     }
 
-    private void pushOperator(Stack<String> operatorStack, List<String> format, String value) {
-        if (!checkOperator(value)) return;
-        while (!operatorStack.isEmpty() && checkPriorityBigger(operatorStack, value)) {
-            format.add(operatorStack.pop());
+    private void pushOperator(Stack<String> operatorStack, List<String> operandList, String formula) {
+        if (!checkOperator(formula)) return;
+        while (!operatorStack.isEmpty() && checkPriorityBigger(operatorStack, formula)) {
+            operandList.add(operatorStack.pop());
         }
-        operatorStack.add(value);
+        operatorStack.add(formula);
     }
 
-    private void addDigit(List<String> format, String value) {
-        if (checkOperator(value)) return;
-        if (checkBracket(value)) return;
-        format.add(value);
+    private void addDigit(List<String> operandList, String formula) {
+        if (checkOperator(formula)) return;
+        if (checkBracket(formula)) return;
+        operandList.add(formula);
     }
 
-    private void addLeftStack(Stack<String> operatorStack, List<String> format) {
+    private void addLeftStack(Stack<String> operatorStack, List<String> operandList) {
         while (!operatorStack.isEmpty()) {
-            format.add(operatorStack.pop());
+            operandList.add(operatorStack.pop());
         }
     }
 
-    private boolean checkLeftBracket(String value) {
-        if (checkDigit(value)) return false;
-        return Operator.checkLeftBracket(getOperator(value));
+    private boolean checkLeftBracket(String formula) {
+        if (checkDigit(formula)) return false;
+        return Operator.checkLeftBracket(getOperator(formula));
     }
 
-    private boolean checkRightBracket(String value) {
-        if (checkDigit(value)) return false;
-        return Operator.checkRightBracket(getOperator(value));
+    private boolean checkRightBracket(String formula) {
+        if (checkDigit(formula)) return false;
+        return Operator.checkRightBracket(getOperator(formula));
     }
 
-    private boolean checkBracket(String value) {
-        if (checkDigit(value)) return false;
-        return checkLeftBracket(value) || checkRightBracket(value);
+    private boolean checkBracket(String formula) {
+        if (checkDigit(formula)) return false;
+        return checkLeftBracket(formula) || checkRightBracket(formula);
     }
 
-    private boolean checkOperator(String value) {
-        return !checkBracket(value) && !checkDigit(value);
+    private boolean checkOperator(String formula) {
+        return !checkBracket(formula) && !checkDigit(formula);
     }
 
-    private boolean checkPriorityBigger(Stack<String> operatorStack, String value) {
-        if (checkDigit(value)) return false;
+    private boolean checkPriorityBigger(Stack<String> operatorStack, String formula) {
+        if (checkDigit(formula)) return false;
         if (operatorStack.isEmpty()) return false;
-        return getOperator(operatorStack.peek()).getPriority() >= getOperator(value).getPriority();
+        return getOperator(operatorStack.peek()).getPriority() >= getOperator(formula).getPriority();
     }
 }

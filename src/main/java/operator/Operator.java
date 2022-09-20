@@ -17,7 +17,7 @@ public enum Operator {
     MULTIPLY("*",2, (a, b) -> a * b),
     DIVIDE("/",2, (a, b) -> a / b);
 
-    private static Map<String, Operator> MY_OPERATOR = new HashMap<>();
+    final static private Map<String, Operator> MY_OPERATOR = new HashMap<>();
 
     static {
         Arrays.stream(Operator.values())
@@ -27,12 +27,12 @@ public enum Operator {
     private final String type;
     private final int priority;
 
-    private final BiFunction<Integer, Integer, Integer> biFunction;
+    private final BiFunction<Integer, Integer, Integer> simpleCalculator;
 
-    Operator(String type, int priority, BiFunction<Integer, Integer, Integer> biFunction) {
+    Operator(String type, int priority, BiFunction<Integer, Integer, Integer> simpleCalculator) {
         this.type = type;
         this.priority = priority;
-        this.biFunction = biFunction;
+        this.simpleCalculator = simpleCalculator;
     }
 
     public static Operator getOperator(String operatorType) {
@@ -43,11 +43,8 @@ public enum Operator {
         return Optional.ofNullable(MY_OPERATOR.get(operatorType)).isPresent();
     }
 
-    public static Integer calculate(Integer a, String operatorType, Integer b) {
-        return getOperator(operatorType).calculate(a, b);
-    }
-    public static boolean checkBracket(Operator operator) {
-        return checkLeftBracket(operator) || checkRightBracket(operator);
+    public static Integer calculate(Integer operandLeft, String operator, Integer operandRight) {
+        return getOperator(operator).calculate(operandLeft, operandRight);
     }
 
     public static boolean checkLeftBracket(Operator operator) {
@@ -65,15 +62,11 @@ public enum Operator {
     }
 
 
-    public Integer calculate(Integer a, Integer b) {
-        return this.biFunction.apply(a, b);
+    public Integer calculate(Integer operandLeft, Integer operandRight) {
+        return this.simpleCalculator.apply(operandLeft, operandRight);
     }
 
     public int getPriority() {
         return priority;
-    }
-
-    public String getType() {
-        return type;
     }
 }

@@ -17,7 +17,7 @@ class PostfixConverterTest {
     public void postfixFormatTest() {
 
         String str = " 1-4+2+(3*2+(1+1)-1)";
-        List<String> format = converter.getFormat(Reader.splitWithoutSpace(str));
+        List<String> format = converter.getFormula(Reader.splitWithoutSpace(str));
 
         assertEquals("[1, 4, -, 2, +, 3, 2, *, 1, 1, +, +, 1, -, +]", format.toString());
     }

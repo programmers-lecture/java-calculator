@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Reader {
-    static private final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    final static private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     static public List<String> read() {
         try {
@@ -17,13 +17,17 @@ public class Reader {
         }
     }
 
-    static public List<String> splitWithoutSpace(String str) {
-        return Stream.of(str.split(""))
+    static public List<String> splitWithoutSpace(String inputForm) {
+        return Stream.of(splitEachChar(inputForm))
                 .filter(Reader::isNotSpace)
                 .collect(Collectors.toList());
     }
     private static boolean isNotSpace(String spell) {
         return !spell.equals(" ");
+    }
+
+    private static String[] splitEachChar(String inputForm) {
+        return inputForm.split("");
     }
 
 }

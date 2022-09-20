@@ -1,6 +1,6 @@
 package calculator;
 
-import converter.FormulaConverter;
+import converter.FormConverter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import view.Reader;
@@ -9,8 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CalculatorTest {
 
-    private final Calculator calculator = new Calculator();
-    private final FormulaConverter formulaConverter = new FormulaConverter();
+    private final PostfixCalculator calculator = new PostfixCalculator();
+    private final FormConverter formulaConverter = new FormConverter();
 
     @Test
     @DisplayName("더하기 테스트")
