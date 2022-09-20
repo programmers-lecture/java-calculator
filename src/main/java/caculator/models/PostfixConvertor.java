@@ -16,8 +16,6 @@ public class PostfixConvertor {
             checkIncorrectFormula(formulaStr);
             addNumberInPostfixFormula(formulaStr);
             addOperatorInPostfixFormula(formulaStr);
-            System.out.println(postfixFormula);
-            System.out.println(operators);
         }
         while (!operators.isEmpty()) {
             postfixFormula.add(operators.pop());
