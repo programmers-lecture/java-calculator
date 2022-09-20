@@ -1,5 +1,6 @@
 package caculator.models;
 
+import caculator.enums.Operator;
 import caculator.utils.Util;
 
 import java.util.List;
@@ -8,16 +9,18 @@ import java.util.Stack;
 public class PostfixConvertor {
 
     private List<String> postfixFormula = new Stack<>();
-    private Stack<String> operands = new Stack<>();
+    private Stack<String> operators = new Stack<>();
 
     public List<String> convertPostfixFormula(String[] formula) {
         for (String formulaStr : formula) {
             checkIncorrectFormula(formulaStr);
             addNumberInPostfixFormula(formulaStr);
             addOperatorInPostfixFormula(formulaStr);
+            System.out.println(postfixFormula);
+            System.out.println(operators);
         }
-        while (!operands.isEmpty()) {
-            postfixFormula.add(operands.pop());
+        while (!operators.isEmpty()) {
+            postfixFormula.add(operators.pop());
         }
         return postfixFormula;
     }
@@ -29,10 +32,13 @@ public class PostfixConvertor {
 
     private void addOperatorInPostfixFormula(String formulaStr) {
         if (Util.isOperator(formulaStr)) {
-            if (!operands.isEmpty()) {
-                postfixFormula.add(operands.pop());
+            Operator operator = Operator.findOperator(formulaStr);
+            if(!operators.isEmpty()) {
+                Operator previousOperator = Operator.findOperator(operators.peek());
+                if (operator.getPriority() <= previousOperator.getPriority())
+                    postfixFormula.add(operators.pop());
             }
-            operands.push(formulaStr);
+            operators.push(formulaStr);
         }
     }
 
