@@ -6,7 +6,7 @@ public class Calculator {
     static final OutputView OUTPUT_VIEW = new OutputView();
 
     public Calculator() {
-        System.out.println("문자열 계산기 프로그램을 실행합니다...");
+        System.out.println("문자열 계산기 프로그램을 실행합니다... ('0'을 입력하여 종료)");
     }
 
     public void run() {
