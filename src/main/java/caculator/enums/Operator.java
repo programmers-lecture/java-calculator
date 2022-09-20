@@ -20,6 +20,21 @@ public enum Operator {
         this.expression = expression;
     }
 
+    public static Operator findOperator(String value) {
+        if(value.equals(PLUS.getOperator()))
+            return PLUS;
+        if(value.equals(MINUS.getOperator()))
+            return MINUS;
+        if(value.equals(MULTIPLY.getOperator()))
+            return MULTIPLY;
+        if(value.equals(DIVIDE.getOperator()))
+            return DIVIDE;
+        throw new IllegalArgumentException();
+    }
+
+    public String getOperator() {
+        return operator;
+    }
 
     public Integer operate(Integer firstOperand, Integer secondOperand) {
         return expression.apply(firstOperand, secondOperand);
