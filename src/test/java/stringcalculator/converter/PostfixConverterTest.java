@@ -14,7 +14,7 @@ class PostfixConverterTest {
 
     @Test
     @DisplayName("후위 표기식 작성 메서드 테스트")
-    public void postfixFormatTest() {
+    void postfixFormatTest() {
 
         String str = " 1-4+2+(3*2+(1+1)-1)";
         List<String> format = converter.getFormula(Reader.splitWithoutSpace(str));

@@ -16,7 +16,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("더하기 테스트")
-    public void simplePlusTest() {
+    void simplePlusTest() {
         String str1 = "1 + 3";
         String str2 = "10 + 10";
         String str3 = "525 + 475";
@@ -35,7 +35,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("빼기 테스트")
-    public void simpleMinusTest() {
+    void simpleMinusTest() {
         String str1 = "1 - 3";
         String str2 = "10 - 10";
         String str3 = "525 - 475";
@@ -54,7 +54,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("복잡한 연산 테스트")
-    public void complicatedTest() {
+    void complicatedTest() {
         String str = "1123 + 10 - 2 - 0 * (10 / 10 * 10 - 20 / 20 * 10 / 1 + (10 * 10 - 10)) + 100000 + 12000 * 10 - 120000";
 
         Optional<Integer> result =
@@ -65,7 +65,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("띄어쓰기 엉망 구별 테스트")
-    public void complicatedSpaceTest() {
+    void complicatedSpaceTest() {
         String str = "1                                        + (1 0 + 22 0 0 0 0 ) + 10";
 
         Optional<Integer> result =
