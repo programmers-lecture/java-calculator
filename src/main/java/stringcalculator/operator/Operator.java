@@ -36,11 +36,15 @@ public enum Operator {
     }
 
     public static Operator getOperator(String operatorType) {
-        return Optional.ofNullable(MY_OPERATOR.get(operatorType)).orElseThrow();
+        return Optional.ofNullable(MY_OPERATOR
+                .get(operatorType))
+                .orElseThrow(() -> new NullPointerException("확인되지 않은 연산자 입니다."));
     }
 
     public static boolean checkOperator(String operatorType) {
-        return Optional.ofNullable(MY_OPERATOR.get(operatorType)).isPresent();
+        return Optional.ofNullable(MY_OPERATOR
+                .get(operatorType))
+                .isPresent();
     }
 
     public static Integer calculate(Integer operandLeft, String operator, Integer operandRight) {
@@ -49,16 +53,24 @@ public enum Operator {
 
     public static boolean checkLeftBracket(Operator operator) {
         return Optional.ofNullable(operator)
-                .orElseThrow(NullPointerException::new) == LEFT_BRACKET;
+                .orElseThrow(
+                        () -> new NullPointerException("확인되지 않은 연산자 입니다.")
+                ) == LEFT_BRACKET;
     }
 
     public static boolean checkRightBracket(Operator operator) {
         return Optional.ofNullable(operator)
-                .orElseThrow(NullPointerException::new) == RIGHT_BRACKET;
+                .orElseThrow(
+                        () -> new NullPointerException("확인되지 않은 연산자 입니다.")
+                ) == RIGHT_BRACKET;
     }
 
     public static boolean checkDigit(String value) {
-        return isDigit(Optional.ofNullable(value).orElseThrow().charAt(0));
+        return isDigit(Optional
+                .ofNullable(value)
+                .orElseThrow(() -> new NullPointerException("확인되지 않은 연산자 입니다."))
+                .charAt(0)
+                );
     }
 
 
