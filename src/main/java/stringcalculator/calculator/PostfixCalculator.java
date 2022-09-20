@@ -7,6 +7,8 @@ import java.util.ArrayDeque;
 import java.util.List;
 import java.util.Optional;
 
+import static stringcalculator.operator.Operator.checkDigit;
+
 public class PostfixCalculator implements Calculator {
 
     private final PostfixConverter postfixConverter;
@@ -45,14 +47,6 @@ public class PostfixCalculator implements Calculator {
 
     private void handleDigit(ArrayDeque<String> operandDeque, String formula) {
         if (checkDigit(formula)) operandDeque.addLast(formula);
-    }
-
-    private boolean checkDigit(String formula) {
-        return Character.isDigit(Optional
-                .ofNullable(formula)
-                .orElseThrow()
-                .charAt(0)
-        );
     }
 
     private boolean checkOperator(String formula) {

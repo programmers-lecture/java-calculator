@@ -12,10 +12,10 @@ public enum Operator {
 
     LEFT_BRACKET("(", 0, (operandLeft, operandRight) -> 0),
     RIGHT_BRACKET(")", 0, (operandLeft, operandRight) -> 0),
-    PLUS("+",1, (operandLeft, operandRight) -> operandLeft + operandRight),
-    MINUS("-",1, (operandLeft, operandRight) -> operandLeft - operandRight),
-    MULTIPLY("*",2, (operandLeft, operandRight) -> operandLeft * operandRight),
-    DIVIDE("/",2, (operandLeft, operandRight) -> operandLeft / operandRight);
+    PLUS("+", 1, (operandLeft, operandRight) -> operandLeft + operandRight),
+    MINUS("-", 1, (operandLeft, operandRight) -> operandLeft - operandRight),
+    MULTIPLY("*", 2, (operandLeft, operandRight) -> operandLeft * operandRight),
+    DIVIDE("/", 2, (operandLeft, operandRight) -> operandLeft / operandRight);
 
     private static final Map<String, Operator> MY_OPERATOR = new HashMap<>();
 
@@ -36,13 +36,13 @@ public enum Operator {
 
     public static Operator getOperator(String operatorType) {
         return Optional.ofNullable(MY_OPERATOR
-                .get(operatorType))
+                        .get(operatorType))
                 .orElseThrow(() -> new NullPointerException("확인되지 않은 연산자 입니다."));
     }
 
     public static boolean checkOperator(String operatorType) {
         return Optional.ofNullable(MY_OPERATOR
-                .get(operatorType))
+                        .get(operatorType))
                 .isPresent();
     }
 
@@ -64,12 +64,14 @@ public enum Operator {
                 ) == RIGHT_BRACKET;
     }
 
-    public static boolean checkDigit(String value) {
-        return isDigit(Optional
-                .ofNullable(value)
-                .orElseThrow(() -> new NullPointerException("확인되지 않은 연산자 입니다."))
-                .charAt(0)
-                );
+    public static boolean checkDigit(String formula) {
+        return isDigit(getFormulaAfterCheckNull(formula).charAt(0));
+    }
+
+    public static String getFormulaAfterCheckNull(String formula) {
+        return Optional
+                .ofNullable(formula)
+                .orElseThrow(() -> new NullPointerException("확인되지 않은 연산자 입니다."));
     }
 
     public Integer calculate(Integer operandLeft, Integer operandRight) {
