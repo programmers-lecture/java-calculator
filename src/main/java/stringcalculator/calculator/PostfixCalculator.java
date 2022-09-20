@@ -1,12 +1,12 @@
 package stringcalculator.calculator;
 
 import stringcalculator.converter.PostfixConverter;
-import stringcalculator.operator.Operator;
 
 import java.util.ArrayDeque;
 import java.util.List;
 import java.util.Optional;
 
+import static stringcalculator.operator.Operator.*;
 import static stringcalculator.operator.Operator.checkDigit;
 
 public class PostfixCalculator implements Calculator {
@@ -32,7 +32,7 @@ public class PostfixCalculator implements Calculator {
     }
 
     private void handleOperator(ArrayDeque<String> operandDeque, String formula) {
-        if (Operator.checkOperator(formula)) {
+        if (checkOperator(formula)) {
             int operandRight =
                     Integer.parseInt(Optional
                             .of(operandDeque.removeLast())
@@ -41,7 +41,7 @@ public class PostfixCalculator implements Calculator {
                     Integer.parseInt(Optional
                             .of(operandDeque.removeLast())
                             .orElseThrow(() -> new NullPointerException("입력하신 연산식이 잘못되어 오류가 발생하였습니다.")));
-            operandDeque.addLast(String.valueOf(Operator.calculate(operandLeft, formula, operandRight)));
+            operandDeque.addLast(String.valueOf(calculate(operandLeft, formula, operandRight)));
         }
     }
 
