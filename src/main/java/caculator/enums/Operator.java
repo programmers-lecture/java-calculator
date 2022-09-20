@@ -23,19 +23,15 @@ public enum Operator {
     }
 
     public static Operator findOperator(String value) {
-        if(value.equals(PLUS.getOperator()))
+        if(value.equals(PLUS.operator))
             return PLUS;
-        if(value.equals(MINUS.getOperator()))
+        if(value.equals(MINUS.operator))
             return MINUS;
-        if(value.equals(MULTIPLY.getOperator()))
+        if(value.equals(MULTIPLY.operator))
             return MULTIPLY;
-        if(value.equals(DIVIDE.getOperator()))
+        if(value.equals(DIVIDE.operator))
             return DIVIDE;
         throw new IllegalArgumentException();
-    }
-
-    public String getOperator() {
-        return operator;
     }
 
     public Integer getPriority() {
@@ -44,5 +40,13 @@ public enum Operator {
 
     public Double operate(Double firstOperand, Double secondOperand) {
         return expression.apply(firstOperand, secondOperand);
+    }
+
+    public boolean isSameOperator(String operator) {
+        return this.operator.equals(operator);
+    }
+
+    public boolean isLowPriority(Operator operator) {
+        return this.priority <= operator.priority;
     }
 }

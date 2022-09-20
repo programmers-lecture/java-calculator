@@ -4,10 +4,10 @@ import caculator.enums.Operator;
 
 public class Util {
     public static boolean isOperator(String operator) {
-        return operator.equals(Operator.PLUS.getOperator())
-                || operator.equals(Operator.MINUS.getOperator())
-                || operator.equals(Operator.MULTIPLY.getOperator())
-                || operator.equals(Operator.DIVIDE.getOperator());
+        return Operator.PLUS.isSameOperator(operator)
+                || Operator.MINUS.isSameOperator(operator)
+                || Operator.MULTIPLY.isSameOperator(operator)
+                || Operator.DIVIDE.isSameOperator(operator);
     }
 
     public static boolean isNumber(String number) {

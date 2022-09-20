@@ -33,7 +33,7 @@ public class PostfixConvertor {
             if(!operators.isEmpty()) {
                 Operator operator = Operator.findOperator(formulaStr);
                 Operator previousOperator = Operator.findOperator(operators.peek());
-                if (operator.getPriority() <= previousOperator.getPriority())
+                if (operator.isLowPriority(previousOperator))
                     postfixFormula.add(operators.pop());
             }
             operators.push(formulaStr);
