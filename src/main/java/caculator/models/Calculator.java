@@ -8,51 +8,73 @@ import java.util.Stack;
 public class Calculator {
 
     private String[] formula;
+    private List<String> postfixFormula = new Stack<>();
+    private Stack<String> operands = new Stack<>();
+    private Stack<Integer> numbers = new Stack<>();
 
     public Calculator(String[] formula) {
         this.formula = formula;
     }
 
     public Integer calculate() {
-        List<String> postfixFormula = convertPostfixFormula();
-        System.out.println(postfixFormula);
-        Stack<Integer> numbers = new Stack<>();
+        convertPostfixFormula();
         for(String postfixFormulaStr: postfixFormula) {
-            if (isNumber(postfixFormulaStr))
-                numbers.push(Integer.parseInt(postfixFormulaStr));
-            if (isOperator(postfixFormulaStr)) {
-                if(numbers.size() < 2)
-                    throw new RuntimeException("올바르지 않은 계산식입니다.");
-                Integer secondOperand = numbers.pop();
-                Integer firstOperand = numbers.pop();
-                Integer result = Operator.findOperator(postfixFormulaStr).operate(firstOperand, secondOperand);
-                numbers.push(result);
-            }
+            addNumberInNumbers(postfixFormulaStr);
+            addCalculatedNumberInNumbers(postfixFormulaStr);
         }
         if(numbers.size() != 1)
             throw new RuntimeException("올바르지 않은 계산식입니다.");
         return numbers.pop();
     }
 
-    private List<String> convertPostfixFormula() {
-        List<String> postfixFormula = new Stack<>();
-        Stack<String> operands = new Stack<>();
+    private void addNumberInNumbers(String postfixFormulaStr) {
+        if (isNumber(postfixFormulaStr))
+            numbers.push(Integer.parseInt(postfixFormulaStr));
+    }
+
+    private void addCalculatedNumberInNumbers(String postfixFormulaStr) {
+        if (isOperator(postfixFormulaStr)) {
+            checkNumbersHasTwoNumber();
+            Integer secondOperand = numbers.pop();
+            Integer firstOperand = numbers.pop();
+            Integer result = Operator.findOperator(postfixFormulaStr).operate(firstOperand, secondOperand);
+            numbers.push(result);
+        }
+    }
+
+    private void checkNumbersHasTwoNumber() {
+        if(numbers.size() < 2)
+            throw new RuntimeException("올바르지 않은 계산식입니다.");
+    }
+
+    private void convertPostfixFormula() {
         for(String formulaStr: formula) {
-            if(!isNumber(formulaStr) && !isOperator(formulaStr))
-                throw new RuntimeException("올바르지 않은 계산식입니다.");
-            if(isNumber(formulaStr))
-                postfixFormula.add(formulaStr);
-            if(isOperator(formulaStr)) {
-                if(!operands.isEmpty()) {
-                    postfixFormula.add(operands.pop());
-                }
-                operands.push(formulaStr);
-            }
+            checkIncorrectFormula(formulaStr);
+            addNumberInPostfixFormula(formulaStr);
+            addOperatorInPostfixFormula(formulaStr);
         }
         while(!operands.isEmpty()) {
             postfixFormula.add(operands.pop());
         }
-        return postfixFormula;
+    }
+
+    private void addNumberInPostfixFormula(String formulaStr) {
+        if(isNumber(formulaStr))
+            postfixFormula.add(formulaStr);
+    }
+
+    private void addOperatorInPostfixFormula(String formulaStr) {
+        if(isOperator(formulaStr)) {
+            if(!operands.isEmpty()) {
+                postfixFormula.add(operands.pop());
+            }
+            operands.push(formulaStr);
+        }
+    }
+
+    private void checkIncorrectFormula(String formulaStr) {
+        if(!isNumber(formulaStr) && !isOperator(formulaStr))
+            throw new RuntimeException("올바르지 않은 계산식입니다.");
     }
 
     private boolean isOperator(String operator) {
