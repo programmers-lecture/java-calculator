@@ -5,18 +5,12 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public void run() {
-        while (true) {
-            System.out.print("수식 입력 > ");
-            String inputString = SCANNER.nextLine();
-
-            if (checkExitOrder(inputString)) { // TODO: 메서드 분리
-                return;
-            }
-        }
+    public String read() {
+        System.out.print("수식 입력 > ");
+        return SCANNER.nextLine();
     }
 
-    private boolean checkExitOrder(String inputString) {
+    private boolean isExitOrder(String inputString) {
         return inputString.equals("0");
     }
 }

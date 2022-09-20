@@ -1,6 +1,9 @@
 import view.InputView;
 import view.OutputView;
 
+/**
+ * 프로그램 실행 제어
+ */
 public class Calculator {
     static final InputView INPUT_VIEW = new InputView();
     static final OutputView OUTPUT_VIEW = new OutputView();
@@ -10,11 +13,24 @@ public class Calculator {
     }
 
     public void run() {
-        INPUT_VIEW.run();
-        exit();
+        while (true) {
+            // 입력
+            String inputString = INPUT_VIEW.read();
+
+            if(checkExit(inputString)) { // TODO: 메서드 추출 or 분리 (depth는 1까지만 허용)
+                System.out.println(OUTPUT_VIEW.exit());
+                return;
+            }
+
+            // 입력된 문자열을 공백단위로 분리하고, 연산자와 피연산자를 구분
+
+
+           // 출력
+
+        }
     }
 
-    public void exit() {
-        System.out.println("프로그램을 종료합니다...");
+    private boolean checkExit(String order) {
+        return order.equals("0");
     }
 }
