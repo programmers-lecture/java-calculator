@@ -30,5 +30,9 @@ public enum Operator {
         OPERATOR = operator;
     }
 
+    public String getOPERATOR() {
+        return OPERATOR;
+    }
+
     abstract int calculate(int operand1, int operand2); // 각 열거상수가 추상 메서드를 반드시 구현해야한다.
 }
