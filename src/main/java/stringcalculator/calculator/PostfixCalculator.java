@@ -40,11 +40,14 @@ public class PostfixCalculator implements Calculator {
     }
 
     private boolean checkDigit(String formula) {
-        return Character.isDigit(Optional.ofNullable(formula).orElseThrow().charAt(0));
+        return Character.isDigit(Optional
+                .ofNullable(formula)
+                .orElseThrow()
+                .charAt(0)
+                );
     }
 
     private boolean checkOperator(String formula) {
         return Operator.checkOperator(formula);
     }
-    
 }
