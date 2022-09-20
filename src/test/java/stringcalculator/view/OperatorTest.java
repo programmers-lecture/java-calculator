@@ -1,10 +1,10 @@
-package view;
+package stringcalculator.view;
 
-import operator.Operator;
+import stringcalculator.operator.Operator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static operator.Operator.*;
+import static stringcalculator.operator.Operator.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class OperatorTest {

@@ -1,12 +1,12 @@
-package converter;
+package stringcalculator.converter;
 
-import operator.Operator;
+import stringcalculator.operator.Operator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import static operator.Operator.*;
+import static stringcalculator.operator.Operator.*;
 
 public class PostfixConverter implements Converter {
 

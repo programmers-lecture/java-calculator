@@ -1,4 +1,4 @@
-package calculator;
+package stringcalculator.calculator;
 
 import java.util.Optional;
 import java.util.List;

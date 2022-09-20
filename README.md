@@ -1,6 +1,6 @@
 ## 깃허브
 
-**[java-calculator](https://github.com/programmers-lecture/java-calculator)**
+**[java-stringcalculator.calculator](https://github.com/programmers-lecture/java-stringcalculator.calculator)**
 
 ## 필수 요구사항
 

@@ -1,4 +1,4 @@
-package view;
+package stringcalculator.view;
 
 public class Sender {
 

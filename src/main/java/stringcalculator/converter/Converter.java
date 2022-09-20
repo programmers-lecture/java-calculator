@@ -1,4 +1,4 @@
-package converter;
+package stringcalculator.converter;
 
 import java.util.List;
 

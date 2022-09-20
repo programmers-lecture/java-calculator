@@ -1,7 +1,7 @@
-package calculator;
+package stringcalculator.calculator;
 
-import converter.PostfixConverter;
-import operator.Operator;
+import stringcalculator.converter.PostfixConverter;
+import stringcalculator.operator.Operator;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,11 +1,13 @@
-import calculator.PostfixCalculator;
-import converter.FormConverter;
-import view.Sender;
+package stringcalculator;
+
+import stringcalculator.calculator.PostfixCalculator;
+import stringcalculator.converter.FormConverter;
+import stringcalculator.view.Sender;
 
 import java.util.List;
 import java.util.Optional;
 
-import static view.Reader.read;
+import static stringcalculator.view.Reader.read;
 
 public class MainApplication {
 

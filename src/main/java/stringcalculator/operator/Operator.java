@@ -1,4 +1,4 @@
-package operator;
+package stringcalculator.operator;
 
 import java.util.Arrays;
 import java.util.HashMap;

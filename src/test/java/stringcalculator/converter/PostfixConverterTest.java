@@ -1,8 +1,8 @@
-package converter;
+package stringcalculator.converter;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import view.Reader;
+import stringcalculator.view.Reader;
 
 import java.util.List;
 

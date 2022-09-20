@@ -1,9 +1,9 @@
-package converter;
+package stringcalculator.converter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static operator.Operator.checkOperator;
+import static stringcalculator.operator.Operator.checkOperator;
 
 public class FormConverter implements Converter {
 
