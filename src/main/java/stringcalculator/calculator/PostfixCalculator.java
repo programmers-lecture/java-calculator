@@ -32,7 +32,7 @@ public class PostfixCalculator implements Calculator {
     }
 
     private void handleOperator(ArrayDeque<String> operandDeque, String formula) {
-        if (checkOperator(formula)) {
+        if (Operator.checkOperator(formula)) {
             int operandRight =
                     Integer.parseInt(Optional
                             .of(operandDeque.removeLast())
@@ -49,7 +49,4 @@ public class PostfixCalculator implements Calculator {
         if (checkDigit(formula)) operandDeque.addLast(formula);
     }
 
-    private boolean checkOperator(String formula) {
-        return Operator.checkOperator(formula);
-    }
 }
