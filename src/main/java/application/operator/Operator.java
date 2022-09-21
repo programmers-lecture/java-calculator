@@ -1,3 +1,5 @@
+package application.operator;
+
 public enum Operator {
     ADDITION("+") {
         @Override

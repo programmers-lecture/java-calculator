@@ -1,5 +1,7 @@
-import view.InputView;
-import view.OutputView;
+package application.calculator;
+
+import application.view.InputView;
+import application.OutputView;
 
 /**
  * 프로그램 실행 제어

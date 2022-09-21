@@ -1,4 +1,4 @@
-package view;
+package application;
 
 public class OutputView {
     static final String EXIT_MESSAGE = "프로그램을 종료합니다...";
