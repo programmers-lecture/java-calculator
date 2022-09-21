@@ -1,11 +1,9 @@
 package stringcalculator.operator;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.IntBinaryOperator;
+import java.util.stream.Stream;
 
 import static java.lang.Character.isDigit;
 
@@ -18,13 +16,6 @@ public enum Operator {
     MULTIPLY("*", 2, (operandLeft, operandRight) -> operandLeft * operandRight),
     DIVIDE("/", 2, (operandLeft, operandRight) -> operandLeft / operandRight);
 
-    private static final Map<String, Operator> MY_OPERATOR = new HashMap<>();
-
-    static {
-        Arrays.stream(Operator.values())
-                .forEach(operator -> MY_OPERATOR.put(operator.type, operator));
-    }
-
     private final String type;
     private final int priority;
     private final IntBinaryOperator simpleCalculator;
@@ -36,15 +27,18 @@ public enum Operator {
     }
 
     public static Operator getOperator(String operatorType) {
-        return Optional.ofNullable(MY_OPERATOR
-                        .get(operatorType))
+        return findOperator(operatorType)
                 .orElseThrow(() -> new NullPointerException("확인되지 않은 연산자 입니다."));
     }
 
     public static boolean checkOperator(String operatorType) {
-        return Optional.ofNullable(MY_OPERATOR
-                        .get(operatorType))
-                .isPresent();
+        return findOperator(operatorType).isPresent();
+    }
+
+    private static Optional<Operator> findOperator(String operatorType) {
+        return Arrays.stream(values())
+                .filter(operator -> operator.type.equals(operatorType))
+                .findAny();
     }
 
     public static int calculate(int operandLeft, String operator, int operandRight) {
