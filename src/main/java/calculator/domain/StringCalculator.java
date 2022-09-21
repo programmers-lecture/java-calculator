@@ -16,22 +16,26 @@ public class StringCalculator {
     public double calculate(String[] elements){
         String[] postfixValue = postfixConvertor.convertFormula(elements);
         for(String value : postfixValue){
-            if(Character.isDigit(value.charAt(0))){
-                stack.push(value);
-                continue;
-            }
-            operateAndPush(value);
-
+            stackPushFormula(value);
         }
         return Double.parseDouble(stack.pop());
     }
 
 
+    public void stackPushFormula(String value){
+        if(Character.isDigit(value.charAt(0))){
+            stack.push(value);
+            return;
+        }
+        operateAndPush(value);
+    }
+
     public void operateAndPush(String symbol){
         double operand2 = Double.parseDouble(stack.pop());
         double operand1 = Double.parseDouble(stack.pop());
         Operator operator = operatorService.findOperator(symbol);
-        stack.push(Double.toString(operator.operate(operand1,operand2)));
+        double operateValue = operator.operate(operand1,operand2);
+        stack.push(Double.toString(operateValue));
     }
 
 
