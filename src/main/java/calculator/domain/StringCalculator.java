@@ -1,6 +1,5 @@
 package calculator.domain;
 
-
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -20,7 +19,6 @@ public class StringCalculator {
         }
         return Double.parseDouble(stack.pop());
     }
-
 
     public void stackPushFormula(String value){
         if(Character.isDigit(value.charAt(0))){

@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class OperatorService {
 
   public Operator findOperator(String symbol){
-    return Arrays.asList(Operator.values())
+      return Arrays.asList(Operator.values())
         .stream()
         .filter(s->s.getSymbol().equals(symbol))
         .findFirst()
@@ -13,6 +13,6 @@ public class OperatorService {
   }
 
   public int findPriority(String symbol){
-    return findOperator(symbol).getPriority();
+      return findOperator(symbol).getPriority();
   }
 }

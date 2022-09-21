@@ -6,7 +6,6 @@ import java.util.Deque;
 public class PostfixConvertor {
     private Deque<String> stack = new ArrayDeque<>();
     private int idx = 0;
-
     OperatorService operatorService = new OperatorService();
 
     public String[] convertFormula(String[] elements){
@@ -17,7 +16,6 @@ public class PostfixConvertor {
         addLeftStack(convertArray);
         return convertArray;
     }
-
 
     public void addElement(String[] convertArray, String element){
         if(Character.isDigit(element.charAt(0))){
@@ -42,6 +40,4 @@ public class PostfixConvertor {
             convertArray[idx++] = stack.pop();
         }
     }
-
-
 }

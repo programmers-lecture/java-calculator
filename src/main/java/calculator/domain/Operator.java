@@ -1,7 +1,5 @@
 package calculator.domain;
 
-import java.util.Arrays;
-import java.util.Optional;
 import java.util.function.BiFunction;
 
 public enum Operator {
@@ -13,13 +11,11 @@ public enum Operator {
         throw new IllegalArgumentException("0으로 나눌수 없습니다");
       }
       return operand1/operand2;
-  });
+    });
 
     private final String symbol;
     private final int priority;
-
     private final BiFunction<Double, Double, Double> operation;
-
     Operator(String symbol, int priority, BiFunction<Double, Double, Double> operation){
         this.symbol = symbol;
         this.priority = priority;
@@ -31,13 +27,10 @@ public enum Operator {
     }
 
     public int getPriority() {
-      return priority;
+        return priority;
     }
-
 
     public double operate(double operand1, double operand2){
-      return operation.apply(operand1, operand2);
+        return operation.apply(operand1, operand2);
     }
-
-
 }
