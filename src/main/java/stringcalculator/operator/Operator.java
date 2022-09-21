@@ -37,6 +37,7 @@ public enum Operator {
 
     private static Optional<Operator> findOperator(String operatorType) {
         return Arrays.stream(values())
+                .parallel()
                 .filter(operator -> operator.type.equals(operatorType))
                 .findAny();
     }
