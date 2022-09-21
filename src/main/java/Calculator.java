@@ -1,8 +1,6 @@
 import view.InputView;
 import view.OutputView;
 
-import java.util.Arrays;
-
 /**
  * 프로그램 실행 제어
  */
@@ -25,12 +23,9 @@ public class Calculator {
                 return;
             }
 
-            // 입력된 문자열을 공백단위로 분리하고, 연산자와 피연산자를 구분
-            dataHandler.processingData();
-
-            // 출력
-//            Integer product = dataHandler.calculate();
-//            OutputView.print(product);
+            // 결과를 계산하고 출력
+            int product = dataHandler.calculate();
+            OUTPUT_VIEW.print(product);
         }
     }
 

@@ -14,7 +14,7 @@ public enum Operator {
     MULTIPLICATION("*") {
         @Override
         int calculate(int operand1, int operand2) {
-            return operand1 + operand2;
+            return operand1 * operand2;
         }
     },
     DIVISION("/") {

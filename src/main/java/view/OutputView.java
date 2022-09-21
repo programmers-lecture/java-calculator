@@ -6,4 +6,8 @@ public class OutputView {
     public String exit() {
         return EXIT_MESSAGE;
     }
+
+    public void print(Integer result) {
+        System.out.printf("결과는 %d\n", result);
+    }
 }
