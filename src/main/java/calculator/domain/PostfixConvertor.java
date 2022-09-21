@@ -4,30 +4,38 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class PostfixConvertor {
-    private static Deque<String> stack = new ArrayDeque<>();
-    private static int idx = 0;
+    private Deque<String> stack = new ArrayDeque<>();
+    private int idx = 0;
+
+    OperatorService operatorService = new OperatorService();
 
     public String[] convertFormula(String[] elements){
         String[] convertArray = new String[elements.length];
         for(int i=0; i<elements.length; i++){
-            comparePriority(convertArray, elements[i]);
+          addElement(convertArray, elements[i]);
         }
         addLeftStack(convertArray);
         return convertArray;
     }
 
 
-    public void comparePriority(String[] convertArray, String element){
+    public void addElement(String[] convertArray, String element){
         if(Character.isDigit(element.charAt(0))){
             convertArray[idx++] = element;
             return;
         }
-        while(!stack.isEmpty() && Operator.findOperator(stack.peek()).getPriority()>=Operator.findOperator(element).getPriority()){
+        while(!stack.isEmpty() && comparePriority(element)){
             convertArray[idx++] = stack.pop();
         }
         stack.push(element);
-        return;
     }
+    public boolean comparePriority(String element){
+        int peekPriority = operatorService.findPriority((stack.peek()));
+        int elementPriority = operatorService.findPriority(element);
+        return peekPriority>=elementPriority;
+    }
+
+
 
     public void addLeftStack(String[] convertArray){
         while(!stack.isEmpty()){
