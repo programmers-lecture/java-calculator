@@ -1,22 +1,13 @@
 package controller;
 
-import Reader;
-import InputView;
-import application.view.OutputView;
+import InputView
 
 public class Controller {
+    private final InputView inputView = new InputView();
+
     public void run() {
+
         while (true) {
-            // 입력
-            InputView.print();
-            String inputString = Reader.read();
-
-            // infix 를 postfix 로 변환
-
-
-            // 출력
-//            int calculationResult =
-//            OutputView.print(ca);
         }
     }
 }
