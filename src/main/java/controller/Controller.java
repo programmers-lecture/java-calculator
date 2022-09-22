@@ -9,13 +9,20 @@ public class Controller {
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        String expression = Reader.read();
+        String expression = readFirstExpression();
 
         while (!isExitOrder(expression)) {
-            System.out.println("test");
+            inputView.printGuideMessage();
+            expression = Reader.read();
         }
 
-        outputView.
+        outputView.printExitMessage();
+    }
+
+    private String readFirstExpression() {
+        inputView.printWelcomeMessage();
+        inputView.printGuideMessage();
+        return Reader.read();
     }
 
     private boolean isExitOrder(String order) {
