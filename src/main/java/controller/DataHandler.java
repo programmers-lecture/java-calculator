@@ -1,4 +1,4 @@
-package application.controller;
+package controller;
 
 import java.util.*;
 

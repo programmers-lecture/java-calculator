@@ -1,4 +1,4 @@
-package application.operator;
+package domain;
 
 public enum Operator {
     ADDITION("+") {
@@ -26,14 +26,14 @@ public enum Operator {
         }
     };
 
-    protected final String OPERATOR;
+    private final String operator;
 
     Operator(String operator) {
-        OPERATOR = operator;
+        this.operator = operator;
     }
 
-    public String getOPERATOR() {
-        return OPERATOR;
+    public String getOperator() {
+        return operator;
     }
 
     abstract int calculate(int operand1, int operand2); // 각 열거상수가 추상 메서드를 반드시 구현해야한다.
