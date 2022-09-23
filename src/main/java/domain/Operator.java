@@ -3,38 +3,49 @@ package domain;
 public enum Operator {
     ADDITION("+") {
         @Override
-        int calculate(int operand1, int operand2) {
+        public Integer calculate(Integer operand1, Integer operand2) {
             return operand1 + operand2;
         }
     },
     SUBTRACTION("-") {
         @Override
-        int calculate(int operand1, int operand2) {
+        public Integer calculate(Integer operand1, Integer operand2) {
             return operand1 - operand2;
         }
     },
     MULTIPLICATION("*") {
         @Override
-        int calculate(int operand1, int operand2) {
+        public Integer calculate(Integer operand1, Integer operand2) {
             return operand1 * operand2;
         }
     },
     DIVISION("/") {
         @Override
-        int calculate(int operand1, int operand2) {
+        public Integer calculate(Integer operand1, Integer operand2) {
             return operand1 / operand2;
         }
     };
 
-    private final String operator;
+    private final String symbol;
 
-    Operator(String operator) {
-        this.operator = operator;
+    Operator(String symbol) {
+        this.symbol = symbol;
     }
 
-    public String getOperator() {
-        return operator;
+    public String getSymbol() {
+        return this.symbol;
     }
 
-    abstract int calculate(int operand1, int operand2); // 각 열거상수가 추상 메서드를 반드시 구현해야한다.
+    // TODO: static 제거, depth 축소
+    static public Operator findOperatorBySymbol(String symbol) {
+        for (Operator operator : Operator.values()) {
+            if (operator.symbol.equals(symbol)) {
+                return operator;
+            }
+        }
+
+        return null;
+    }
+
+    public abstract Integer calculate(Integer operand1, Integer operand2);
 }

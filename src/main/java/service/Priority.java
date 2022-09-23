@@ -1,4 +1,6 @@
-package domain;
+package service;
+
+import domain.Operator;
 
 import java.util.EnumMap;
 
@@ -12,7 +14,9 @@ public class Priority {
         priorityMap.put(Operator.DIVISION, 2);
     }
 
-    public boolean isPrior(String operator1, String operator2) {
-        return priorityMap.get(operator1) > priorityMap.get(operator2);
+    public boolean isPriorOrEqual(String symbol1, String symbol2) {
+        Operator operator1 = Operator.findOperatorBySymbol(symbol1);
+        Operator operator2 = Operator.findOperatorBySymbol(symbol2);
+        return priorityMap.get(operator1) >= priorityMap.get(operator2);
     }
 }
