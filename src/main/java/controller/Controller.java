@@ -17,7 +17,7 @@ public class Controller {
     public void run() {
         String expression = readFirstExpression();
 
-        while (!isExitOrder(expression)) {
+        while (!isExitOrder(expression)) { // TODO: 실행 상태를 나타내는 변수로 변경
             ArrayList<String> postfix = converter.convertToPostfix(expression);
             Integer calculationResult = calculator.calculatePostfix(postfix);
             outputView.printCalculationResult(calculationResult);
