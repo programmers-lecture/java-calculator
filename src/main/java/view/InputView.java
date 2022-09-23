@@ -7,15 +7,35 @@ public class InputView {
     private static final String GUIDE_MESSAGE = "수식 입력 > ";
     private final Scanner scanner = new Scanner(System.in);
 
-    public void printWelcomeMessage() {
+    private void printWelcomeMessage() {
         System.out.println(WELCOME_MESSAGE);
     }
 
-    public void printGuideMessage() {
+    private void printGuideMessage() {
         System.out.print(GUIDE_MESSAGE);
     }
 
-    public String read() {
+    private String read() {
         return scanner.nextLine();
+    }
+
+    public String getFirstExpression() {
+        printWelcomeMessage();
+        return getNewExpression();
+    }
+
+    public String getNewExpression() {
+        printGuideMessage();
+        String expression = read();
+
+        if (isExitOrder(expression)) {
+            return null;
+        }
+
+        return expression;
+    }
+
+    private boolean isExitOrder(String order) {
+        return order.equals("0");
     }
 }
