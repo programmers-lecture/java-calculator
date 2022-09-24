@@ -18,7 +18,7 @@ class ControllerTest {
 
     @Test
     void 후위식_연산(){
-        String expression = "1 + 2 * 3 / 0";
+        String expression = "1 + 2 * 3 / 4";
 
         ArrayList<String> postfix = converter.convertToPostfix(expression);
         Integer calculationResult = calculator.calculatePostfix(postfix);

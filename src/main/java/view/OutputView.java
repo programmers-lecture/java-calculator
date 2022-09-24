@@ -8,6 +8,6 @@ public class OutputView {
     }
 
     public void printCalculationResult(Integer result) {
-        System.out.printf("결과는 %d\n", result);
+        System.out.printf("결과는 %d%s", result, System.lineSeparator());
     }
 }
