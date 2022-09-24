@@ -1,5 +1,6 @@
 package caculator.enums;
 
+import java.util.Arrays;
 import java.util.function.BiFunction;
 
 public enum Operator {
@@ -23,23 +24,19 @@ public enum Operator {
     }
 
     public static Operator findOperator(String value) {
-        if(value.equals(PLUS.operator))
-            return PLUS;
-        if(value.equals(MINUS.operator))
-            return MINUS;
-        if(value.equals(MULTIPLY.operator))
-            return MULTIPLY;
-        if(value.equals(DIVIDE.operator))
-            return DIVIDE;
-        throw new IllegalArgumentException();
+        return Arrays.stream(values())
+                .filter(op -> op.operator.equals(value))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("연산자를 찾을 수 없습니다."));
+    }
+
+    public static boolean isOperator(String operator) {
+        return Arrays.stream(values())
+                .anyMatch(op -> op.operator.equals(operator));
     }
 
     public Double operate(Double firstOperand, Double secondOperand) {
         return expression.apply(firstOperand, secondOperand);
-    }
-
-    public boolean isSameOperator(String operator) {
-        return this.operator.equals(operator);
     }
 
     public boolean isLowPriority(Operator operator) {

@@ -29,7 +29,7 @@ public class PostfixConvertor {
     }
 
     private void addOperatorInPostfixFormula(String formulaStr) {
-        if (Util.isOperator(formulaStr)) {
+        if (Operator.isOperator(formulaStr)) {
             if(!operators.isEmpty()) {
                 Operator operator = Operator.findOperator(formulaStr);
                 Operator previousOperator = Operator.findOperator(operators.peek());
@@ -41,7 +41,7 @@ public class PostfixConvertor {
     }
 
     private void checkIncorrectFormula(String formulaStr) {
-        if (!Util.isNumber(formulaStr) && !Util.isOperator(formulaStr))
+        if (!Util.isNumber(formulaStr) && !Operator.isOperator(formulaStr))
             throw new RuntimeException("올바르지 않은 계산식입니다.");
     }
 

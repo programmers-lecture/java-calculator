@@ -31,7 +31,7 @@ public class Calculator {
     }
 
     private void addCalculatedNumberInNumbers(String postfixFormulaStr) {
-        if (Util.isOperator(postfixFormulaStr)) {
+        if (Operator.isOperator(postfixFormulaStr)) {
             checkNumbersHasTwoNumber();
             Double secondOperand = numbers.pop();
             Double firstOperand = numbers.pop();
