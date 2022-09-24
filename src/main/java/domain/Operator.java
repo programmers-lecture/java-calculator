@@ -22,6 +22,9 @@ public enum Operator {
     DIVISION("/") {
         @Override
         public Integer calculate(Integer operand1, Integer operand2) {
+            if (operand2 == 0) {
+                throw new ArithmeticException("나누는 수는 0이 될 수 없습니다.");
+            }
             return operand1 / operand2;
         }
     };
