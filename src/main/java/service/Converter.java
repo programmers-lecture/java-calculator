@@ -16,14 +16,7 @@ public class Converter {
         Deque<String> stack = new ArrayDeque<>();
 
         for (String token : infix) {
-            if (CalculatorUtil.isNumeric(token)) {
-                postfix.add(token);
-            } else {
-                while (!stack.isEmpty() && priority.isPriorOrEqual(stack.peekFirst(), token)) {
-                    postfix.add(stack.pollFirst());
-                }
-                stack.addFirst(token);
-            }
+            formPostfixByToken(postfix, stack, token);
         }
 
         while (!stack.isEmpty()) {
@@ -33,4 +26,15 @@ public class Converter {
         return postfix;
     }
 
+    private void formPostfixByToken(ArrayList<String> postfix, Deque<String> stack, String token) {
+        if (CalculatorUtil.isNumeric(token)) {
+            postfix.add(token);
+            return;
+        }
+
+        while (!stack.isEmpty() && priority.isPriorOrEqual(stack.peekFirst(), token)) {
+            postfix.add(stack.pollFirst());
+        }
+        stack.addFirst(token);
+    }
 }

@@ -6,20 +6,17 @@ public enum Operator {
         public Integer calculate(Integer operand1, Integer operand2) {
             return operand1 + operand2;
         }
-    },
-    SUBTRACTION("-") {
+    }, SUBTRACTION("-") {
         @Override
         public Integer calculate(Integer operand1, Integer operand2) {
             return operand1 - operand2;
         }
-    },
-    MULTIPLICATION("*") {
+    }, MULTIPLICATION("*") {
         @Override
         public Integer calculate(Integer operand1, Integer operand2) {
             return operand1 * operand2;
         }
-    },
-    DIVISION("/") {
+    }, DIVISION("/") {
         @Override
         public Integer calculate(Integer operand1, Integer operand2) {
             if (operand2 == 0) {
@@ -39,14 +36,18 @@ public enum Operator {
         return this.symbol;
     }
 
-    // TODO: static 제거, depth 축소
-    static public Operator findOperatorBySymbol(String symbol) {
+    // TODO: static 제거
+    public static Operator findOperatorBySymbol(String symbol) {
         for (Operator operator : Operator.values()) {
-            if (operator.symbol.equals(symbol)) {
-                return operator;
-            }
+            return getOperatorMatchesSymbol(symbol, operator);
         }
+        return null;
+    }
 
+    private static Operator getOperatorMatchesSymbol(String symbol, Operator operator) {
+        if (operator.symbol.equals(symbol)) {
+            return operator;
+        }
         return null;
     }
 
