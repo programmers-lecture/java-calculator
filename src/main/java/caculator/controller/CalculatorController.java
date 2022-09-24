@@ -8,6 +8,9 @@ import caculator.views.OutputView;
 import java.util.List;
 
 public class CalculatorController {
+
+    private CalculatorController() {}
+
     public static void calculatorRun() {
         String[] formula = InputView.inputFormula();
         PostfixConvertor postfixConvertor = new PostfixConvertor();
