@@ -6,17 +6,20 @@ public enum Operator {
         public Integer calculate(Integer operand1, Integer operand2) {
             return operand1 + operand2;
         }
-    }, SUBTRACTION("-") {
+    },
+    SUBTRACTION("-") {
         @Override
         public Integer calculate(Integer operand1, Integer operand2) {
             return operand1 - operand2;
         }
-    }, MULTIPLICATION("*") {
+    },
+    MULTIPLICATION("*") {
         @Override
         public Integer calculate(Integer operand1, Integer operand2) {
             return operand1 * operand2;
         }
-    }, DIVISION("/") {
+    },
+    DIVISION("/") {
         @Override
         public Integer calculate(Integer operand1, Integer operand2) {
             if (operand2 == 0) {
@@ -30,10 +33,6 @@ public enum Operator {
 
     Operator(String symbol) {
         this.symbol = symbol;
-    }
-
-    public String getSymbol() {
-        return this.symbol;
     }
 
     // TODO: static 제거
