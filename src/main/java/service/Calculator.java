@@ -13,16 +13,21 @@ public class Calculator {
         Deque<String> stack = new ArrayDeque<>();
 
         for (String token : postfix) {
-            if (CalculatorUtil.isNumeric(token)) {
-                stack.addFirst(token);
-            } else {
-                Integer right = Integer.valueOf(stack.pollFirst());
-                Integer left = Integer.valueOf(stack.pollFirst());
-                Integer calculationResult = Operator.findOperatorBySymbol(token).calculate(left, right);
-                stack.addFirst(String.valueOf(calculationResult));
-            }
+            calculateExpression(stack, token);
         }
 
         return Integer.valueOf(stack.peekFirst());
+    }
+
+    private void calculateExpression(Deque<String> stack, String token) {
+        if (CalculatorUtil.isNumeric(token)) {
+            stack.addFirst(token);
+            return;
+        }
+
+        Integer secondOperand = Integer.valueOf(stack.pollFirst());
+        Integer firstOperand = Integer.valueOf(stack.pollFirst());
+        Integer calculationResult = Operator.findOperatorBySymbol(token).calculate(firstOperand, secondOperand);
+        stack.addFirst(String.valueOf(calculationResult));
     }
 }
