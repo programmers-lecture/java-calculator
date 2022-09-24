@@ -34,10 +34,6 @@ public enum Operator {
         throw new IllegalArgumentException();
     }
 
-    public Integer getPriority() {
-        return priority;
-    }
-
     public Double operate(Double firstOperand, Double secondOperand) {
         return expression.apply(firstOperand, secondOperand);
     }
