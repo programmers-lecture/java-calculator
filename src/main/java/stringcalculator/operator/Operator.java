@@ -1,11 +1,15 @@
 package stringcalculator.operator;
 
+import stringcalculator.exception.ExceptionBody;
+import stringcalculator.exception.ExceptionEnum;
+
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.IntBinaryOperator;
 import java.util.stream.Stream;
 
 import static java.lang.Character.isDigit;
+import static stringcalculator.exception.ExceptionEnum.*;
 
 public enum Operator {
 
@@ -42,7 +46,9 @@ public enum Operator {
                 .findAny();
     }
 
-    public static int calculate(int operandLeft, String operator, int operandRight) {
+    public static int calculate(int operandLeft, String operator, int operandRight) throws IllegalArgumentException {
+        if (DIVIDE.type.equals(operator) && operandRight == 0)
+            throw new IllegalArgumentException(DIVIDE_ZERO_ERROR.getDesc());
         return getOperator(operator).calculate(operandLeft, operandRight);
     }
 

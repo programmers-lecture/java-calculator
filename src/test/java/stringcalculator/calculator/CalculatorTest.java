@@ -6,12 +6,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import stringcalculator.converter.FormConverter;
+import stringcalculator.exception.ExceptionEnum;
 import stringcalculator.view.Reader;
 
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static stringcalculator.exception.ExceptionEnum.*;
 
 class CalculatorTest {
 
@@ -34,12 +36,12 @@ class CalculatorTest {
         assertEquals(answer, calculatedResult);
     }
 
-    @DisplayName("빼기 테스트")
     @ParameterizedTest
     @CsvSource({
             "1 - 3, -2",
             "10 - 10, 0",
             "525 - 475, 50"})
+    @DisplayName("빼기 테스트")
     void simpleMinusTest(String formula, int answer) {
         int calculatedResult =
                 calculator.getResult(
@@ -49,12 +51,12 @@ class CalculatorTest {
         assertEquals(answer, calculatedResult);
     }
 
-    @DisplayName("곱하기 테스트")
     @ParameterizedTest
     @CsvSource({
             "1 * 3, 3",
             "10 * 10, 100",
             "525 * 475, 249375"})
+    @DisplayName("곱하기 테스트")
     void simpleMutiplyTest(String formula, int answer) {
         int calculatedResult =
                 calculator.getResult(
@@ -64,12 +66,12 @@ class CalculatorTest {
         assertEquals(answer, calculatedResult);
     }
 
-    @DisplayName("나누기 테스트")
     @ParameterizedTest
     @CsvSource({
             "1 / 3, 0",
             "10 / 10, 1",
             "525 / 475, 1"})
+    @DisplayName("나누기 테스트")
     void simpleDivideTest(String formula, int answer) {
         int calculatedResult =
                 calculator.getResult(
@@ -85,7 +87,9 @@ class CalculatorTest {
         String str = "1123 + 10 - 2 - 0 * (10 / 10 * 10 - 20 / 20 * 10 / 1 + (10 * 10 - 10)) + 100000 + 12000 * 10 - 120000";
 
         Integer result =
-                calculator.getResult(formulaConverter.getFormula(Reader.splitWithoutSpace(str)));
+                calculator.getResult(
+                        formulaConverter.getFormula(
+                                Reader.splitWithoutSpace(str)));
 
         assertEquals(101131, result);
     }
@@ -96,8 +100,23 @@ class CalculatorTest {
         String str = "1                                        + (1 0 + 22 0 0 0 0 ) + 10";
 
         Integer result =
-                calculator.getResult(formulaConverter.getFormula(Reader.splitWithoutSpace(str)));
+                calculator.getResult(
+                        formulaConverter.getFormula(
+                                Reader.splitWithoutSpace(str)));
 
         assertEquals(220021, result);
+    }
+
+    @Test
+    @DisplayName("나누기 0 예외처리 테스트")
+    void divideZeroExceptionTest() {
+        String str = "1 / 0";
+        Exception exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> calculator.getResult(
+                        formulaConverter.getFormula(
+                                Reader.splitWithoutSpace(str))));
+
+        assertEquals(DIVIDE_ZERO_ERROR.getDesc(), exception.getMessage());
     }
 }

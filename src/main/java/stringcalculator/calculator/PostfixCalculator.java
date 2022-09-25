@@ -7,7 +7,7 @@ import java.util.ArrayDeque;
 import java.util.List;
 import java.util.Optional;
 
-import static stringcalculator.exception.ExceptionEnum.FORMULA_NULL;
+import static stringcalculator.exception.ExceptionEnum.FORMULA_NULL_ERROR;
 import static stringcalculator.operator.Operator.*;
 
 public class PostfixCalculator implements Calculator {
@@ -29,7 +29,7 @@ public class PostfixCalculator implements Calculator {
 
         return Integer.parseInt(Optional
                 .of(operandDeque.removeLast())
-                .orElseThrow(() -> new ExceptionBody(FORMULA_NULL)));
+                .orElseThrow(() -> new ExceptionBody(FORMULA_NULL_ERROR)));
     }
 
     private void handleOperator(ArrayDeque<String> operandDeque, String formula) {
@@ -37,11 +37,11 @@ public class PostfixCalculator implements Calculator {
             int operandRight =
                     Integer.parseInt(Optional
                             .of(operandDeque.removeLast())
-                            .orElseThrow(() -> new ExceptionBody(FORMULA_NULL)));
+                            .orElseThrow(() -> new ExceptionBody(FORMULA_NULL_ERROR)));
             int operandLeft =
                     Integer.parseInt(Optional
                             .of(operandDeque.removeLast())
-                            .orElseThrow(() -> new ExceptionBody(FORMULA_NULL)));
+                            .orElseThrow(() -> new ExceptionBody(FORMULA_NULL_ERROR)));
             operandDeque.addLast(String.valueOf(calculate(operandLeft, formula, operandRight)));
         }
     }
