@@ -2,52 +2,81 @@ package stringcalculator.calculator;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import stringcalculator.converter.FormConverter;
 import stringcalculator.view.Reader;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CalculatorTest {
 
     private final PostfixCalculator calculator = new PostfixCalculator();
     private final FormConverter formulaConverter = new FormConverter();
 
-    @Test
+
     @DisplayName("더하기 테스트")
-    void simplePlusTest() {
-        String str1 = "1 + 3";
-        String str2 = "10 + 10";
-        String str3 = "525 + 475";
+    @ParameterizedTest
+    @CsvSource({
+            "1 + 3, 4",
+            "10 + 10, 20",
+            "525 + 475, 1000"})
+    void simplePlusTest(String formula, int answer) {
+        int calculatedResult =
+                calculator.getResult(
+                        formulaConverter.getFormula(
+                                Reader.splitWithoutSpace(formula)));
 
-        Integer result1 =
-                calculator.getResult(formulaConverter.getFormula(Reader.splitWithoutSpace(str1)));
-        Integer result2 =
-                calculator.getResult(formulaConverter.getFormula(Reader.splitWithoutSpace(str2)));
-        Integer result3 =
-                calculator.getResult(formulaConverter.getFormula(Reader.splitWithoutSpace(str3)));
-
-        assertEquals(4, result1);
-        assertEquals(20, result2);
-        assertEquals(1000, result3);
+        assertEquals(answer, calculatedResult);
     }
 
-    @Test
     @DisplayName("빼기 테스트")
-    void simpleMinusTest() {
-        String str1 = "1 - 3";
-        String str2 = "10 - 10";
-        String str3 = "525 - 475";
+    @ParameterizedTest
+    @CsvSource({
+            "1 - 3, -2",
+            "10 - 10, 0",
+            "525 - 475, 50"})
+    void simpleMinusTest(String formula, int answer) {
+        int calculatedResult =
+                calculator.getResult(
+                        formulaConverter.getFormula(
+                                Reader.splitWithoutSpace(formula)));
 
-        Integer result1 =
-                calculator.getResult(formulaConverter.getFormula(Reader.splitWithoutSpace(str1)));
-        Integer result2 =
-                calculator.getResult(formulaConverter.getFormula(Reader.splitWithoutSpace(str2)));
-        Integer result3 =
-                calculator.getResult(formulaConverter.getFormula(Reader.splitWithoutSpace(str3)));
+        assertEquals(answer, calculatedResult);
+    }
 
-        assertEquals(-2, result1);
-        assertEquals(0, result2);
-        assertEquals(50, result3);
+    @DisplayName("곱하기 테스트")
+    @ParameterizedTest
+    @CsvSource({
+            "1 * 3, 3",
+            "10 * 10, 100",
+            "525 * 475, 249375"})
+    void simpleMutiplyTest(String formula, int answer) {
+        int calculatedResult =
+                calculator.getResult(
+                        formulaConverter.getFormula(
+                                Reader.splitWithoutSpace(formula)));
+
+        assertEquals(answer, calculatedResult);
+    }
+
+    @DisplayName("나누기 테스트")
+    @ParameterizedTest
+    @CsvSource({
+            "1 / 3, 0",
+            "10 / 10, 1",
+            "525 / 475, 1"})
+    void simpleDivideTest(String formula, int answer) {
+        int calculatedResult =
+                calculator.getResult(
+                        formulaConverter.getFormula(
+                                Reader.splitWithoutSpace(formula)));
+
+        assertEquals(answer, calculatedResult);
     }
 
     @Test

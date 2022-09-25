@@ -1,4 +1,4 @@
-package stringcalculator.view;
+package stringcalculator.operator;
 
 import stringcalculator.operator.Operator;
 import org.junit.jupiter.api.DisplayName;
