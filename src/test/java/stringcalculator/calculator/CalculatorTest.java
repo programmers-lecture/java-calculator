@@ -84,7 +84,10 @@ class CalculatorTest {
     @Test
     @DisplayName("복잡한 연산 테스트")
     void complicatedTest() {
-        String str = "1123 + 10 - 2 - 0 * (10 / 10 * 10 - 20 / 20 * 10 / 1 + (10 * 10 - 10)) + 100000 + 12000 * 10 - 120000";
+        String str =
+                "1123 + 10 - 2 - 0 " +
+                "* (10 / 10 * 10 - 20 / 20 * 10 / 1 + (10 * 10 - 10)) " +
+                "+ 100000 + 12000 * 10 - 120000";
 
         Integer result =
                 calculator.getResult(

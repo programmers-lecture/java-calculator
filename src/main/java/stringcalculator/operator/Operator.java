@@ -83,4 +83,8 @@ public enum Operator {
     public int getPriority() {
         return priority;
     }
+
+    public String getType() {
+        return type;
+    }
 }

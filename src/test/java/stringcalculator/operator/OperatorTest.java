@@ -1,41 +1,39 @@
 package stringcalculator.operator;
 
-import stringcalculator.operator.Operator;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static stringcalculator.operator.Operator.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class OperatorTest {
 
-    @Test
-    @DisplayName("연산자 찾기 테스트")
-    void getOperatorTest() {
-        Operator checkPlus = getOperator("+");
-        Operator checkMinus = getOperator("-");
-        Operator checkMultiply = getOperator("*");
-        Operator checkDivide = getOperator("/");
+    @ParameterizedTest
+    @ValueSource(strings = {"+", "-", "/", "*"})
+    @DisplayName("연산별 연산자 검색 테스트")
+    void getOperatorTest(String operator) {
+        Operator findOperator = getOperator(operator);
 
-        assertEquals(PLUS, checkPlus);
-        assertEquals(MINUS, checkMinus);
-        assertEquals(MULTIPLY, checkMultiply);
-        assertEquals(DIVIDE, checkDivide);
+        assertEquals(operator, findOperator.getType());
     }
 
-    @Test
-    @DisplayName("연산 테스트")
-    void calculateTest() {
+    @ParameterizedTest
+    @CsvSource({
+            "10, +, 2, 12",
+            "10, -, 2, 8",
+            "10, *, 2, 20",
+            "10, /, 2, 5"
+    })
+    @DisplayName("연산자별 연산 결과값 테스트")
+    void calculateTest(int operandLeft, String operator, int operandRight, int result) {
 
-        Integer plusAnswer = PLUS.calculate(10, 2);
-        Integer minusAnswer = MINUS.calculate(10, 2);
-        Integer multiplyAnswer = MULTIPLY.calculate(10, 2);
-        Integer divideAnswer = DIVIDE.calculate(10, 2);
+        int calculatedResult =
+                getOperator(operator)
+                .calculate(operandLeft, operandRight);
 
-        assertEquals(12, plusAnswer);
-        assertEquals(8, minusAnswer);
-        assertEquals(20, multiplyAnswer);
-        assertEquals(5, divideAnswer);
+        assertEquals(result, calculatedResult);
     }
 
 }
