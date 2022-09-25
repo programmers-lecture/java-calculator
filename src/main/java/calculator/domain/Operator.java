@@ -30,7 +30,8 @@ public enum Operator {
     private static Operator getOperator(String operator) {
         return Arrays.stream(values())
                 .filter(i -> i.operator.equals(operator))
-                .findFirst().get();
+                .findFirst()
+                .orElseThrow();
     }
 
     private BiFunction<Integer, Integer, Integer> getExpression() {
