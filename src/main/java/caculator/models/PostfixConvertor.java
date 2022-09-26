@@ -3,13 +3,15 @@ package caculator.models;
 import caculator.enums.Operator;
 import caculator.utils.Util;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
-import java.util.Stack;
 
 public class PostfixConvertor {
 
-    private List<String> postfixFormula = new Stack<>();
-    private Stack<String> operators = new Stack<>();
+    private List<String> postfixFormula = new ArrayList<>();
+    private Deque<String> operators = new ArrayDeque<>();
 
     public List<String> convertPostfixFormula(String[] formula) {
         for (String formulaStr : formula) {

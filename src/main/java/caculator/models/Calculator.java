@@ -3,13 +3,14 @@ package caculator.models;
 import caculator.enums.Operator;
 import caculator.utils.Util;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
-import java.util.Stack;
 
 public class Calculator {
 
     private List<String> postfixFormula;
-    private Stack<Double> numbers = new Stack<>();
+    private Deque<Double> numbers = new ArrayDeque<>();
 
     public Calculator(List<String> postfixFormula) {
         this.postfixFormula = postfixFormula;
