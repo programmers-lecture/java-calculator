@@ -8,6 +8,8 @@ import java.util.Deque;
 import java.util.List;
 
 public class Calculator {
+    private static final int MIN_NUMBER_COUNT = 2;
+    private static final int RESULT_NUMBER_COUNT = 1;
 
     private List<String> postfixFormula;
     private Deque<Double> numbers = new ArrayDeque<>();
@@ -21,7 +23,7 @@ public class Calculator {
             addNumberInNumbers(postfixFormulaStr);
             addCalculatedNumberInNumbers(postfixFormulaStr);
         }
-        if(numbers.size() != 1)
+        if(numbers.size() != RESULT_NUMBER_COUNT)
             throw new IllegalArgumentException("올바르지 않은 계산식입니다.");
         return numbers.pop();
     }
@@ -42,7 +44,7 @@ public class Calculator {
     }
 
     private void checkNumbersHasTwoNumber() {
-        if(numbers.size() < 2)
+        if(numbers.size() < MIN_NUMBER_COUNT)
             throw new IllegalArgumentException("올바르지 않은 계산식입니다.");
     }
 
