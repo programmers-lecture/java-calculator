@@ -1,7 +1,7 @@
 package caculator.enums;
 
 import java.util.Arrays;
-import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
 
 public enum Operator {
     PLUS("+", 1, (firstOperand, secondOperand) -> firstOperand + secondOperand ),
@@ -15,9 +15,9 @@ public enum Operator {
 
     private final String operator;
     private final Integer priority;
-    private final BiFunction<Double, Double, Double> expression;
+    private final BinaryOperator<Double> expression;
 
-    Operator(String operator, Integer priority, BiFunction<Double, Double, Double> expression) {
+    Operator(String operator, Integer priority, BinaryOperator<Double> expression) {
         this.operator = operator;
         this.priority = priority;
         this.expression = expression;
