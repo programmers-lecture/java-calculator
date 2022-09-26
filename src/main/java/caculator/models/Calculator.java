@@ -11,31 +11,24 @@ public class Calculator {
     private static final int MIN_NUMBER_COUNT = 2;
     private static final int RESULT_NUMBER_COUNT = 1;
 
-    private List<String> postfixFormula;
-    private Deque<Double> numbers = new ArrayDeque<>();
-
-    public Calculator(List<String> postfixFormula) {
-        this.postfixFormula = postfixFormula;
-    }
-
-    public Double calculate() {
+    public Double calculate(List<String> postfixFormula) {
+        Deque<Double> numbers = new ArrayDeque<>();
         for(String postfixFormulaStr: postfixFormula) {
-            addNumberInNumbers(postfixFormulaStr);
-            addCalculatedNumberInNumbers(postfixFormulaStr);
+            addNumberInNumbers(numbers, postfixFormulaStr);
+            addCalculatedNumberInNumbers(numbers, postfixFormulaStr);
         }
-        if(numbers.size() != RESULT_NUMBER_COUNT)
-            throw new IllegalArgumentException("올바르지 않은 계산식입니다.");
+        checkNumbersHasResultNumberCount(numbers);
         return numbers.pop();
     }
 
-    private void addNumberInNumbers(String postfixFormulaStr) {
+    private void addNumberInNumbers(Deque<Double> numbers, String postfixFormulaStr) {
         if (Util.isNumber(postfixFormulaStr))
             numbers.push(Double.parseDouble(postfixFormulaStr));
     }
 
-    private void addCalculatedNumberInNumbers(String postfixFormulaStr) {
+    private void addCalculatedNumberInNumbers(Deque<Double> numbers, String postfixFormulaStr) {
         if (Operator.isOperator(postfixFormulaStr)) {
-            checkNumbersHasTwoNumber();
+            checkNumbersHasCalculatePossibleMinNumberCount(numbers);
             Double secondOperand = numbers.pop();
             Double firstOperand = numbers.pop();
             Double result = Operator.findOperator(postfixFormulaStr).operate(firstOperand, secondOperand);
@@ -43,8 +36,13 @@ public class Calculator {
         }
     }
 
-    private void checkNumbersHasTwoNumber() {
+    private void checkNumbersHasCalculatePossibleMinNumberCount(Deque<Double> numbers) {
         if(numbers.size() < MIN_NUMBER_COUNT)
+            throw new IllegalArgumentException("올바르지 않은 계산식입니다.");
+    }
+
+    private void checkNumbersHasResultNumberCount(Deque<Double> numbers) {
+        if(numbers.size() != RESULT_NUMBER_COUNT)
             throw new IllegalArgumentException("올바르지 않은 계산식입니다.");
     }
 
