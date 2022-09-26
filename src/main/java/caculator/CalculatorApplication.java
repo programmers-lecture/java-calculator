@@ -1,9 +1,9 @@
 package caculator;
 
-import caculator.controller.CalculatorController;
+import caculator.controller.TextCalculator;
 
 public class CalculatorApplication {
     public static void main(String[] args) {
-        CalculatorController.calculatorRun();
+        TextCalculator.calculatorRun();
     }
 }

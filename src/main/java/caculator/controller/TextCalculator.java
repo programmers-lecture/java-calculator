@@ -7,9 +7,9 @@ import caculator.views.OutputView;
 
 import java.util.List;
 
-public class CalculatorController {
+public class TextCalculator {
 
-    private CalculatorController() {}
+    private TextCalculator() {}
 
     public static void calculatorRun() {
         String[] formula = InputView.inputFormula();
