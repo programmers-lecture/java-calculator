@@ -22,7 +22,7 @@ public class Calculator {
             addCalculatedNumberInNumbers(postfixFormulaStr);
         }
         if(numbers.size() != 1)
-            throw new RuntimeException("올바르지 않은 계산식입니다.");
+            throw new IllegalArgumentException("올바르지 않은 계산식입니다.");
         return numbers.pop();
     }
 
@@ -43,7 +43,7 @@ public class Calculator {
 
     private void checkNumbersHasTwoNumber() {
         if(numbers.size() < 2)
-            throw new RuntimeException("올바르지 않은 계산식입니다.");
+            throw new IllegalArgumentException("올바르지 않은 계산식입니다.");
     }
 
 }

@@ -9,7 +9,7 @@ public enum Operator {
     MULTIPLY("*", 2, (firstOperand, secondOperand) -> firstOperand * secondOperand ),
     DIVIDE("/", 2, (firstOperand, secondOperand) -> {
         if(secondOperand == 0)
-            throw new RuntimeException("0으로 나눌 수 없습니다.");
+            throw new IllegalArgumentException("0으로 나눌 수 없습니다.");
         return firstOperand / secondOperand;
     });
 

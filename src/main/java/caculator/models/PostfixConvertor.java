@@ -44,7 +44,7 @@ public class PostfixConvertor {
 
     private void checkIncorrectFormula(String formulaStr) {
         if (!Util.isNumber(formulaStr) && !Operator.isOperator(formulaStr))
-            throw new RuntimeException("올바르지 않은 계산식입니다.");
+            throw new IllegalArgumentException("올바르지 않은 계산식입니다.");
     }
 
 }
