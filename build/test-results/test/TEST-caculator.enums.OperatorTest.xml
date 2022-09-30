@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="caculator.enums.OperatorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-09-29T23:56:07" hostname="choejun-aui-MacBookPro.local" time="0.05">
-  <properties/>
-  <testcase name="0으로 나눠서 연산자 계산 실패 테스트" classname="caculator.enums.OperatorTest" time="0.05"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

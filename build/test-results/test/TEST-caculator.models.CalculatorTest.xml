@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="caculator.models.CalculatorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-09-30T22:55:37" hostname="choejun-aui-MacBookPro.local" time="0.058">
+  <properties/>
+  <testcase name="알맞은 후위 표기식 계산식 [5, 4, 8, *, 2, /, 10, -, +]으로 계산한 결과 11.0" classname="caculator.models.CalculatorTest" time="0.058"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
