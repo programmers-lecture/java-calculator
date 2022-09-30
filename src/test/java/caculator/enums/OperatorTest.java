@@ -31,15 +31,6 @@ public class OperatorTest {
         assertThat(actual).isEqualTo(expected);
     }
 
-    static Stream<Arguments> getParametersForFailFindOperatorTest() {
-        return Stream.of(
-                Arguments.arguments(""),
-                Arguments.arguments("-", true),
-                Arguments.arguments("*", true),
-                Arguments.arguments("/", true)
-        );
-    }
-
     @ParameterizedTest(name = "strings: 연산자에 해당하지 않는 글자들")
     @DisplayName("연산자에 해당하지 않는 글자로 연산자 찾기 실패 테스트")
     @ValueSource(strings = {"연산자아님", "(", ")", ","})
@@ -54,8 +45,6 @@ public class OperatorTest {
     void isOperatorSuccessTest(String operatorStr) {
         boolean actual = isOperator(operatorStr);
         assertThat(actual).isTrue();
-        assertThat(isOperator("연산자아님"))
-                .isFalse();
     }
 
     @ParameterizedTest(name = "strings: 연산자에 해당하지 않는 글자들")
