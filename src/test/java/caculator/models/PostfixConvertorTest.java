@@ -29,7 +29,7 @@ public class PostfixConvertorTest {
         );
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{0} 의 중위 표기식 계산식을 후위 표기식 계산식으로 변경한 결과 {1}")
     @DisplayName("올바른 계산식으로 후위 계산식 변경 성공 테스트")
     @MethodSource("getParametersForConvertPostfixFormulaSuccessText")
     void convertPostfixFormulaSuccessTest(String[] formula, List<String> expected) {
@@ -46,7 +46,7 @@ public class PostfixConvertorTest {
         );
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "숫자도 연산자도 아닌 글자 포함한 중위 표기식 공식: {0}")
     @DisplayName("숫자도 연산자도 아닌 글자 포함으로 알맞지 않은 공식으로 후위 계산식 변경 실패 테스트")
     @MethodSource("getParametersForConvertPostfixFormulaFailTestByIncorrectFormula")
     void convertPostfixFormulaFailTestByIncorrectFormula(String[] incorrectFormula) {
