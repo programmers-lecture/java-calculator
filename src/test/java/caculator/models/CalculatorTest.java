@@ -1,5 +1,6 @@
 package caculator.models;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -12,7 +13,12 @@ import static org.assertj.core.api.Assertions.*;
 
 public class CalculatorTest {
 
-    private final Calculator calculator = new Calculator();
+    private Calculator calculator;
+
+    @BeforeEach
+    void setUp() {
+        calculator = new Calculator();
+    }
 
     static Stream<Arguments> getParametersForCalculateSuccessTest() {
         return Stream.of(
