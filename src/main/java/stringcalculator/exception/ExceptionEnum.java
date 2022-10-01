@@ -18,14 +18,7 @@ public enum ExceptionEnum {
     }
 
     public static void throwException(ExceptionEnum exceptionType) {
-        ExceptionEnum findException = findException(exceptionType).orElse(FAILURE);
-        throw new RuntimeException(getErrorMessage(findException));
-    }
-
-    private static Optional<ExceptionEnum> findException(ExceptionEnum exceptionType) {
-        return Arrays.stream(values())
-                .filter(exception -> exception.name().equals(exceptionType))
-                .findFirst();
+        throw new RuntimeException(getErrorMessage(exceptionType));
     }
 
     private static String getErrorMessage(ExceptionEnum findException) {
