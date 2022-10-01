@@ -97,7 +97,7 @@ public class OperatorTest {
     @DisplayName("연산자 계산 테스트")
     @MethodSource("getParametersForSuccessOperateTest")
     void operateTest(Operator operator, double number1, double number2, double expected) {
-        double actual = PLUS.operate(number1, number2);
+        double actual = operator.operate(number1, number2);
         assertThat(actual).isEqualTo(expected);
     }
 
