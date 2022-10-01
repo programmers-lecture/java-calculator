@@ -10,7 +10,6 @@ import java.util.Optional;
 
 import static stringcalculator.exception.ExceptionEnum.FORMULA_NULL_ERROR;
 import static stringcalculator.operator.Operator.*;
-import static stringcalculator.view.Reader.read;
 
 public class PostfixCalculator implements Calculator {
 
@@ -20,8 +19,8 @@ public class PostfixCalculator implements Calculator {
         this.converter = new PostfixConverter();
     }
 
-    public int getResult() {
-        List<String> postfixFormulas = converter.getFormula(formConverter.getFormula(read()));
+    public int getResult(List<String> inputFormula) {
+        List<String> postfixFormulas = converter.getFormula(formConverter.getFormula(inputFormula));
         ArrayDeque<String> operandDeque = new ArrayDeque<>(postfixFormulas.size());
 
         for (String formula : postfixFormulas) {
