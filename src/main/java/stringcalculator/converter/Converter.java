@@ -6,3 +6,4 @@ public interface Converter {
 
     List<String> getFormula(List<String> formulas);
 }
+

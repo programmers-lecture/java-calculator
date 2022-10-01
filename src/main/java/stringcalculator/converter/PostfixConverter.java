@@ -81,4 +81,5 @@ public class PostfixConverter implements Converter {
         if (operatorDeque.isEmpty()) return false;
         return getOperator(operatorDeque.peekLast()).getPriority() >= getOperator(formula).getPriority();
     }
+
 }

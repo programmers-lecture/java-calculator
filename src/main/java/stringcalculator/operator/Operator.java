@@ -1,15 +1,11 @@
 package stringcalculator.operator;
 
-import stringcalculator.exception.ExceptionBody;
-import stringcalculator.exception.ExceptionEnum;
-
-import java.util.*;
-import java.util.function.BiFunction;
+import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.IntBinaryOperator;
-import java.util.stream.Stream;
 
 import static java.lang.Character.isDigit;
-import static stringcalculator.exception.ExceptionEnum.*;
+import static stringcalculator.exception.ExceptionEnum.DIVIDE_ZERO_ERROR;
 
 public enum Operator {
 

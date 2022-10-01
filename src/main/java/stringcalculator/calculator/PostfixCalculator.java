@@ -1,5 +1,6 @@
 package stringcalculator.calculator;
 
+import stringcalculator.converter.Converter;
 import stringcalculator.converter.PostfixConverter;
 import stringcalculator.exception.ExceptionBody;
 
@@ -9,18 +10,19 @@ import java.util.Optional;
 
 import static stringcalculator.exception.ExceptionEnum.FORMULA_NULL_ERROR;
 import static stringcalculator.operator.Operator.*;
+import static stringcalculator.view.Reader.read;
 
 public class PostfixCalculator implements Calculator {
 
-    private final PostfixConverter postfixConverter;
+    private final Converter converter;
 
     public PostfixCalculator() {
-        this.postfixConverter = new PostfixConverter();
+        this.converter = new PostfixConverter();
     }
 
-    public int getResult(List<String> formulaList) {
-        List<String> postfixFormulas = postfixConverter.getFormula(formulaList);
-        ArrayDeque<String> operandDeque = new ArrayDeque<>(formulaList.size());
+    public int getResult() {
+        List<String> postfixFormulas = converter.getFormula(formConverter.getFormula(read()));
+        ArrayDeque<String> operandDeque = new ArrayDeque<>(postfixFormulas.size());
 
         for (String formula : postfixFormulas) {
             handleDigit(operandDeque, formula);

@@ -1,8 +1,10 @@
 package stringcalculator.calculator;
 
-import java.util.List;
+import stringcalculator.converter.FormConverter;
 
 public interface Calculator {
 
-    int getResult(List<String> formulas);
+    FormConverter formConverter = new FormConverter();
+
+    int getResult();
 }

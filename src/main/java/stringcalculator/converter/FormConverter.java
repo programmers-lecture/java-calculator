@@ -8,10 +8,10 @@ import static stringcalculator.operator.Operator.checkOperator;
 public class FormConverter implements Converter {
 
     public List<String> getFormula(List<String> formulas) {
-        return separateString(formulas);
+        return convertFormula(formulas);
     }
 
-    private List<String> separateString(List<String> formulas) {
+    private List<String> convertFormula(List<String> formulas) {
         List<String> operators = new ArrayList<>();
         StringBuilder operandBuilder = new StringBuilder();
 

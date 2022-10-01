@@ -17,15 +17,15 @@ public enum ExceptionEnum {
         this.desc = desc;
     }
 
+    public static void throwException(ExceptionEnum exceptionType) {
+        ExceptionEnum findException = findException(exceptionType).orElse(FAILURE);
+        throw new RuntimeException(getErrorMessage(findException));
+    }
+
     private static Optional<ExceptionEnum> findException(ExceptionEnum exceptionType) {
         return Arrays.stream(values())
                 .filter(exception -> exception.name().equals(exceptionType))
                 .findFirst();
-    }
-
-    public static void throwException(ExceptionEnum exceptionType) {
-        ExceptionEnum findException = findException(exceptionType).orElse(FAILURE);
-        throw new RuntimeException(getErrorMessage(findException));
     }
 
     private static String getErrorMessage(ExceptionEnum findException) {
