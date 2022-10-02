@@ -22,7 +22,7 @@ class FormConverterTest {
     @ParameterizedTest(name = "[{index}] 연산식 = {0}, 반환된 배열 결과 = {1}")
     @MethodSource("getInputFromToTestWhenFormConvertedThenSuccess")
     @DisplayName("사용자 입력 연산식 포맷 변환, 배열 결과 성공 테스트")
-    void separateStringTest(String formula, String result) {
+    void whenCovertFormulaThenSuccessTest(String formula, String result) {
         List<String> convertedFormula = converter.getFormula(splitWithoutSpace(formula));
         assertThat(convertedFormula.toString()).isEqualTo(result);
     }

@@ -18,7 +18,7 @@ class PostfixConverterTest {
     @ParameterizedTest(name = "[{index}] 연산식 = {0}, 변환 결과 = {1}")
     @MethodSource("getFormulaToTestWhenConvertToPostfixThenSuccess")
     @DisplayName("후위 표기식 변환 성공 테스트")
-    void postfixFormatTest(String formula, String result) {
+    void whenConvertToPostfixFormThenSuccessTest(String formula, String result) {
         List<String> convertedResult = converter.getFormula(splitWithoutSpace(formula));
         assertThat(convertedResult.toString()).isEqualTo(result);
     }
