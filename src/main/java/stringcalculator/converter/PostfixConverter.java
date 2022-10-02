@@ -31,7 +31,7 @@ public class PostfixConverter implements Converter {
 
     private void handleRightBracket(ArrayDeque<String> operatorDeque, List<String> operands, String formula) {
         if (!checkRightBracket(formula)) return;
-        while (!operatorDeque.isEmpty() && getOperator(operatorDeque.peekLast()) != LEFT_BRACKET) {
+        while (!operatorDeque.isEmpty() && findOperator(operatorDeque.peekLast()) != LEFT_BRACKET) {
             operands.add(operatorDeque.removeLast());
         }
         if(!operatorDeque.isEmpty()) operatorDeque.removeLast();
@@ -59,12 +59,12 @@ public class PostfixConverter implements Converter {
 
     private boolean checkLeftBracket(String formula) {
         if (checkDigit(formula)) return false;
-        return Operator.checkLeftBracket(getOperator(formula));
+        return Operator.checkLeftBracket(findOperator(formula));
     }
 
     private boolean checkRightBracket(String formula) {
         if (checkDigit(formula)) return false;
-        return Operator.checkRightBracket(getOperator(formula));
+        return Operator.checkRightBracket(findOperator(formula));
     }
 
     private boolean checkBracket(String formula) {
@@ -79,7 +79,7 @@ public class PostfixConverter implements Converter {
     private boolean checkPriorityBigger(ArrayDeque<String> operatorDeque, String formula) {
         if (checkDigit(formula)) return false;
         if (operatorDeque.isEmpty()) return false;
-        return getOperator(operatorDeque.peekLast()).getPriority() >= getOperator(formula).getPriority();
+        return Operator.checkPriorityBiggerThan(findOperator(operatorDeque.peekLast()), findOperator(formula));
     }
 
 }

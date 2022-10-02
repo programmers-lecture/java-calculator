@@ -1,10 +1,14 @@
 package stringcalculator.operator;
 
+import stringcalculator.exception.ExceptionBody;
+import stringcalculator.exception.ExceptionEnum;
+
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.IntBinaryOperator;
 
 import static java.lang.Character.isDigit;
+import static stringcalculator.exception.ExceptionEnum.*;
 import static stringcalculator.exception.ExceptionEnum.DIVIDE_ZERO_ERROR;
 
 public enum Operator {
@@ -26,61 +30,56 @@ public enum Operator {
         this.simpleCalculator = simpleCalculator;
     }
 
-    public static Operator getOperator(String operatorType) {
-        return findOperator(operatorType)
-                .orElseThrow(() -> new NullPointerException("확인되지 않은 연산자 입니다."));
+    public static Operator findOperator(String operatorType) {
+        return findOptionalOperator(operatorType)
+                .orElseThrow(() -> new ExceptionBody(FORMULA_NULL_ERROR));
     }
 
     public static boolean checkOperator(String operatorType) {
-        return findOperator(operatorType).isPresent();
-    }
-
-    private static Optional<Operator> findOperator(String operatorType) {
-        return Arrays.stream(values())
-                .parallel()
-                .filter(operator -> operator.type.equals(operatorType))
-                .findAny();
+        return findOptionalOperator(operatorType).isPresent();
     }
 
     public static int calculate(int operandLeft, String operator, int operandRight) throws IllegalArgumentException {
         if (DIVIDE.type.equals(operator) && operandRight == 0)
             throw new IllegalArgumentException(DIVIDE_ZERO_ERROR.getDesc());
-        return getOperator(operator).calculate(operandLeft, operandRight);
+        return findOperator(operator).calculate(operandLeft, operandRight);
     }
 
     public static boolean checkLeftBracket(Operator operator) {
         return Optional.ofNullable(operator)
-                .orElseThrow(
-                        () -> new NullPointerException("확인되지 않은 연산자 입니다.")
-                ) == LEFT_BRACKET;
+                .orElseThrow(() -> new ExceptionBody(FORMULA_NULL_ERROR))
+                == LEFT_BRACKET;
     }
 
     public static boolean checkRightBracket(Operator operator) {
         return Optional.ofNullable(operator)
-                .orElseThrow(
-                        () -> new NullPointerException("확인되지 않은 연산자 입니다.")
-                ) == RIGHT_BRACKET;
+                .orElseThrow(() -> new ExceptionBody(FORMULA_NULL_ERROR))
+                == RIGHT_BRACKET;
     }
 
     public static boolean checkDigit(String formula) {
         return isDigit(getFormulaAfterCheckNull(formula).charAt(0));
     }
 
-    public static String getFormulaAfterCheckNull(String formula) {
-        return Optional
-                .ofNullable(formula)
-                .orElseThrow(() -> new NullPointerException("확인되지 않은 연산자 입니다."));
+    public static boolean checkPriorityBiggerThan(Operator operatorLeft, Operator operatorRight) {
+        return operatorLeft.priority >= operatorRight.priority;
     }
 
-    public int calculate(int operandLeft, int operandRight) {
+    private static Optional<Operator> findOptionalOperator(String operatorType) {
+        return Arrays.stream(values())
+                .parallel()
+                .filter(operator -> operator.type.equals(operatorType))
+                .findAny();
+    }
+
+    private static String getFormulaAfterCheckNull(String formula) {
+        return Optional
+                .ofNullable(formula)
+                .orElseThrow(() -> new ExceptionBody(FORMULA_NULL_ERROR));
+    }
+
+    private int calculate(int operandLeft, int operandRight) {
         return this.simpleCalculator.applyAsInt(operandLeft, operandRight);
     }
 
-    public int getPriority() {
-        return priority;
-    }
-
-    public String getType() {
-        return type;
-    }
 }

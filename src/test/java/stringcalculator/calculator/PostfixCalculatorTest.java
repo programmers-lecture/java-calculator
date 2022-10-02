@@ -5,13 +5,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static java.lang.String.valueOf;
-import static org.assertj.core.api.Assertions.*;
-import static stringcalculator.exception.ExceptionEnum.DIVIDE_ZERO_ERROR;
-import static stringcalculator.exception.ExceptionEnum.FORMULA_NULL_ERROR;
+import static org.assertj.core.api.Assertions.assertThat;
 import static stringcalculator.view.Reader.splitWithoutSpace;
 
 class PostfixCalculatorTest {
@@ -148,29 +144,6 @@ class PostfixCalculatorTest {
                 Arguments.arguments("1+    ( 1 0 + 2     2 0 0 00)+ 1  0", 220021),
                 Arguments.arguments("1           + (1                 0 + 22 0 0 0 0 ) + 10", 220021),
                 Arguments.arguments("  1       + (1 0 +2     2000    0 ) + 1      0  ", 220021)
-        );
-    }
-
-    @ParameterizedTest(name ="[{index}] 0으로 나누는 연산식 = {0}")
-    @MethodSource("getFormulasToTestWhenDivideWithZeroThenThrowException")
-    @DisplayName("후위 계산식 0으로 나눴을 경우 예외처리 테스트")
-    void whenDivideWithZeroThenThrowExceptionTest(String formula) {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> calculator.getResult(splitWithoutSpace(formula)))
-                .withMessage(DIVIDE_ZERO_ERROR.getDesc());
-    }
-
-    static Stream<Arguments> getFormulasToTestWhenDivideWithZeroThenThrowException() {
-        return Stream.of(
-                Arguments.arguments("0 / 0"),
-                Arguments.arguments("1 / 0"),
-                Arguments.arguments("2 / 0"),
-                Arguments.arguments("3 / 0"),
-                Arguments.arguments("4 / 0"),
-                Arguments.arguments("10 + 10 / 0"),
-                Arguments.arguments("10 + 10 - 10 / 0"),
-                Arguments.arguments("20 / 10 / 0"),
-                Arguments.arguments("20 * 10 / 0")
         );
     }
 
