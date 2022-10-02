@@ -8,6 +8,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static stringcalculator.exception.ExceptionEnum.FORMULA_NULL_ERROR;
 import static stringcalculator.view.Reader.splitWithoutSpace;
 
 class PostfixCalculatorTest {
@@ -132,7 +134,7 @@ class PostfixCalculatorTest {
 
     @ParameterizedTest(name ="[{index}] 정리되지 않은 연산식 = {0}, 결과 = {1}")
     @MethodSource("getFormulasToTestWhenManySpacesThenSuccess")
-    @DisplayName("정리되지 않은 후위 계산식 연산 성공 테스트")
+    @DisplayName("정렬되지 않은 후위 계산식 연산 성공 테스트")
     void whenManySpaceThenSuccessTest(String formula, int answer) {
         int result = calculator.getResult(splitWithoutSpace(formula));
         assertThat(result).isEqualTo(answer);
@@ -144,6 +146,26 @@ class PostfixCalculatorTest {
                 Arguments.arguments("1+    ( 1 0 + 2     2 0 0 00)+ 1  0", 220021),
                 Arguments.arguments("1           + (1                 0 + 22 0 0 0 0 ) + 10", 220021),
                 Arguments.arguments("  1       + (1 0 +2     2000    0 ) + 1      0  ", 220021)
+        );
+    }
+
+    @ParameterizedTest(name = "[{index}] 연산식 = {0}")
+    @MethodSource("getFormulasToTestWhenTooMuchOperatorThenThrowException")
+    @DisplayName("초과되는 연산자 개수 예외처리 테스트")
+    void whenFormulaTooMuchOperatorThenThrowExceptionTest(String formula) {
+        assertThatExceptionOfType(RuntimeException.class)
+                .as("test = {0}")
+                .isThrownBy(() -> calculator.getResult(splitWithoutSpace(formula)))
+                .withMessage(FORMULA_NULL_ERROR.getCode() + " :: " + FORMULA_NULL_ERROR.getDesc());
+    }
+
+    static Stream<Arguments> getFormulasToTestWhenTooMuchOperatorThenThrowException() {
+        return Stream.of(
+                Arguments.arguments("1 + + 1"),
+                Arguments.arguments("1 + - * 1"),
+                Arguments.arguments("1 **** 1"),
+                Arguments.arguments("+ 1 ++"),
+                Arguments.arguments("1++")
         );
     }
 

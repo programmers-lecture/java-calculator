@@ -29,7 +29,7 @@ public class PostfixCalculator implements Calculator {
         }
 
         return Integer.parseInt(Optional
-                .of(operandDeque.removeLast())
+                .of(operandDeque.pollLast())
                 .orElseThrow(() -> new ExceptionBody(FORMULA_NULL_ERROR)));
     }
 
@@ -37,11 +37,11 @@ public class PostfixCalculator implements Calculator {
         if (checkOperator(formula)) {
             int operandRight =
                     Integer.parseInt(Optional
-                            .of(operandDeque.removeLast())
+                            .ofNullable(operandDeque.pollLast())
                             .orElseThrow(() -> new ExceptionBody(FORMULA_NULL_ERROR)));
             int operandLeft =
                     Integer.parseInt(Optional
-                            .of(operandDeque.removeLast())
+                            .ofNullable(operandDeque.pollLast())
                             .orElseThrow(() -> new ExceptionBody(FORMULA_NULL_ERROR)));
             operandDeque.addLast(String.valueOf(calculate(operandLeft, formula, operandRight)));
         }
