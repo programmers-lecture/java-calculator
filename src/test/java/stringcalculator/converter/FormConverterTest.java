@@ -41,26 +41,6 @@ class FormConverterTest {
     }
 
     @ParameterizedTest(name = "[{index}] 잘못된 입력 기호 = {0}")
-    @MethodSource("getAlphabetsToTestWhenWrongOperatorThenThrowException")
-    @DisplayName("올바르지 않은 알파벳이 포함된 연산식 실패 예외처리 테스트")
-    void whenAlphaIsOperatorThenThrowException(String operator) {
-        assertThatExceptionOfType(RuntimeException.class)
-                .as("Test operator =  %s", operator)
-                .isThrownBy(() -> converter.getFormula(splitWithoutSpace(operator)))
-                .withMessage(FORMULA_NULL_ERROR.getCode() + " :: " + FORMULA_NULL_ERROR.getDesc());
-    }
-
-    static Stream<Arguments> getAlphabetsToTestWhenWrongOperatorThenThrowException() {
-        return IntStream.rangeClosed(65, 122)
-                .filter(Character::isAlphabetic)
-                .mapToObj(FormConverterTest::getAlphabetArgument);
-    }
-
-    static Arguments getAlphabetArgument(int ascii) {
-        return Arguments.arguments(valueOf((char) ascii));
-    }
-
-    @ParameterizedTest(name = "[{index}] 잘못된 입력 기호 = {0}")
     @MethodSource("getSignsToTestWhenWrongOperatorThenThrowException")
     @DisplayName("올바르지 않은 기호가 포함된 연산식 변환 실패 예외처리 테스트")
     void whenWrongOperatorThenThrowException(String operator) {
@@ -71,35 +51,17 @@ class FormConverterTest {
     }
 
     static Stream<Arguments> getSignsToTestWhenWrongOperatorThenThrowException() {
-        return Stream.of(
-                Arguments.arguments("!"),
-                Arguments.arguments("@"),
-                Arguments.arguments("#"),
-                Arguments.arguments("$"),
-                Arguments.arguments("%"),
-                Arguments.arguments("^"),
-                Arguments.arguments("&"),
-                Arguments.arguments("_"),
-                Arguments.arguments("="),
-                Arguments.arguments("\\"),
-                Arguments.arguments("|"),
-                Arguments.arguments("||"),
-                Arguments.arguments("~"),
-                Arguments.arguments("`"),
-                Arguments.arguments("'"),
-                Arguments.arguments("\""),
-                Arguments.arguments("["),
-                Arguments.arguments("]"),
-                Arguments.arguments("{"),
-                Arguments.arguments("}"),
-                Arguments.arguments(":"),
-                Arguments.arguments(";"),
-                Arguments.arguments(","),
-                Arguments.arguments("."),
-                Arguments.arguments("<"),
-                Arguments.arguments(">"),
-                Arguments.arguments("?")
-        );
+        return IntStream.rangeClosed(33, 126)
+                .filter(FormConverterTest::checkAsciiCodeNotOperator)
+                .mapToObj(FormConverterTest::getSignsWithoutOperator);
+    }
+
+    static Arguments getSignsWithoutOperator(int ascii) {
+        return Arguments.arguments(valueOf((char) ascii));
+    }
+
+    static boolean checkAsciiCodeNotOperator(int ascii) {
+        return !String.valueOf((char) ascii).matches("^[()+*\\-/\\d]$");
     }
 
 }

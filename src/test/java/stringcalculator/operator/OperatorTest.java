@@ -5,7 +5,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -56,7 +55,7 @@ class OperatorTest {
     }
 
     static boolean checkAsciiCodeNotOperator(int ascii) {
-        return !List.of('(', ')', '+', '-', '*', '/').contains((char) ascii);
+        return !String.valueOf((char) ascii).matches("^[()+*\\-/]$");
     }
 
     @ParameterizedTest(name = "[{index}] {0}이 {1} 보다 우선 수행됩니다.")
