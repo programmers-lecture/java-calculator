@@ -1,13 +1,12 @@
 package stringcalculator.converter;
 
 import stringcalculator.exception.ExceptionBody;
-import stringcalculator.exception.ExceptionEnum;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static stringcalculator.exception.ExceptionEnum.*;
+import static stringcalculator.exception.ExceptionEnum.FORMULA_NULL_ERROR;
 import static stringcalculator.operator.Operator.checkOperator;
 
 public class FormConverter implements Converter {
