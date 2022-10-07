@@ -1,12 +1,14 @@
 package stringcalculator.converter;
 
 import stringcalculator.exception.ExceptionBody;
+import stringcalculator.operator.Operator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
 import static stringcalculator.exception.ExceptionEnum.FORMULA_NULL_ERROR;
+import static stringcalculator.operator.Operator.*;
 import static stringcalculator.operator.Operator.checkOperator;
 
 public class FormConverter implements Converter {
@@ -67,7 +69,7 @@ public class FormConverter implements Converter {
     }
 
     private boolean checkBracket(String formula) {
-        return formula.equals("(") || formula.equals(")");
+        return formula.equals(LEFT_BRACKET.getType()) || formula.equals(RIGHT_BRACKET.getType());
     }
 
     private boolean checkDigit(String str) {

@@ -81,4 +81,7 @@ public enum Operator {
         return this.simpleCalculator.applyAsInt(operandLeft, operandRight);
     }
 
+    public String getType() {
+        return type;
+    }
 }
