@@ -1,11 +1,9 @@
 package stringcalculator;
 
 import stringcalculator.calculator.PostfixCalculator;
-import stringcalculator.converter.PostfixConverter;
-import stringcalculator.view.Reader;
 import stringcalculator.view.Sender;
 
-import static stringcalculator.view.Reader.*;
+import static stringcalculator.view.Reader.read;
 
 public class MainApplication {
 

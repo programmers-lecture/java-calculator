@@ -13,6 +13,8 @@ import static stringcalculator.exception.ExceptionEnum.throwException;
 public class Reader {
     private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+    private Reader() {}
+
     public static List<String> read() {
         List<String> inputForms = null;
         try {

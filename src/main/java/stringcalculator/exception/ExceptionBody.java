@@ -1,6 +1,6 @@
 package stringcalculator.exception;
 
-import static stringcalculator.exception.ExceptionEnum.*;
+import static stringcalculator.exception.ExceptionEnum.throwException;
 
 public class ExceptionBody extends RuntimeException {
 

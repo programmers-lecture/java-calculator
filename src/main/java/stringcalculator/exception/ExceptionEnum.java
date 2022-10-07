@@ -1,8 +1,5 @@
 package stringcalculator.exception;
 
-import java.util.Arrays;
-import java.util.Optional;
-
 public enum ExceptionEnum {
 
     FAILURE("999", "어플리케이션 오류가 발생하였습니다."),
