@@ -75,8 +75,7 @@ public class FormConverter implements Converter {
     }
 
     private boolean checkInputForm(String inputForm) {
-        return Pattern
-                .compile("^[!@#$%^&_=|\\\\`~,.<>?;:'\"A-z{}\\[\\]]$")
+        return Pattern.compile("^[!@#$%^&_=|\\\\`~,.<>?;:'\"A-z{}\\[\\]]$")
                 .matcher(inputForm)
                 .find();
     }
