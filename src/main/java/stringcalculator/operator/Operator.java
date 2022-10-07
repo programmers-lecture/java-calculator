@@ -15,7 +15,12 @@ public enum Operator {
     PLUS("+", 1, (operandLeft, operandRight) -> operandLeft + operandRight),
     MINUS("-", 1, (operandLeft, operandRight) -> operandLeft - operandRight),
     MULTIPLY("*", 2, (operandLeft, operandRight) -> operandLeft * operandRight),
-    DIVIDE("/", 2, (operandLeft, operandRight) -> operandLeft / operandRight);
+    DIVIDE("/", 2, (operandLeft, operandRight) -> {
+        if (operandRight == 0) {
+            throw new IllegalArgumentException(DIVIDE_ZERO_ERROR.getMessage());
+        }
+        return operandLeft / operandRight;
+    });
 
     private final String type;
     private final int priority;
@@ -36,9 +41,7 @@ public enum Operator {
         return findOptionalOperator(operatorType).isPresent();
     }
 
-    public static int calculate(int operandLeft, String operator, int operandRight) throws IllegalArgumentException {
-        if (DIVIDE.type.equals(operator) && operandRight == 0)
-            throw new IllegalArgumentException(DIVIDE_ZERO_ERROR.getMessage());
+    public static int calculate(int operandLeft, String operator, int operandRight) {
         return findOperator(operator).calculate(operandLeft, operandRight);
     }
 
