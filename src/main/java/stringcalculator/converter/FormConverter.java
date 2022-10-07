@@ -33,7 +33,7 @@ public class FormConverter implements Converter {
 
     private void whenWrongOperatorThenThrowException(String formula) {
         if (checkInputForm(formula)) {
-            new ExceptionBody(FORMULA_NULL_ERROR);
+            throw new ExceptionBody(FORMULA_NULL_ERROR);
         }
     }
 
