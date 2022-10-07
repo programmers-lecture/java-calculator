@@ -40,10 +40,4 @@ public class Reader {
         return inputForm.split("");
     }
 
-    private static boolean checkInputFormOk(String inputForm) {
-        return Pattern
-                .compile("^[0-9]*[+*/()-]*$")
-                .matcher(inputForm)
-                .find();
-    }
 }
