@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 import static java.lang.String.valueOf;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static stringcalculator.exception.ExceptionEnum.FORMULA_NULL_ERROR;
+import static stringcalculator.exception.ExceptionMessage.FORMULA_NULL_ERROR;
 import static stringcalculator.view.Reader.splitWithoutSpace;
 
 class FormConverterTest {
@@ -47,7 +47,7 @@ class FormConverterTest {
         assertThatExceptionOfType(RuntimeException.class)
                 .as("Test operator =  %s", operator)
                 .isThrownBy(() -> converter.getFormula(splitWithoutSpace(operator)))
-                .withMessage(FORMULA_NULL_ERROR.getCode() + " :: " + FORMULA_NULL_ERROR.getDesc());
+                .withMessage(FORMULA_NULL_ERROR.getMessage());
     }
 
     static Stream<Arguments> getSignsToTestWhenWrongOperatorThenThrowException() {

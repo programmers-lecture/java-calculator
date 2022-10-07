@@ -10,8 +10,8 @@ import java.util.stream.Stream;
 
 import static java.lang.String.valueOf;
 import static org.assertj.core.api.Assertions.*;
-import static stringcalculator.exception.ExceptionEnum.DIVIDE_ZERO_ERROR;
-import static stringcalculator.exception.ExceptionEnum.FORMULA_NULL_ERROR;
+import static stringcalculator.exception.ExceptionMessage.DIVIDE_ZERO_ERROR;
+import static stringcalculator.exception.ExceptionMessage.FORMULA_NULL_ERROR;
 import static stringcalculator.operator.Operator.*;
 
 class OperatorTest {
@@ -41,7 +41,7 @@ class OperatorTest {
         assertThatExceptionOfType(RuntimeException.class)
                 .as("Test sign %s", sign)
                 .isThrownBy(() -> findOperator(sign))
-                .withMessage(FORMULA_NULL_ERROR.getCode() + " :: " + FORMULA_NULL_ERROR.getDesc());
+                .withMessage(FORMULA_NULL_ERROR.getMessage());
     }
 
     static Stream<Arguments> getSignsToTestWhenWrongOperatorThenThrowException() {
@@ -114,7 +114,7 @@ class OperatorTest {
     void whenDivideWithZeroThenThrowExceptionTest(int operandLeft, String operator, int operandRight) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Operator.calculate(operandLeft, operator, operandRight))
-                .withMessage(DIVIDE_ZERO_ERROR.getDesc());
+                .withMessage(DIVIDE_ZERO_ERROR.getMessage());
     }
 
     static Stream<Arguments> getFormulasToTestWhenDivideWithZeroThenThrowException() {

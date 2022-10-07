@@ -1,14 +1,12 @@
 package stringcalculator.operator;
 
-import stringcalculator.exception.ExceptionBody;
-
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.IntBinaryOperator;
 
 import static java.lang.Character.isDigit;
-import static stringcalculator.exception.ExceptionEnum.DIVIDE_ZERO_ERROR;
-import static stringcalculator.exception.ExceptionEnum.FORMULA_NULL_ERROR;
+import static stringcalculator.exception.ExceptionMessage.DIVIDE_ZERO_ERROR;
+import static stringcalculator.exception.ExceptionMessage.FORMULA_NULL_ERROR;
 
 public enum Operator {
 
@@ -31,7 +29,7 @@ public enum Operator {
 
     public static Operator findOperator(String operatorType) {
         return findOptionalOperator(operatorType)
-                .orElseThrow(() -> new ExceptionBody(FORMULA_NULL_ERROR));
+                .orElseThrow(() -> new NullPointerException(FORMULA_NULL_ERROR.getMessage()));
     }
 
     public static boolean checkOperator(String operatorType) {
@@ -40,19 +38,19 @@ public enum Operator {
 
     public static int calculate(int operandLeft, String operator, int operandRight) throws IllegalArgumentException {
         if (DIVIDE.type.equals(operator) && operandRight == 0)
-            throw new IllegalArgumentException(DIVIDE_ZERO_ERROR.getDesc());
+            throw new IllegalArgumentException(DIVIDE_ZERO_ERROR.getMessage());
         return findOperator(operator).calculate(operandLeft, operandRight);
     }
 
     public static boolean checkLeftBracket(Operator operator) {
         return Optional.ofNullable(operator)
-                .orElseThrow(() -> new ExceptionBody(FORMULA_NULL_ERROR))
+                .orElseThrow(() -> new NullPointerException(FORMULA_NULL_ERROR.getMessage()))
                 == LEFT_BRACKET;
     }
 
     public static boolean checkRightBracket(Operator operator) {
         return Optional.ofNullable(operator)
-                .orElseThrow(() -> new ExceptionBody(FORMULA_NULL_ERROR))
+                .orElseThrow(() -> new NullPointerException(FORMULA_NULL_ERROR.getMessage()))
                 == RIGHT_BRACKET;
     }
 
@@ -74,7 +72,7 @@ public enum Operator {
     private static String getFormulaAfterCheckNull(String formula) {
         return Optional
                 .ofNullable(formula)
-                .orElseThrow(() -> new ExceptionBody(FORMULA_NULL_ERROR));
+                .orElseThrow(() -> new NullPointerException(FORMULA_NULL_ERROR.getMessage()));
     }
 
     private int calculate(int operandLeft, int operandRight) {

@@ -2,13 +2,12 @@ package stringcalculator.calculator;
 
 import stringcalculator.converter.Converter;
 import stringcalculator.converter.PostfixConverter;
-import stringcalculator.exception.ExceptionBody;
 
 import java.util.ArrayDeque;
 import java.util.List;
 import java.util.Optional;
 
-import static stringcalculator.exception.ExceptionEnum.FORMULA_NULL_ERROR;
+import static stringcalculator.exception.ExceptionMessage.FORMULA_NULL_ERROR;
 import static stringcalculator.operator.Operator.*;
 
 public class PostfixCalculator implements Calculator {
@@ -30,7 +29,7 @@ public class PostfixCalculator implements Calculator {
 
         return Integer.parseInt(Optional
                 .of(operandDeque.pollLast())
-                .orElseThrow(() -> new ExceptionBody(FORMULA_NULL_ERROR)));
+                .orElseThrow(() -> new NullPointerException(FORMULA_NULL_ERROR.getMessage())));
     }
 
     private void handleOperator(ArrayDeque<String> operandDeque, String formula) {
@@ -38,11 +37,11 @@ public class PostfixCalculator implements Calculator {
             int operandRight =
                     Integer.parseInt(Optional
                             .ofNullable(operandDeque.pollLast())
-                            .orElseThrow(() -> new ExceptionBody(FORMULA_NULL_ERROR)));
+                            .orElseThrow(() -> new NullPointerException(FORMULA_NULL_ERROR.getMessage())));
             int operandLeft =
                     Integer.parseInt(Optional
                             .ofNullable(operandDeque.pollLast())
-                            .orElseThrow(() -> new ExceptionBody(FORMULA_NULL_ERROR)));
+                            .orElseThrow(() -> new NullPointerException(FORMULA_NULL_ERROR.getMessage())));
             operandDeque.addLast(String.valueOf(calculate(operandLeft, formula, operandRight)));
         }
     }

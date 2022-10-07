@@ -1,13 +1,10 @@
 package stringcalculator.converter;
 
-import stringcalculator.exception.ExceptionBody;
-import stringcalculator.operator.Operator;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static stringcalculator.exception.ExceptionEnum.FORMULA_NULL_ERROR;
+import static stringcalculator.exception.ExceptionMessage.FORMULA_NULL_ERROR;
 import static stringcalculator.operator.Operator.*;
 import static stringcalculator.operator.Operator.checkOperator;
 
@@ -35,7 +32,7 @@ public class FormConverter implements Converter {
 
     private void whenWrongOperatorThenThrowException(String formula) {
         if (checkInputForm(formula)) {
-            throw new ExceptionBody(FORMULA_NULL_ERROR);
+            throw new NullPointerException(FORMULA_NULL_ERROR.getMessage());
         }
     }
 

@@ -3,12 +3,10 @@ package stringcalculator.view;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static stringcalculator.exception.ExceptionEnum.FORMULA_NULL_ERROR;
-import static stringcalculator.exception.ExceptionEnum.throwException;
+import static stringcalculator.exception.ExceptionMessage.FORMULA_NULL_ERROR;
 
 public class Reader {
     private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -21,7 +19,7 @@ public class Reader {
             String inputForm = br.readLine();
             inputForms = splitWithoutSpace(inputForm);
         } catch (Exception e) {
-            throwException(FORMULA_NULL_ERROR);
+            throw new NullPointerException(FORMULA_NULL_ERROR.getMessage());
         }
         return inputForms;
     }

@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static stringcalculator.exception.ExceptionEnum.FORMULA_NULL_ERROR;
+import static stringcalculator.exception.ExceptionMessage.FORMULA_NULL_ERROR;
 import static stringcalculator.view.Reader.splitWithoutSpace;
 
 class PostfixCalculatorTest {
@@ -156,7 +156,7 @@ class PostfixCalculatorTest {
         assertThatExceptionOfType(RuntimeException.class)
                 .as("test = {0}")
                 .isThrownBy(() -> calculator.getResult(splitWithoutSpace(formula)))
-                .withMessage(FORMULA_NULL_ERROR.getCode() + " :: " + FORMULA_NULL_ERROR.getDesc());
+                .withMessage(FORMULA_NULL_ERROR.getMessage());
     }
 
     static Stream<Arguments> getFormulasToTestWhenTooMuchOperatorThenThrowException() {
