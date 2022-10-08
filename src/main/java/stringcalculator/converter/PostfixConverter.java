@@ -4,6 +4,7 @@ import stringcalculator.operator.Operator;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 import static stringcalculator.operator.Operator.*;
@@ -11,7 +12,7 @@ import static stringcalculator.operator.Operator.*;
 public class PostfixConverter implements Converter {
 
     public List<String> getFormula(List<String> formulas) {
-        ArrayDeque<String> operatorDeque = new ArrayDeque<>(formulas.size());
+        Deque<String> operatorDeque = new ArrayDeque<>(formulas.size());
         List<String> operands = new ArrayList<>();
 
         for (String formula : formulas) {
@@ -25,11 +26,11 @@ public class PostfixConverter implements Converter {
         return operands;
     }
 
-    private void pushLeftBracket(ArrayDeque<String> operatorDeque, String formula) {
+    private void pushLeftBracket(Deque<String> operatorDeque, String formula) {
         if (checkLeftBracket(formula)) operatorDeque.addLast(formula);
     }
 
-    private void handleRightBracket(ArrayDeque<String> operatorDeque, List<String> operands, String formula) {
+    private void handleRightBracket(Deque<String> operatorDeque, List<String> operands, String formula) {
         if (!checkRightBracket(formula)) return;
         while (!operatorDeque.isEmpty() && findOperator(operatorDeque.peekLast()) != LEFT_BRACKET) {
             operands.add(operatorDeque.removeLast());
@@ -37,7 +38,7 @@ public class PostfixConverter implements Converter {
         if(!operatorDeque.isEmpty()) operatorDeque.removeLast();
     }
 
-    private void pushOperator(ArrayDeque<String> operatorDeque, List<String> operands, String formula) {
+    private void pushOperator(Deque<String> operatorDeque, List<String> operands, String formula) {
         if (!checkOperator(formula)) return;
         while (!operatorDeque.isEmpty() && checkPriorityBigger(operatorDeque, formula)) {
             operands.add(operatorDeque.removeLast());
@@ -51,7 +52,7 @@ public class PostfixConverter implements Converter {
         operands.add(formula);
     }
 
-    private void addLeftStack(ArrayDeque<String> operatorDeque, List<String> operands) {
+    private void addLeftStack(Deque<String> operatorDeque, List<String> operands) {
         while (!operatorDeque.isEmpty()) {
             operands.add(operatorDeque.removeLast());
         }
@@ -76,7 +77,7 @@ public class PostfixConverter implements Converter {
         return !checkBracket(formula) && !checkDigit(formula);
     }
 
-    private boolean checkPriorityBigger(ArrayDeque<String> operatorDeque, String formula) {
+    private boolean checkPriorityBigger(Deque<String> operatorDeque, String formula) {
         if (checkDigit(formula)) return false;
         if (operatorDeque.isEmpty()) return false;
         return Operator.checkPriorityBiggerThan(findOperator(operatorDeque.peekLast()), findOperator(formula));
