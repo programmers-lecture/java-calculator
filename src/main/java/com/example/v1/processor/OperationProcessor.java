@@ -46,42 +46,41 @@ public enum OperationProcessor {
 	// array stream을 통해 구현한 방식 O(n)으로 접근
 	public static OperationProcessor arrayOf(String operator) {
 		return Arrays.stream(values())
-			.filter(v -> v.operator.equals(operator))
+			.filter(v -> isEquals(operator, v))
 			.findFirst()
 			.orElseThrow(() -> new NotSupportedOperationException(operator));
 	}
 	
 	// forEach를 통해 구현한 방식 O(n)으로 접근
+	
 	public static OperationProcessor forEachOf(String operator) {
 		for (OperationProcessor op : values()) {
-			if (op.operator.equals(operator)) {
+			if (isEquals(operator, op)) {
 				return op;
 			}
 		}
 		throw new NotSupportedOperationException(operator);
 	}
-	
 	/* == 정적 팩토리 메서드 패턴으로 제공하는 API == */
-	
 	public static boolean isOperator(String userInput) {
 		return Optional.ofNullable(userInput)
 			.filter(s -> s.matches(OPERATOR_VALUE))
 			.isPresent();
 	}
 	
-	public static boolean compareTo(String peek, String s) {
-		return OperationProcessor.of(peek).priority >= OperationProcessor.of(s).priority;
+	public static boolean priorityTo(String origin, String other) {
+		return OperationProcessor.of(origin).priority >= OperationProcessor.of(other).priority;
 	}
 	
 	public double calculate(double left, double right) {
 		return expression.apply(left, right);
 	}
 	
-	private String getOperator() {
-		return operator;
+	private static boolean isEquals(String operator, OperationProcessor v) {
+		return v.operator.equals(operator);
 	}
 	
-	private static boolean isMatchesOperator(String operator, OperationProcessor op) {
-		return op.operator.equals(operator);
+	private String getOperator() {
+		return operator;
 	}
 }
