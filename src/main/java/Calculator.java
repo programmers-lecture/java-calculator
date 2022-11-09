@@ -1,12 +1,7 @@
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Calculator {
     public static void main(String[] args) {
-        String[] operationArray = {"+", "-", "/", "*"};
-        ArrayList<String>  operations = new ArrayList<>(Arrays.asList(operationArray));
-
         int result = 0;                                // 계산 결과값 저장 변수
 
         Scanner sc = new Scanner(System.in);
