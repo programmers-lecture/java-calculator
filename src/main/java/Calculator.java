@@ -106,13 +106,54 @@ public class Calculator extends JFrame {//계산기 GUI 구현을 위해 JFrame 
         equation.add(num);
     }
 
+    public boolean isNumberString(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     public int calculate(String input) {
 
         parseEntireText(input);
 
         int prev = 0;
         int curr = 0;
+
+        int first;
+        int second;
+        int result;
+
         String mode = "";
+
+        for(int i=0; i<equation.size(); i++) {
+            String s = equation.get(i);
+
+            if(s=="+"){
+                mode = "add";
+            }
+            if(s=="-"){
+                mode = "sub";
+            }
+            if(s=="*"){
+                mode = "mul";
+            }
+            if(s=="/"){
+                mode = "div";
+            }
+
+            if(mode == "mul" && isNumberString(s)){
+                first  = Integer.parseInt(equation.get(i-2));
+                second = Integer.parseInt(equation.get(i));
+                result = first * second;
+
+                equation.add(i+1, Integer.toString(result));
+                equation.remove(i-2);
+                i-=2;
+            }
+        }
 
         for(String s : equation) {
             switch(s) {
@@ -122,31 +163,30 @@ public class Calculator extends JFrame {//계산기 GUI 구현을 위해 JFrame 
                 case "-":
                     mode = "sub";
                     break;
+
                 case "*":
                     mode = "mul";
                     break;
+
                 case "/":
                     mode = "div";
                     break;
+
                 default:
+                    mode = null;
                     curr = Integer.parseInt(s);
 
                     if(mode == "add") {
                         prev += curr;
-                        break;
-                    } else if(mode == "sub") {
-                        prev -= curr;
-                        break;
-                    } else if(mode == "mul") {
-                        prev *= curr;
-                        break;
-                    } else if(mode == "div") {
-                        prev /= curr;
-                        break;
                     }
 
-                    prev = curr;
+                    if(mode == "sub") {
+                        prev -= curr;
+                    }
 
+                    if(mode == null) {
+                        prev = curr;
+                    }
             }
         }
 
