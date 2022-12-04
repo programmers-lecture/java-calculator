@@ -1,6 +1,4 @@
-import java.time.Period;
 import java.util.Arrays;
-import java.util.List;
 
 public class Calculator {
     private Integer firstNumber;
