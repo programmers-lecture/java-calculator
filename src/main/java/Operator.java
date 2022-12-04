@@ -30,4 +30,8 @@ public enum Operator{
         this.operation=operation;
     }
     public abstract Integer calculate(Integer a, Integer b);
+
+    public String getOperation(){
+        return operation;
+    }
 }
