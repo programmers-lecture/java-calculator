@@ -14,7 +14,7 @@ public enum Operator{
     DIVIDE("/"){
         @Override
         public Integer calculate(Integer a, Integer b) {
-            return return a/b;
+            return a/b;
         }
     },
     MULTIPLE("*"){
