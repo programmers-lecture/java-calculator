@@ -1,3 +1,4 @@
+import java.time.Period;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,8 +13,6 @@ public class Calculator {
         this.firstNumber=validateNumber(firstNumber);
         this.secondNumber=validateNumber(secondNumber);
         this.operator=validateOperator(operation);
-
-
     }
     private Integer validateNumber(String a){
         try{
@@ -28,5 +27,9 @@ public class Calculator {
                 .filter(x->x.getOperation().equals(operation))
                 .findAny()
                 .orElseThrow(()->new IllegalArgumentException(NOT_FOUND_OPERATOR));
+    }
+
+    public Integer calculateNumber(){
+        return operator.calculate(firstNumber,secondNumber);
     }
 }
