@@ -1,5 +1,15 @@
+import java.util.Scanner;
+
 public class Calculator {
-    public double getResult(String[] formula) {
+
+    private String[] formula;
+
+    public void insertFormula() {
+        Scanner scanner = new Scanner(System.in);
+        this.formula = scanner.nextLine().split(" ");
+    }
+
+    public double getResult() {
         double result = Double.parseDouble(formula[0]);
 
         for(int i=1; i<formula.length; i+=2) {
