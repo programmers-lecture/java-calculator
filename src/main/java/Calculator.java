@@ -29,8 +29,8 @@ public class Calculator {
                 final Integer firstNumber = number.getFirstNumber();
                 final Integer secondNumber = getSecondNumber(ch);
 
-                final int calculate = calculate(popSymbol, firstNumber, secondNumber);
-                number.add(calculate);
+                final int result = calculate(popSymbol, firstNumber, secondNumber);
+                number.add(result);
             }
 
             addSymbol(ch);
@@ -61,7 +61,7 @@ public class Calculator {
         return formula.charAt(0);
     }
 
-    public int calculate(String symbol, int firstNum, int secondNum) {
+    private int calculate(String symbol, int firstNum, int secondNum) {
         //이것도 줄 일 수 있나
         if (symbol.equals("+")) {
             return plus(firstNum, secondNum);
