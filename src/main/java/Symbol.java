@@ -16,7 +16,10 @@ public class Symbol {
     }
 
     public void add(String symbol) {
-        symbols.add(symbol);
+        if (isSymbol(symbol)) {
+            symbols.add(symbol);
+        }
+
     }
 
     public String pop() {

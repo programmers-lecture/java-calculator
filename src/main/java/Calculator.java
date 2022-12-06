@@ -7,18 +7,22 @@ public class Calculator {
     //아니면 plus, minus처럼 의미를 명시해주는 게 나을까?
 
     private Number number;
-    private Store store;
+    private Symbol symbol;
 
     public Calculator() {
         number = new Number();
-        store = new Store();
+        symbol = new Symbol();
     }
 
     public void addNumber(int number) {
         this.number.add(number);
     }
+
+    public void addSymbol(String symbol) {
+        this.symbol.add(symbol);
+    }
     public boolean canCalculate() {
-        return this.number.sameSize(1) && this.store.sameSize(1);
+        return this.number.sameSize(1) && this.symbol.sameSize(1);
     }
 
     public int calculate(String symbol, int firstNum, int secondNum) {

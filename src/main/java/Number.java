@@ -10,7 +10,9 @@ public class Number {
     }
 
     public void add(Integer number) {
-        numbers.add(number);
+        if(numbers.isEmpty()) {
+            numbers.add(number);
+        }
     }
 
     public Integer pop() {
