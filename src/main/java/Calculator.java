@@ -14,9 +14,13 @@ public class Calculator {
         store = new Store();
     }
 
+    public void addNumber(int number) {
+        this.number.add(number);
+    }
     public boolean canCalculate() {
         return this.number.sameSize(1) && this.store.sameSize(1);
     }
+
     public int calculate(String symbol, int firstNum, int secondNum) {
         if (symbol.equals("+")) {
             return plus(firstNum, secondNum);

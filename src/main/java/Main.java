@@ -12,7 +12,7 @@ public class Main {
         for (int i = 0; i < formula.length; i++) {
             char ch = getCh(formula[i]);
             if (isNumber(ch)) {
-                addNumber(ch);
+                calculator.addNumber(ch);
             }
 
             if(calculator.canCalculate()) {
@@ -28,12 +28,6 @@ public class Main {
         }
 
         System.out.println("계산 결과 : " + numbers.pollFirst());
-    }
-
-    private static void addNumber(final char ch) {
-        if (numbers.isEmpty()) {
-            numbers.add((int) ch - 48);
-        }
     }
 
     private static void saveSymbol(final char ch) {
