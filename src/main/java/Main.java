@@ -5,13 +5,15 @@ public class Main {
     private static Store<String> symbol = new Store<>();
     private static Symbol symbols = new Symbol();
 
+    private static Calculator calculator = new Calculator();
+
     public static void main(String[] args) {
         final String[] formula = input.getFormula();
 
         for (int i = 0; i < formula.length; i++) {
             char ch = getCh(formula[i]);
             if (isNumber(ch)) {
-                if (number.size() == 0) {
+                if (ca == 0) {
                     number.add((int) ch - 48);
                 }
 

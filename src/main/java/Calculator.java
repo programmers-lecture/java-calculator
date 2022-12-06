@@ -1,12 +1,8 @@
 public class Calculator {
 
-    private final Store<Integer> number;
-    private final Store<String> symbol;
+    //계산기 안에 Number, symbol이 들어가는 게 맞을까?
+    //정말 계산만 하면되지 않을까?
 
-    public Calculator() {
-        this.number = new Store<>();
-        this.symbol = new Store<>();
-    }
 
     public void plus(int firstNum, int secondNum) {
 
@@ -24,7 +20,4 @@ public class Calculator {
 
     }
 
-    public int getAnswer() {
-        return this.number.pop();
-    }
 }
