@@ -13,9 +13,8 @@ public class Main {
         Deque<String> symbol = new ArrayDeque<>();
         List<String> symbols = Arrays.asList("+", "-", "*", "/");
 
-
         for (int i = 0; i < formula.length; i++) {
-            char ch = formula[i].charAt(0);
+            char ch = getCh(formula[i]);
             if (ch >= '0' && ch <= '9') {
                 if (number.size() == 0) {
                     number.add((int) ch - 48);
@@ -55,6 +54,10 @@ public class Main {
         }
 
         System.out.println("계산 결과 : " + number.pollFirst());
+    }
+
+    private static char getCh(final String formula) {
+        return formula.charAt(0);
     }
 
     private static String[] getFolmula() {
