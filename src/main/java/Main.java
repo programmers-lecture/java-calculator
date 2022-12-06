@@ -13,17 +13,9 @@ public class Main {
             char ch = getCh(formula[i]);
             if (isNumber(ch)) {
                 addNumber(ch);
-                checkCalculate(ch);
             }
-            saveSymbol(ch);
-        }
 
-        System.out.println("계산 결과 : " + numbers.pollFirst());
-    }
-
-    private static void checkCalculate(final char ch) {
-        if (numbers.sameSize(1)) {
-            if (symbols.sameSize(1)) {
+            if(calculator.canCalculate()) {
                 final String popSymbol = symbols.pop();
                 final Integer firstNumber = numbers.pollFirst();
                 final Integer secondNumber = (int)ch - 48;
@@ -31,7 +23,11 @@ public class Main {
                 final int calculate = calculator.calculate(popSymbol, firstNumber, secondNumber);
                 numbers.add(calculate);
             }
+
+            saveSymbol(ch);
         }
+
+        System.out.println("계산 결과 : " + numbers.pollFirst());
     }
 
     private static void addNumber(final char ch) {

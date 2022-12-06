@@ -6,6 +6,17 @@ public class Calculator {
     //calculate로 한 번에 계산 하는 게 나을까?
     //아니면 plus, minus처럼 의미를 명시해주는 게 나을까?
 
+    private Number number;
+    private Store store;
+
+    public Calculator() {
+        number = new Number();
+        store = new Store();
+    }
+
+    public boolean canCalculate() {
+        return this.number.sameSize(1) && this.store.sameSize(1);
+    }
     public int calculate(String symbol, int firstNum, int secondNum) {
         if (symbol.equals("+")) {
             return plus(firstNum, secondNum);
