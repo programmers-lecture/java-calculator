@@ -24,16 +24,10 @@ public class Main {
                 numbers.add(calculate);
             }
 
-            saveSymbol(ch);
+            calculator.addSymbol(ch);
         }
 
         System.out.println("계산 결과 : " + numbers.pollFirst());
-    }
-
-    private static void saveSymbol(final char ch) {
-        if (symbols.isSymbol(String.valueOf(ch))) {
-            symbols.add(String.valueOf(ch));
-        }
     }
 
 

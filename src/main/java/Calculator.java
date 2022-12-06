@@ -18,8 +18,8 @@ public class Calculator {
         this.number.add(number);
     }
 
-    public void addSymbol(String symbol) {
-        this.symbol.add(symbol);
+    public void addSymbol(char symbol) {
+        this.symbol.add(String.valueOf(symbol));
     }
     public boolean canCalculate() {
         return this.number.sameSize(1) && this.symbol.sameSize(1);
