@@ -48,8 +48,6 @@ public class Main {
                         if (popSymbol.equals("/")) {;
                             number.add(firstNumber / secondNumber);
                         }
-
-                        symbol.pop();
                     }
                 }
             }
