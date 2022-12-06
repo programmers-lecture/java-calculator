@@ -19,7 +19,7 @@ public class Number {
         return numbers.pop();
     }
 
-    public Integer pollFirst() {
+    public Integer getFirstNumber() {
         return numbers.pollFirst();
     }
 

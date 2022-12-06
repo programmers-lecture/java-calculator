@@ -21,10 +21,9 @@ public class Symbol {
 
     }
 
-    public String pop() {
+    public String getSymbol() {
         return symbols.pop();
     }
-
     public String pollFirst() {
         return symbols.pollFirst();
     }

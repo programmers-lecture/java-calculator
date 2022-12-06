@@ -1,5 +1,4 @@
 public class Calculator {
-
     //계산기 안에 Number, symbol이 들어가는 게 맞을까?
     //정말 계산만 하면되지 않을까?
 
@@ -14,13 +13,7 @@ public class Calculator {
         symbol = new Symbol();
     }
 
-    private static boolean isNumber(final char ch) {
-        return ch >= '0' && ch <= '9';
-    }
 
-    private static char getCh(final String formula) {
-        return formula.charAt(0);
-    }
 
     public void addNumber(int number) {
         this.number.add(number);
@@ -34,6 +27,10 @@ public class Calculator {
         return this.number.sameSize(1) && this.symbol.sameSize(1);
     }
 
+    public void showResult() {
+        System.out.println("계산 결과 : " + this.number.getFirstNumber());
+    }
+
     public void start(String[] formula) {
         for (int i = 0; i < formula.length; i++) {
             char ch = getCh(formula[i]);
@@ -42,8 +39,8 @@ public class Calculator {
             }
 
             if (canCalculate()) {
-                final String popSymbol = symbol.pop();
-                final Integer firstNumber = number.pollFirst();
+                final String popSymbol = symbol.getSymbol();
+                final Integer firstNumber = number.getFirstNumber();
                 final Integer secondNumber = (int) ch - 48;
 
                 final int calculate = calculate(popSymbol, firstNumber, secondNumber);
@@ -54,11 +51,16 @@ public class Calculator {
         }
     }
 
-    public void showResult() {
-        System.out.println("계산 결과 : " + this.number.pollFirst());
+    private boolean isNumber(final char ch) {
+        return ch >= '0' && ch <= '9';
+    }
+
+    private char getCh(final String formula) {
+        return formula.charAt(0);
     }
 
     public int calculate(String symbol, int firstNum, int secondNum) {
+        //이것도 줄 일 수 있나
         if (symbol.equals("+")) {
             return plus(firstNum, secondNum);
         }
