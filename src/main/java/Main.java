@@ -15,7 +15,7 @@ public class Main {
 
         for (int i = 0; i < formula.length; i++) {
             char ch = getCh(formula[i]);
-            if (ch >= '0' && ch <= '9') {
+            if (isNumber(ch)) {
                 if (number.size() == 0) {
                     number.add((int) ch - 48);
                 }
@@ -54,6 +54,10 @@ public class Main {
         }
 
         System.out.println("계산 결과 : " + number.pollFirst());
+    }
+
+    private static boolean isNumber(final char ch) {
+        return ch >= '0' && ch <= '9';
     }
 
     private static char getCh(final String formula) {
