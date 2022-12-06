@@ -13,11 +13,11 @@ public class Main {
         for (int i = 0; i < formula.length; i++) {
             char ch = getCh(formula[i]);
             if (isNumber(ch)) {
-                if (number.sameSize(0)) {
+                if (number.isEmpty()) {
                     number.add((int) ch - 48);
                 }
 
-                if (number.sameSize(0)) {
+                if (number.sameSize(1)) {
                     if (symbol.sameSize(1)) {
                         final String popSymbol = symbol.pop();
                         final Integer firstNumber = number.pollFirst();

@@ -33,4 +33,8 @@ public class Store<T> {
         return this.size() == size;
     }
 
+    public boolean isEmpty() {
+        return this.deque.isEmpty();
+    }
+
 }
