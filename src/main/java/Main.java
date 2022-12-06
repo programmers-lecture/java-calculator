@@ -17,7 +17,6 @@ public class Main {
         Deque<String> symbol = new ArrayDeque<>();
         List<String> symbols = Arrays.asList("+", "-", "*", "/");
 
-        int total = 0;
 
         for (int i = 0; i < formula.length; i++) {
             char ch = formula[i].charAt(0);
@@ -35,27 +34,19 @@ public class Main {
                         final Integer secondNumber = Integer.valueOf(ch);
 
                         if (popSymbol.equals("+")) {
-                            Integer result = firstNumber + secondNumber;
-                            total += result;
-                            number.add(result);
+                            number.addFirst(firstNumber + secondNumber);
                         }
 
                         if (popSymbol.equals("*")) {
-                            Integer result = firstNumber * secondNumber;
-                            total += result;
-                            number.add(result);
+                            number.add(firstNumber * secondNumber);
                         }
 
                         if (popSymbol.equals("-")) {
-                            Integer result = firstNumber - secondNumber;
-                            total += result;
-                            number.add(result);
+                            number.add(firstNumber - secondNumber);
                         }
 
-                        if (popSymbol.equals("/")) {
-                            Integer result = firstNumber / secondNumber;
-                            total += result;
-                            number.add(result);
+                        if (popSymbol.equals("/")) {;
+                            number.add(firstNumber / secondNumber);
                         }
 
                         symbol.pop();
@@ -69,6 +60,6 @@ public class Main {
 
         }
 
-        System.out.println("계산 결과 : " + total);
+        System.out.println("계산 결과 : " + number.pollFirst());
     }
 }
