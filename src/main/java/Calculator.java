@@ -25,6 +25,34 @@ public class Calculator {
         return this.number.sameSize(1) && this.symbol.sameSize(1);
     }
 
+    public void start(String[] formula) {
+        for (int i = 0; i < formula.length; i++) {
+            char ch = getCh(formula[i]);
+            if (isNumber(ch)) {
+                addNumber(ch);
+            }
+
+            if(canCalculate()) {
+                final String popSymbol = symbol.pop();
+                final Integer firstNumber = number.pollFirst();
+                final Integer secondNumber = (int)ch - 48;
+
+                final int calculate = calculate(popSymbol, firstNumber, secondNumber);
+                number.add(calculate);
+            }
+
+            addSymbol(ch);
+        }
+    }
+
+    private static boolean isNumber(final char ch) {
+        return ch >= '0' && ch <= '9';
+    }
+
+    private static char getCh(final String formula) {
+        return formula.charAt(0);
+    }
+
     public void showResult() {
         System.out.println("계산 결과 : " + this.number.pollFirst());
     }
