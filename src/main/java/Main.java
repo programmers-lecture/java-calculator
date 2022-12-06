@@ -22,7 +22,7 @@ public class Main {
             char ch = formula[i].charAt(0);
             if (ch >= '0' && ch <= '9') {
                 if (number.size() == 0) {
-                    number.add((int) ch);
+                    number.add((int) ch - 48);
                 }
                 if (number.size() == 1) {
                     //이미 숫자가 한 개 들어가 있으면
@@ -31,7 +31,7 @@ public class Main {
                     if (symbol.size() == 1) {
                         final String popSymbol = symbol.pop();
                         final Integer firstNumber = number.pollFirst();
-                        final Integer secondNumber = (int) ch;
+                        final Integer secondNumber = (int) ch - 48;
 
                         if (popSymbol.equals("+")) {
                             number.addFirst(firstNumber + secondNumber);
