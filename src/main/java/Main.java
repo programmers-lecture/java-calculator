@@ -2,7 +2,6 @@ public class Main {
 
     private static Input input = new Input();
     private static Number numbers = new Number();
-    private static Store<String> symbol = new Store<>();
     private static Symbol symbols = new Symbol();
 
     private static Calculator calculator = new Calculator();
@@ -24,8 +23,8 @@ public class Main {
 
     private static void checkCalculate(final char ch) {
         if (numbers.sameSize(1)) {
-            if (symbol.sameSize(1)) {
-                final String popSymbol = symbol.pop();
+            if (symbols.sameSize(1)) {
+                final String popSymbol = symbols.pop();
                 final Integer firstNumber = numbers.pollFirst();
                 final Integer secondNumber = (int)ch - 48;
 
@@ -42,8 +41,8 @@ public class Main {
     }
 
     private static void saveSymbol(final char ch) {
-        if (symbols.contains(String.valueOf(ch))) {
-            symbol.add(String.valueOf(ch));
+        if (symbols.isSymbol(String.valueOf(ch))) {
+            symbols.add(String.valueOf(ch));
         }
     }
 
