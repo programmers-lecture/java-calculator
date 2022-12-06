@@ -8,7 +8,10 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        final String formula = scanner.nextLine();
+
+        System.out.println("계산 식을 입력하세요!!");
+        final String input = scanner.nextLine();
+        final String[] formula = input.split(" ");
 
         Deque<Integer> number = new ArrayDeque<>();
         Deque<String> symbol = new ArrayDeque<>();
@@ -16,8 +19,8 @@ public class Main {
 
         int total = 0;
 
-        for (int i = 0; i < formula.length(); i++) {
-            char ch = formula.charAt(i);
+        for (int i = 0; i < formula.length; i++) {
+            char ch = formula[i].charAt(0);
             if (ch >= '0' && ch <= '9') {
                 if (number.size() == 0) {
                     number.add((int) ch);
