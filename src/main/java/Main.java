@@ -7,8 +7,8 @@ import java.util.Scanner;
 public class Main {
 
     private static Input input = new Input();
-    static Deque<Integer> number = new ArrayDeque<>();
-    static Deque<String> symbol = new ArrayDeque<>();
+    static Store<Integer> number = new Store<>();
+    static Store<String> symbol = new Store<>();
     static List<String> symbols = Arrays.asList("+", "-", "*", "/");
 
     public static void main(String[] args) {
