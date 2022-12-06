@@ -29,4 +29,8 @@ public class Store<T> {
         this.deque.addFirst(value);
     }
 
+    public boolean sameSize(int size) {
+        return this.size() == size;
+    }
+
 }
