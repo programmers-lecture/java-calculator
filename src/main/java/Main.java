@@ -13,25 +13,32 @@ public class Main {
         for (int i = 0; i < formula.length; i++) {
             char ch = getCh(formula[i]);
             if (isNumber(ch)) {
-                if (number.isEmpty()) {
-                    number.add((int) ch - 48);
-                }
-
-                if (number.sameSize(1)) {
-                    if (symbol.sameSize(1)) {
-                        final String popSymbol = symbol.pop();
-                        final Integer firstNumber = number.pollFirst();
-                        final Integer secondNumber = (int) ch - 48;
-
-                        calculate(popSymbol, firstNumber, secondNumber);
-                    }
-                }
+                addNumber(ch);
+                checkCalculate(ch);
             }
 
             saveSymbol(ch);
         }
 
         System.out.println("계산 결과 : " + number.pollFirst());
+    }
+
+    private static void checkCalculate(final char ch) {
+        if (number.sameSize(1)) {
+            if (symbol.sameSize(1)) {
+                final String popSymbol = symbol.pop();
+                final Integer firstNumber = number.pollFirst();
+                final Integer secondNumber = (int)ch - 48;
+
+                calculate(popSymbol, firstNumber, secondNumber);
+            }
+        }
+    }
+
+    private static void addNumber(final char ch) {
+        if (number.isEmpty()) {
+            number.add((int) ch - 48);
+        }
     }
 
     private static void saveSymbol(final char ch) {
