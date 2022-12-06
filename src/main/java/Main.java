@@ -27,7 +27,7 @@ public class Main {
             calculator.addSymbol(ch);
         }
 
-        System.out.println("계산 결과 : " + numbers.pollFirst());
+        calculator.showResult();
     }
 
 

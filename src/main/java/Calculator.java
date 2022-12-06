@@ -25,6 +25,10 @@ public class Calculator {
         return this.number.sameSize(1) && this.symbol.sameSize(1);
     }
 
+    public void showResult() {
+        System.out.println("계산 결과 : " + this.number.pollFirst());
+    }
+
     public int calculate(String symbol, int firstNum, int secondNum) {
         if (symbol.equals("+")) {
             return plus(firstNum, secondNum);
