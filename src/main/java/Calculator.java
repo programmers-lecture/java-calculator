@@ -13,20 +13,6 @@ public class Calculator {
         symbol = new Symbol();
     }
 
-
-
-    public void addNumber(int number) {
-        this.number.add(number);
-    }
-
-    public void addSymbol(char symbol) {
-        this.symbol.add(String.valueOf(symbol));
-    }
-
-    public boolean canCalculate() {
-        return this.number.sameSize(1) && this.symbol.sameSize(1);
-    }
-
     public void showResult() {
         System.out.println("계산 결과 : " + this.number.getFirstNumber());
     }
@@ -49,6 +35,18 @@ public class Calculator {
 
             addSymbol(ch);
         }
+    }
+
+    private void addNumber(char number) {
+        this.number.add((int) number - 48);
+    }
+
+    private void addSymbol(char symbol) {
+        this.symbol.add(String.valueOf(symbol));
+    }
+
+    private boolean canCalculate() {
+        return this.number.sameSize(1) && this.symbol.sameSize(1);
     }
 
     private int getSecondNumber(final char ch) {

@@ -15,10 +15,6 @@ public class Number {
         }
     }
 
-    public Integer pop() {
-        return numbers.pop();
-    }
-
     public Integer getFirstNumber() {
         return numbers.pollFirst();
     }
@@ -26,16 +22,9 @@ public class Number {
     public int size() {
         return numbers.size();
     }
-
-    public void addFirst(Integer value) {
-        this.numbers.addFirst(value);
-    }
-
     public boolean sameSize(int size) {
         return this.size() == size;
     }
 
-    public boolean isEmpty() {
-        return this.numbers.isEmpty();
-    }
+
 }
