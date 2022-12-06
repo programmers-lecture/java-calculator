@@ -31,7 +31,7 @@ public class Main {
                     if (symbol.size() == 1) {
                         final String popSymbol = symbol.pop();
                         final Integer firstNumber = number.pollFirst();
-                        final Integer secondNumber = Integer.valueOf(ch);
+                        final Integer secondNumber = (int) ch;
 
                         if (popSymbol.equals("+")) {
                             number.addFirst(firstNumber + secondNumber);
@@ -54,7 +54,7 @@ public class Main {
                 }
             }
 
-            if (symbols.contains(ch)) {
+            if (symbols.contains(String.valueOf(ch))) {
                 symbol.add(String.valueOf(ch));
             }
 
