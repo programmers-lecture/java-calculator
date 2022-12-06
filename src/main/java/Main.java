@@ -7,11 +7,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("계산 식을 입력하세요!!");
-        final String input = scanner.nextLine();
-        final String[] formula = input.split(" ");
+        final String[] formula = getFolmula();
 
         Deque<Integer> number = new ArrayDeque<>();
         Deque<String> symbol = new ArrayDeque<>();
@@ -59,5 +55,14 @@ public class Main {
         }
 
         System.out.println("계산 결과 : " + number.pollFirst());
+    }
+
+    private static String[] getFolmula() {
+        System.out.println("계산 식을 입력하세요!!");
+
+        Scanner scanner = new Scanner(System.in);
+        final String input = scanner.nextLine();
+
+        return input.split(" ");
     }
 }
