@@ -1,15 +1,9 @@
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.Deque;
-import java.util.List;
-import java.util.Scanner;
-
 public class Main {
 
     private static Input input = new Input();
     static Store<Integer> number = new Store<>();
     static Store<String> symbol = new Store<>();
-    static List<String> symbols = Arrays.asList("+", "-", "*", "/");
+    static Symbol symbols = new Symbol();
 
     public static void main(String[] args) {
         final String[] formula = input.getFormula();
