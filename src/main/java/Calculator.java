@@ -18,8 +18,8 @@ public class Calculator {
     }
 
     public void start(String[] formula) {
-        for (int i = 0; i < formula.length; i++) {
-            char ch = getCh(formula[i]);
+        for (final String s : formula) {
+            char ch = getCh(s);
             if (isNumber(ch)) {
                 addNumber(ch);
             }
