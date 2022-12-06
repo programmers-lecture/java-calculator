@@ -6,12 +6,13 @@ import java.util.Scanner;
 
 public class Main {
 
+    private static Input input = new Input();
     static Deque<Integer> number = new ArrayDeque<>();
     static Deque<String> symbol = new ArrayDeque<>();
     static List<String> symbols = Arrays.asList("+", "-", "*", "/");
 
     public static void main(String[] args) {
-        final String[] formula = getFolmula();
+        final String[] formula = input.getFormula();
 
         for (int i = 0; i < formula.length; i++) {
             char ch = getCh(formula[i]);
@@ -19,6 +20,7 @@ public class Main {
                 if (number.size() == 0) {
                     number.add((int) ch - 48);
                 }
+
                 if (number.size() == 1) {
                     if (symbol.size() == 1) {
                         final String popSymbol = symbol.pop();
@@ -70,12 +72,4 @@ public class Main {
         return formula.charAt(0);
     }
 
-    private static String[] getFolmula() {
-        System.out.println("계산 식을 입력하세요!!");
-
-        Scanner scanner = new Scanner(System.in);
-        final String input = scanner.nextLine();
-
-        return input.split(" ");
-    }
 }
