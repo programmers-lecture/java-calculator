@@ -41,7 +41,7 @@ public class Calculator {
             if (canCalculate()) {
                 final String popSymbol = symbol.getSymbol();
                 final Integer firstNumber = number.getFirstNumber();
-                final Integer secondNumber = (int) ch - 48;
+                final Integer secondNumber = getSecondNumber(ch);
 
                 final int calculate = calculate(popSymbol, firstNumber, secondNumber);
                 number.add(calculate);
@@ -49,6 +49,10 @@ public class Calculator {
 
             addSymbol(ch);
         }
+    }
+
+    private int getSecondNumber(final char ch) {
+        return (int) ch - 48;
     }
 
     private boolean isNumber(final char ch) {
