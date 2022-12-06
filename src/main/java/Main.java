@@ -16,7 +16,6 @@ public class Main {
                 addNumber(ch);
                 checkCalculate(ch);
             }
-
             saveSymbol(ch);
         }
 
@@ -30,7 +29,8 @@ public class Main {
                 final Integer firstNumber = number.pollFirst();
                 final Integer secondNumber = (int)ch - 48;
 
-                calculate(popSymbol, firstNumber, secondNumber);
+                final int calculate = calculator.calculate(popSymbol, firstNumber, secondNumber);
+                number.add(calculate);
             }
         }
     }
@@ -47,25 +47,6 @@ public class Main {
         }
     }
 
-    private static void calculate(final String popSymbol,
-                                  final Integer firstNumber,
-                                  final Integer secondNumber) {
-        if (popSymbol.equals("+")) {
-            number.addFirst(firstNumber + secondNumber);
-        }
-
-        if (popSymbol.equals("*")) {
-            number.add(firstNumber * secondNumber);
-        }
-
-        if (popSymbol.equals("-")) {
-            number.add(firstNumber - secondNumber);
-        }
-
-        if (popSymbol.equals("/")) {
-            number.add(firstNumber / secondNumber);
-        }
-    }
 
     private static boolean isNumber(final char ch) {
         return ch >= '0' && ch <= '9';
