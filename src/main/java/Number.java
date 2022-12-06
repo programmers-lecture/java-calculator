@@ -10,7 +10,7 @@ public class Number {
     }
 
     public void add(Integer number) {
-        if(numbers.isEmpty()) {
+        if (numbers.isEmpty()) {
             numbers.add(number);
         }
     }
