@@ -1,7 +1,7 @@
 public class Main {
 
     private static Input input = new Input();
-    private static Store<Integer> number = new Store<>();
+    private static Number numbers = new Number();
     private static Store<String> symbol = new Store<>();
     private static Symbol symbols = new Symbol();
 
@@ -19,25 +19,25 @@ public class Main {
             saveSymbol(ch);
         }
 
-        System.out.println("계산 결과 : " + number.pollFirst());
+        System.out.println("계산 결과 : " + numbers.pollFirst());
     }
 
     private static void checkCalculate(final char ch) {
-        if (number.sameSize(1)) {
+        if (numbers.sameSize(1)) {
             if (symbol.sameSize(1)) {
                 final String popSymbol = symbol.pop();
-                final Integer firstNumber = number.pollFirst();
+                final Integer firstNumber = numbers.pollFirst();
                 final Integer secondNumber = (int)ch - 48;
 
                 final int calculate = calculator.calculate(popSymbol, firstNumber, secondNumber);
-                number.add(calculate);
+                numbers.add(calculate);
             }
         }
     }
 
     private static void addNumber(final char ch) {
-        if (number.isEmpty()) {
-            number.add((int) ch - 48);
+        if (numbers.isEmpty()) {
+            numbers.add((int) ch - 48);
         }
     }
 

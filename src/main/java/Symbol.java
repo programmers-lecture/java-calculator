@@ -1,16 +1,46 @@
+import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.List;
 
 public class Symbol {
 
-    private List<String> symbols;
+    private Deque<String> symbols;
 
     public Symbol() {
-        symbols = Arrays.asList("+", "-", "*", "/");
+        symbols = new ArrayDeque<>();
     }
 
-    public boolean contains(String symbol) {
-        return symbols.contains(symbol);
+    public boolean isSymbol(String symbol) {
+        return Arrays.asList("+", "-", "*", "/").contains(symbol);
+    }
+
+    public void add(String symbol) {
+        symbols.add(symbol);
+    }
+
+    public String pop() {
+        return symbols.pop();
+    }
+
+    public String pollFirst() {
+        return symbols.pollFirst();
+    }
+
+    public int size() {
+        return symbols.size();
+    }
+
+    public void addFirst(String value) {
+        this.symbols.addFirst(value);
+    }
+
+    public boolean sameSize(int size) {
+        return this.size() == size;
+    }
+
+    public boolean isEmpty() {
+        return this.symbols.isEmpty();
     }
 
 }
