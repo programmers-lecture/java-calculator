@@ -30,13 +30,16 @@ public class Main {
                 }
             }
 
-            if (symbols.contains(String.valueOf(ch))) {
-                symbol.add(String.valueOf(ch));
-            }
-
+            saveSymbol(ch);
         }
 
         System.out.println("계산 결과 : " + number.pollFirst());
+    }
+
+    private static void saveSymbol(final char ch) {
+        if (symbols.contains(String.valueOf(ch))) {
+            symbol.add(String.valueOf(ch));
+        }
     }
 
     private static void calculate(final String popSymbol,
