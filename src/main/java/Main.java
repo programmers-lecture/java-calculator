@@ -1,9 +1,9 @@
 public class Main {
 
     private static Input input = new Input();
-    static Store<Integer> number = new Store<>();
-    static Store<String> symbol = new Store<>();
-    static Symbol symbols = new Symbol();
+    private static Store<Integer> number = new Store<>();
+    private static Store<String> symbol = new Store<>();
+    private static Symbol symbols = new Symbol();
 
     public static void main(String[] args) {
         final String[] formula = input.getFormula();
