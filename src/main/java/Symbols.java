@@ -2,11 +2,11 @@ import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
 
-public class Symbol {
+public class Symbols {
 
     private Deque<String> symbols;
 
-    public Symbol() {
+    public Symbols() {
         symbols = new ArrayDeque<>();
     }
 

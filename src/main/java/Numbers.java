@@ -1,11 +1,11 @@
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class Number {
+public class Numbers {
 
     private Deque<Integer> numbers;
 
-    public Number() {
+    public Numbers() {
         this.numbers = new ArrayDeque<>();
     }
 

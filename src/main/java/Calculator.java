@@ -1,15 +1,15 @@
 public class Calculator {
 
-    private Number number;
-    private Symbol symbol;
+    private Numbers numbers;
+    private Symbols symbols;
 
     public Calculator() {
-        number = new Number();
-        symbol = new Symbol();
+        numbers = new Numbers();
+        symbols = new Symbols();
     }
 
     public void showResult() {
-        System.out.println("계산 결과 : " + this.number.getFirstNumber());
+        System.out.println("계산 결과 : " + this.numbers.getFirstNumber());
     }
 
     public void start(String[] formula) {
@@ -20,12 +20,12 @@ public class Calculator {
             }
 
             if (canCalculate()) {
-                final String popSymbol = symbol.getSymbol();
-                final Integer firstNumber = number.getFirstNumber();
+                final String popSymbol = symbols.getSymbol();
+                final Integer firstNumber = numbers.getFirstNumber();
                 final Integer secondNumber = getSecondNumber(ch);
 
                 final int result = calculate(popSymbol, firstNumber, secondNumber);
-                number.add(result);
+                numbers.add(result);
             }
 
             addSymbol(ch);
@@ -33,15 +33,15 @@ public class Calculator {
     }
 
     private void addNumber(char number) {
-        this.number.add((int) number - 48);
+        this.numbers.add((int) number - 48);
     }
 
     private void addSymbol(char symbol) {
-        this.symbol.add(String.valueOf(symbol));
+        this.symbols.add(String.valueOf(symbol));
     }
 
     private boolean canCalculate() {
-        return this.number.sameSize(1) && this.symbol.sameSize(1);
+        return this.numbers.sameSize(1) && this.symbols.sameSize(1);
     }
 
     private int getSecondNumber(final char ch) {
