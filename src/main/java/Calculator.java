@@ -1,15 +1,15 @@
 import java.util.Arrays;
 
 public class Calculator {
-    private Integer firstNumber;
-    private Integer secondNumber;
+    private Integer prevNumber;
+    private Integer operand;
     private Operator operator;
 
     private static final String NOT_NUMBER="숫자가 아닙니다.";
     private static final String NOT_FOUND_OPERATOR="존재하지 않는 사칙연산 입니다.";
-    public Calculator(String firstNumber, String secondNumber, String operation){
-        this.firstNumber=validateNumber(firstNumber);
-        this.secondNumber=validateNumber(secondNumber);
+    public Calculator(String prevNumber, String operand, String operation){
+        this.prevNumber=validateNumber(prevNumber);
+        this.operand=validateNumber(operand);
         this.operator=validateOperator(operation);
     }
     private Integer validateNumber(String a){
@@ -28,6 +28,6 @@ public class Calculator {
     }
 
     public Integer calculateNumber(){
-        return operator.calculate(firstNumber,secondNumber);
+        return operator.calculate(prevNumber,operand);
     }
 }
