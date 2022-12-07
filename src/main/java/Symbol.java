@@ -33,5 +33,4 @@ public class Symbol {
         return this.size() == size;
     }
 
-
 }

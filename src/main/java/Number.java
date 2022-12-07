@@ -22,9 +22,9 @@ public class Number {
     public int size() {
         return numbers.size();
     }
+
     public boolean sameSize(int size) {
         return this.size() == size;
     }
-
 
 }
