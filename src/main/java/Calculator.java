@@ -12,9 +12,9 @@ public class Calculator {
         System.out.println("계산 결과 : " + this.numbers.getFirstNumber());
     }
 
-    public void start(String[] formula) {
-        for (final String s : formula) {
-            char ch = getCh(s);
+    public void start(String[] formulas) {
+        for (final String formula : formulas) {
+            char ch = getCh(formula);
             if (isNumber(ch)) {
                 addNumber(ch);
             }
