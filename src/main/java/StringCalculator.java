@@ -34,6 +34,7 @@ public class StringCalculator {
             }
             System.out.printf("°á°ú : %d\n\n", result);
 
+
             n--;
         }
     }
