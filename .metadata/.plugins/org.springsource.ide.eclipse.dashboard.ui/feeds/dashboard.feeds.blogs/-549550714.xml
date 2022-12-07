@@ -5,7 +5,23 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2022-12-02T23:26:00Z</updated>
+  <updated>2022-12-05T15:25:14Z</updated>
+  <entry>
+    <title>Spring Shell 2.1.4 and 3.0.0-M3 are now available</title>
+    <link rel="alternate" href="https://spring.io/blog/2022/12/05/spring-shell-2-1-4-and-3-0-0-m3-are-now-available" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Janne Valkealahti</name>
+    </author>
+    <id>tag:spring.io,2022-12-05:5028</id>
+    <updated>2022-12-05T15:25:14Z</updated>
+    <content type="html">&lt;p&gt;On behalf of the team and everyone who has contributed, I&amp;rsquo;m happy to announce that Spring Shell &lt;code&gt;2.1.4&lt;/code&gt; and &lt;code&gt;3.0.0-M3&lt;/code&gt; has been released and is now available from &lt;a href="https://repo.spring.io/release"&gt;https://repo.spring.io/release&lt;/a&gt;, Maven Central and &lt;a href="https://repo.spring.io/milestone"&gt;https://repo.spring.io/milestone&lt;/a&gt; respectively.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;3.0.0-M3&lt;/code&gt; is first milestone which builds on Spring Boot 3.0.0 GA version.&lt;/p&gt;
+&lt;p&gt;Please see the &lt;a href="https://github.com/spring-projects/spring-shell/releases/tag/v2.1.4"&gt;release notes 2.1.4&lt;/a&gt; and &lt;a href="https://github.com/spring-projects/spring-shell/releases/tag/v3.0.0-M3"&gt;release notes 3.0.0-M3&lt;/a&gt; for more details.&lt;/p&gt;
+&lt;p&gt;Thanks to all those who have contributed with issue reports and pull requests.&lt;/p&gt;&lt;h3&gt;&lt;a href="#how-can-you-help" class="anchor" name="how-can-you-help"&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://spring.io/projects/spring-shell/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-shell"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-shell/issues"&gt;Issues&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-shell/docs/2.1.4/site/reference/htmlsingle"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
+  </entry>
   <entry>
     <title>Spring WS Samples upgraded for Spring Boot 3.0!</title>
     <link rel="alternate" href="https://spring.io/blog/2022/12/02/spring-ws-samples-upgraded-for-spring-boot-3-0" />
@@ -1081,41 +1097,6 @@ class MyJobConfiguration extends DefaultBatchConfiguration {&#xD;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;&lt;a href="https://spring.io/projects/spring-authorization-server"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-authorization-server/issues"&gt;GitHub Issues&lt;/a&gt; | &lt;a href="https://app.zenhub.com/workspaces/authorization-server-5e8f3182b5e8f5841bfc4902/board?repos=248032165"&gt;ZenHub Board&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Web Services 4.0.0 is now GA</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/11/21/spring-web-services-4-0-0-is-now-ga" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Greg L. Turnquist</name>
-    </author>
-    <id>tag:spring.io,2022-11-21:5008</id>
-    <updated>2022-11-22T06:50:00Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;Greetings Spring community,&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The Spring Web Services team has released &lt;strong&gt;4.0.0&lt;/strong&gt; for general availability. This is the version of Spring WS you&amp;#8217;ll need if you are building SOAP-based applications with &lt;strong&gt;Spring Boot 3.0&lt;/strong&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;strong&gt;4.0.x&lt;/strong&gt; is the generation of Spring Web Services that works with Jakarta EE 9+, the version where the enterprise specs (JAX-WS, etc.) migrate from &lt;code&gt;javax.&lt;/code&gt; to &lt;code&gt;jakarta.&lt;/code&gt; package prefixes. Check out &lt;a href="https://spring.io/blog/2022/11/16/spring-framework-6-0-goes-ga"&gt;Juergen Holler&amp;#8217;s blog post&lt;/a&gt; for more details about Spring Framework 6.0.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Being based upon Spring Framework 6.0, this is also the generation of Spring Web Services that is rebased on top of Java 17 (LTS). So check it out!&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;For more details, check out our official &lt;a href="https://github.com/spring-projects/spring-ws/releases/tag/v4.0.0"&gt;GitHub release&lt;/a&gt;. This includes links to all the related tickets as well as the source code.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;We have also adopted &lt;a href="https://github.com/spring-projects/spring-ws/releases"&gt;GitHub releases&lt;/a&gt; as our avenue for tracking changes in a given release. All current and prior releases of Spring WS are now captured in the list of releases on GitHub. Feel free to check them out.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The artifacts are hosted on Maven Central so grab 'em while they&amp;#8217;re hot!&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;a href="https://spring.io/projects/spring-ws/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-ws"&gt;Source Code&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-ws/issues"&gt;Issues&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;!-- rendered by Sagan Renderer Service --&gt;</content>
   </entry>
