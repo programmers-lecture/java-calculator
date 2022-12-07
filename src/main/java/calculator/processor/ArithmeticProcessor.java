@@ -1,11 +1,14 @@
-package calculator;
+package calculator.processor;
 
-public class ArithmeticCalculator<T> extends Calculator<T> {
-    public ArithmeticCalculator(Operand<T> startOperand) {
+import calculator.Operand;
+import calculator.Operator;
+
+public class ArithmeticProcessor<T> extends Processor<T> {
+    public ArithmeticProcessor(Operand<T> startOperand) {
         super(startOperand);
     }
     @Override
-    public T makeAnswer() {
+    public T process() {
         boolean isOperand = true;
         Operand<T> currentOperand = startOperand;
         Operator<T> currentOperator = null;

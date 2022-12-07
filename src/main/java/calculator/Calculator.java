@@ -1,9 +1,21 @@
 package calculator;
 
-import lombok.AllArgsConstructor;
-
-@AllArgsConstructor
 public abstract class Calculator<T> {
-    protected Operand<T> startOperand;
-    public abstract T makeAnswer();
+    protected enum Type{
+        SEQUENTIAL, ARITHMETIC
+    }
+
+    protected Type type;
+
+    public Calculator<T> asSequential(){
+        type = Type.SEQUENTIAL;
+        return this;
+    }
+
+    public Calculator<T> asArithmetic(){
+        type = Type.ARITHMETIC;
+        return this;
+    }
+
+    public abstract void calculate(String input);
 }

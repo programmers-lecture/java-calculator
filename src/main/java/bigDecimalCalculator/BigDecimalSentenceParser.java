@@ -2,7 +2,7 @@ package bigDecimalCalculator;
 
 import calculator.Operand;
 import calculator.Operator;
-import calculator.SentenceParser;
+import calculator.parser.SentenceParser;
 
 import java.math.BigDecimal;
 

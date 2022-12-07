@@ -1,11 +1,14 @@
-package calculator;
+package calculator.processor;
 
-public class SequentialCalculator<T> extends Calculator<T>{
-    public SequentialCalculator(Operand<T> startOperand) {
+import calculator.Operand;
+import calculator.Operator;
+
+public class SequentialProcessor<T> extends Processor<T> {
+    public SequentialProcessor(Operand<T> startOperand) {
         super(startOperand);
     }
     @Override
-    public T makeAnswer() {
+    public T process() {
         boolean isOperand = true;
         Operand<T> currentOperand = startOperand;
         Operator<T> currentOperator = null;

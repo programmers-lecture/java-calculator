@@ -2,7 +2,7 @@ package integerCalculator;
 
 import calculator.Operand;
 import calculator.Operator;
-import calculator.SentenceParser;
+import calculator.parser.SentenceParser;
 
 public class IntegerSentenceParser extends SentenceParser<Integer> {
     @Override

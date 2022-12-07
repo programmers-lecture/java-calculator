@@ -1,4 +1,7 @@
-package calculator;
+package calculator.parser;
+
+import calculator.Operand;
+import calculator.Operator;
 
 public abstract class SentenceParser<T> {
     public Operand<T> parse(String sentence){
