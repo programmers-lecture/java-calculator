@@ -1,19 +1,14 @@
-package integerCalculator;
+package calculator;
 
-import calculator.Calculator;
-import calculator.Operand;
-import calculator.Operator;
-
-public class IntegerCalculator extends Calculator<Integer> {
-    public IntegerCalculator(Operand<Integer> startOperand) {
+public class ArithmeticCalculator<T> extends Calculator<T> {
+    public ArithmeticCalculator(Operand<T> startOperand) {
         super(startOperand);
     }
-
     @Override
-    public Integer makeAnswer() {
+    public T makeAnswer() {
         boolean isOperand = true;
-        Operand<Integer> currentOperand = startOperand;
-        Operator<Integer> currentOperator = null;
+        Operand<T> currentOperand = startOperand;
+        Operator<T> currentOperator = null;
         while(true){
             if(isOperand){
                 if(currentOperand.getLatter()==null) break;
@@ -26,8 +21,8 @@ public class IntegerCalculator extends Calculator<Integer> {
                 isOperand = !isOperand;
                 continue;
             }
-            Operand<Integer> left = currentOperator.getFormer();
-            Operand<Integer> right = currentOperator.getLatter();
+            Operand<T> left = currentOperator.getFormer();
+            Operand<T> right = currentOperator.getLatter();
             currentOperand = left.calculate(currentOperator, right);
             if(left.getFormer()!=null) left.getFormer().connectLatter(currentOperand);
             if(right.getLatter()!=null) right.getLatter().connectFormer(currentOperand);
@@ -44,8 +39,8 @@ public class IntegerCalculator extends Calculator<Integer> {
                 isOperand = !isOperand;
                 continue;
             }
-            Operand<Integer> left = currentOperator.getFormer();
-            Operand<Integer> right = currentOperator.getLatter();
+            Operand<T> left = currentOperator.getFormer();
+            Operand<T> right = currentOperator.getLatter();
             currentOperand = left.calculate(currentOperator, right);
             if(right.getLatter()!=null) right.getLatter().connectFormer(currentOperand);
             isOperand = !isOperand;
@@ -53,8 +48,8 @@ public class IntegerCalculator extends Calculator<Integer> {
         return currentOperand.getValue();
     }
 
-    private Operand<Integer> getFirstOperand(Operand<Integer> operand){
-        Operand<Integer> current = operand;
+    private Operand<T> getFirstOperand(Operand<T> operand){
+        Operand<T> current = operand;
         while(current.getFormer()!=null){
             current = current.getFormer().getFormer();
         }
