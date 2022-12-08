@@ -5,7 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class StringParser {
-    private static final String INIT_OPERAND="+";
+    private static final String INIT_OPERAND = "+";
+
     public static List<String> parseInput(String input) {
         return Arrays.asList(input.split(" "));
     }
