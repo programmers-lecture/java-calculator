@@ -8,7 +8,7 @@ public abstract class Operand<T> {
     protected Operator<T> former;
     protected Operator<T> latter;
 
-    public Operand(T value){
+    protected Operand(T value){
         this.value = value;
     }
 
