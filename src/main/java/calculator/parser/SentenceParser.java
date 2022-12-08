@@ -16,7 +16,7 @@ public abstract class SentenceParser<T> {
             if(isOperand){
                 lastOperand = operandFromValue(fromString(s));
                 connect(lastOperator, lastOperand);
-                isOperand = !isOperand;
+                isOperand = false;
                 continue;
             }
             lastOperator = new Operator<>(s);
