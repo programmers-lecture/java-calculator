@@ -13,12 +13,11 @@ public class Application {
         List<String>inputList= StringParser.parseInput(input);
         List<String>operandList=StringParser.parseOperand(inputList);
         List<String>operatorList=StringParser.parseOperator(inputList);
-        List<Integer>resultList=new ArrayList<>();
-        resultList.add(0);
+        Result result=new Result();
         for(int index=0;index<operandList.size();index++){
-            Calculator calculator=new Calculator(resultList.get(index),operandList.get(index),operatorList.get(index));
-            resultList.add(calculator.calculateNumber());
+            Calculator calculator=new Calculator(result.getResult(index),operandList.get(index),operatorList.get(index));
+            result.addResultList(calculator.calculateNumber());
         }
-        OutputView.result(resultList.get(resultList.size()-1));
+        OutputView.result(result.getResult(result.resultListLastNumber()));
     }
 }
