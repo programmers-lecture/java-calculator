@@ -1,10 +1,10 @@
 package integerCalculator;
 
-import calculator.Operand;
-import calculator.Operator;
-import calculator.parser.SentenceParser;
+import calculator.expression.Operand;
+import calculator.expression.Operator;
+import calculator.parser.ExpressionParser;
 
-public class IntegerSentenceParser extends SentenceParser<Integer> {
+public class IntegerExpressionParser extends ExpressionParser<Integer> {
     @Override
     protected Integer fromString(String str) {
         try{

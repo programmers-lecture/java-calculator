@@ -1,12 +1,12 @@
 package bigDecimalCalculator;
 
-import calculator.Operand;
-import calculator.Operator;
-import calculator.parser.SentenceParser;
+import calculator.expression.Operand;
+import calculator.expression.Operator;
+import calculator.parser.ExpressionParser;
 
 import java.math.BigDecimal;
 
-public class BigDecimalSentenceParser extends SentenceParser<BigDecimal>{
+public class BigDecimalExpressionParser extends ExpressionParser<BigDecimal> {
 
     @Override
     protected BigDecimal fromString(String str) {

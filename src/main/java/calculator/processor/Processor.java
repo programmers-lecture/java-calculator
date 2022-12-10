@@ -1,10 +1,8 @@
 package calculator.processor;
 
-import calculator.Operand;
-import lombok.AllArgsConstructor;
+import calculator.expression.Expression;
+import calculator.expression.Operand;
 
-@AllArgsConstructor
-public abstract class Processor<T> {
-    protected Operand<T> startOperand;
-    public abstract T process();
+public interface Processor<T> {
+    Operand<T> process(Expression<T> expression);
 }

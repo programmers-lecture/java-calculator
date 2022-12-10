@@ -1,7 +1,7 @@
 package integerCalculator;
 
-import calculator.Operand;
-import calculator.Operator;
+import calculator.expression.Operand;
+import calculator.expression.Operator;
 
 public class IntegerOperand extends Operand<Integer> {
     public IntegerOperand(Integer value) {

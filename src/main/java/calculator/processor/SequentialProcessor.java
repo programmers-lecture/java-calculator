@@ -1,16 +1,14 @@
 package calculator.processor;
 
-import calculator.Operand;
-import calculator.Operator;
+import calculator.expression.Expression;
+import calculator.expression.Operand;
+import calculator.expression.Operator;
 
-public class SequentialProcessor<T> extends Processor<T> {
-    public SequentialProcessor(Operand<T> startOperand) {
-        super(startOperand);
-    }
+public class SequentialProcessor<T> implements Processor<T> {
     @Override
-    public T process() {
+    public Operand<T> process(Expression<T> expression) {
         boolean isOperand = true;
-        Operand<T> currentOperand = startOperand;
+        Operand<T> currentOperand = expression.getStartOperand();
         Operator<T> currentOperator = null;
         while(true){
             if(isOperand){
@@ -25,6 +23,6 @@ public class SequentialProcessor<T> extends Processor<T> {
             if(right.getLatter()!=null) right.getLatter().connectFormer(currentOperand);
             isOperand = !isOperand;
         }
-        return currentOperand.getValue();
+        return currentOperand;
     }
 }

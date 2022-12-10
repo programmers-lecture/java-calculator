@@ -1,4 +1,4 @@
-package calculator;
+package calculator.expression;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

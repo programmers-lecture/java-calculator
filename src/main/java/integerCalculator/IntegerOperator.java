@@ -1,6 +1,6 @@
 package integerCalculator;
 
-import calculator.Operator;
+import calculator.expression.Operator;
 
 public class IntegerOperator extends Operator<Integer> {
     public IntegerOperator(Sign sign) {

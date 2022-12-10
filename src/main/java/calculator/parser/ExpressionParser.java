@@ -1,10 +1,11 @@
 package calculator.parser;
 
-import calculator.Operand;
-import calculator.Operator;
+import calculator.expression.Expression;
+import calculator.expression.Operand;
+import calculator.expression.Operator;
 
-public abstract class SentenceParser<T> {
-    public Operand<T> parse(String sentence){
+public abstract class ExpressionParser<T> {
+    public Expression<T> parse(String sentence){
         String[] splitted = sentence.split(" ");
         Operand<T> firstOperand = operandFromValue(fromString(splitted[0]));
         Operand<T> lastOperand = firstOperand;
@@ -23,7 +24,7 @@ public abstract class SentenceParser<T> {
             connect(lastOperand, lastOperator);
             isOperand = !isOperand;
         }
-        return firstOperand;
+        return new Expression<>(firstOperand);
     }
 
     protected abstract T fromString(String str);

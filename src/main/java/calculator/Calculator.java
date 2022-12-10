@@ -1,12 +1,16 @@
 package calculator;
 
-public abstract class Calculator {
+import calculator.expression.Expression;
+import calculator.expression.Operand;
+import calculator.processor.Processor;
 
-    protected CalculatorType type;
-
-    public Calculator(CalculatorType type){
-        this.type = type;
+public class Calculator<T> extends AbstractCalculator<T>{
+    public Calculator(Processor<T> processor) {
+        super(processor);
     }
 
-    public abstract void calculate(String input);
+    @Override
+    public Operand<T> calculate(Expression<T> expression) {
+        return this.processor.process(expression);
+    }
 }

@@ -1,7 +1,7 @@
 package bigDecimalCalculator;
 
-import calculator.Operand;
-import calculator.Operator;
+import calculator.expression.Operand;
+import calculator.expression.Operator;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
