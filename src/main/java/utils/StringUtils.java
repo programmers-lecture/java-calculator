@@ -3,11 +3,12 @@ package utils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class StringParser {
+public class StringUtils {
     private static final String INIT_OPERAND = "+";
 
-    public static List<String> parseInput(String input) {
+    private static List<String> splitInput(String input) {
         return Arrays.asList(input.split(" "));
     }
 
