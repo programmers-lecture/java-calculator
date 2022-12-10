@@ -3,6 +3,8 @@ package calculator.expression;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Arrays;
+
 @Getter
 @RequiredArgsConstructor
 public class Operator<T> {
@@ -16,10 +18,10 @@ public class Operator<T> {
         private final String sign;
 
         public static Sign fromSignStr(String sign){
-            for (Sign value : Sign.values()) {
-                if(value.sign.equals(sign)) return value;
-            }
-            throw new IllegalArgumentException();
+            return Arrays.stream(Sign.values())
+                    .filter(s->s.sign.equals(sign))
+                    .findFirst()
+                    .orElseThrow(IllegalArgumentException::new);
         }
 
         public boolean isPrimal(){
