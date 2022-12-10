@@ -14,14 +14,14 @@ public class SequentialProcessor<T> implements Processor<T> {
             if(isOperand){
                 if(currentOperand.getLatter()==null) break;
                 currentOperator = currentOperand.getLatter();
-                isOperand = !isOperand;
+                isOperand = false;
                 continue;
             }
             Operand<T> left = currentOperator.getFormer();
             Operand<T> right = currentOperator.getLatter();
             currentOperand = left.calculate(currentOperator, right);
             if(right.getLatter()!=null) right.getLatter().connectFormer(currentOperand);
-            isOperand = !isOperand;
+            isOperand = true;
         }
         return currentOperand;
     }
