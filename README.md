@@ -42,8 +42,6 @@ cf) 추가 요구사항은 순서대로 적용해보시고, 필수 요구사항�
 
 ## 간단한 Diagram
 
-![calculator.jpeg](assets/calculator.jpeg)
-
 ## 체크리스트
 
 ☑ 입력을 올바르게 받는다.
