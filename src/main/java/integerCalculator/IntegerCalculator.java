@@ -1,5 +1,6 @@
 package integerCalculator;
 
+import calculator.CalculatorType;
 import calculator.Result;
 import calculator.parser.SentenceParser;
 import calculator.processor.ArithmeticProcessor;
@@ -7,7 +8,12 @@ import calculator.processor.Processor;
 import calculator.processor.SequentialProcessor;
 import calculator.Calculator;
 
-public class IntegerCalculator extends Calculator<Integer> {
+public class IntegerCalculator extends Calculator {
+
+    public IntegerCalculator(CalculatorType type) {
+        super(type);
+    }
+
     @Override
     public void calculate(String input) {
         SentenceParser<Integer> parser = new IntegerSentenceParser();

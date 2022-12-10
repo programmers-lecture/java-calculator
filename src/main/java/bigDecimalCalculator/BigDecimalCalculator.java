@@ -1,5 +1,6 @@
 package bigDecimalCalculator;
 
+import calculator.CalculatorType;
 import calculator.Result;
 import calculator.parser.SentenceParser;
 import calculator.processor.ArithmeticProcessor;
@@ -9,7 +10,11 @@ import calculator.Calculator;
 
 import java.math.BigDecimal;
 
-public class BigDecimalCalculator extends Calculator<BigDecimal> {
+public class BigDecimalCalculator extends Calculator{
+
+    public BigDecimalCalculator(CalculatorType type) {
+        super(type);
+    }
 
     @Override
     public void calculate(String input) {

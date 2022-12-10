@@ -1,12 +1,12 @@
 import bigDecimalCalculator.BigDecimalCalculator;
 import calculator.Calculator;
+import calculator.CalculatorType;
 
-import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Calculator<BigDecimal> calculator = new BigDecimalCalculator().asArithmetic();
+        Calculator calculator = new BigDecimalCalculator(CalculatorType.ARITHMETIC);
 
         Scanner sc = new Scanner(System.in);
         while(true){
