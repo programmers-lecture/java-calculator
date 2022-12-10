@@ -3,18 +3,20 @@ import java.util.Scanner;
 public class StringCalculator {
     public static void main(String[] args) {
 
-        int n = 5;
-        while(n>0) {
+
+        while(true) {
+
+            System.out.println("StringCalculator (quit : 'end')");
 
             Scanner sc = new Scanner(System.in);
 
             String str = sc.nextLine().replaceAll(" ","");
+            if(str.equals("end")) break;
 
             char[] arr = str.toCharArray();
 
             int result = Character.getNumericValue(arr[0]);
-            for(int i=1; i<arr.length-1; i+=2){
-                //if(Character.getNumericValue(arr[i])==-1){        // anyway odd will be operator
+            for(int i=1; i<arr.length-1; i+=2){                 // odd will be operator
                     switch(arr[i]){
                         case '+':
                             result = getPlus(result,arr[i+1]);
@@ -29,11 +31,8 @@ public class StringCalculator {
                             result = getDiv(result,arr[i+1]);
                             break;
                     }
-                //}
             }
             System.out.printf("결과 : %d\n\n", result);
-
-            n--;
         }
     }
 
