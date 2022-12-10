@@ -1,5 +1,6 @@
 package bigDecimalCalculator;
 
+import calculator.Sign;
 import calculator.expression.Operand;
 import calculator.expression.Operator;
 import calculator.parser.ExpressionParser;
@@ -23,7 +24,7 @@ public class BigDecimalExpressionParser extends ExpressionParser<BigDecimal> {
     }
 
     @Override
-    protected Operator<BigDecimal> operatorFromSign(Operator.Sign sign) {
+    protected Operator<BigDecimal> operatorFromSign(Sign sign) {
         return new BigDecimalOperator(sign);
     }
 }

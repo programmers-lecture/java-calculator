@@ -1,5 +1,6 @@
 package calculator.parser;
 
+import calculator.Sign;
 import calculator.expression.Expression;
 import calculator.expression.Operand;
 import calculator.expression.Operator;
@@ -9,7 +10,7 @@ public abstract class ExpressionParser<T> {
         String[] splitted = sentence.split(" ");
         Operand<T> firstOperand = operandFromValue(fromString(splitted[0]));
         Operand<T> lastOperand = firstOperand;
-        Operator<T> lastOperator = operatorFromSign(Operator.Sign.fromSignStr(splitted[1]));
+        Operator<T> lastOperator = operatorFromSign(Sign.fromSignStr(splitted[1]));
         boolean isOperand = true;
         connect(lastOperand, lastOperator);
         for(int i=2;i<splitted.length;i++){
@@ -22,14 +23,14 @@ public abstract class ExpressionParser<T> {
             }
             lastOperator = new Operator<>(s);
             connect(lastOperand, lastOperator);
-            isOperand = !isOperand;
+            isOperand = true;
         }
         return new Expression<>(firstOperand);
     }
 
     protected abstract T fromString(String str);
     protected abstract Operand<T> operandFromValue(T value);
-    protected abstract Operator<T> operatorFromSign(Operator.Sign sign);
+    protected abstract Operator<T> operatorFromSign(Sign sign);
 
     protected void connect(Operand<T> operand, Operator<T> operator){
         operand.connectLatter(operator);

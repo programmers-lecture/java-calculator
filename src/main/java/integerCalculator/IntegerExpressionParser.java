@@ -1,5 +1,6 @@
 package integerCalculator;
 
+import calculator.Sign;
 import calculator.expression.Operand;
 import calculator.expression.Operator;
 import calculator.parser.ExpressionParser;
@@ -21,7 +22,7 @@ public class IntegerExpressionParser extends ExpressionParser<Integer> {
     }
 
     @Override
-    protected Operator<Integer> operatorFromSign(Operator.Sign sign) {
+    protected Operator<Integer> operatorFromSign(Sign sign) {
         return new IntegerOperator(sign);
     }
 }

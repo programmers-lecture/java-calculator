@@ -1,33 +1,12 @@
 package calculator.expression;
 
+import calculator.Sign;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-
-import java.util.Arrays;
 
 @Getter
 @RequiredArgsConstructor
 public class Operator<T> {
-    @RequiredArgsConstructor
-    public enum Sign{
-        ADD("+"),
-        SUBTRACT("-"),
-        MULTIPLY("*"),
-        DIVIDE("/");
-
-        private final String sign;
-
-        public static Sign fromSignStr(String sign){
-            return Arrays.stream(Sign.values())
-                    .filter(s->s.sign.equals(sign))
-                    .findFirst()
-                    .orElseThrow(IllegalArgumentException::new);
-        }
-
-        public boolean isPrimal(){
-            return this==MULTIPLY || this==DIVIDE;
-        }
-    }
 
     private final Sign sign;
     private Operand<T> former;

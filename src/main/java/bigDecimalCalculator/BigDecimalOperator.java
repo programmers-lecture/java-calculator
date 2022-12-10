@@ -1,5 +1,6 @@
 package bigDecimalCalculator;
 
+import calculator.Sign;
 import calculator.expression.Operator;
 
 import java.math.BigDecimal;
