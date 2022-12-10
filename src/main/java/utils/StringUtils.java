@@ -12,6 +12,11 @@ public class StringUtils {
         return Arrays.asList(input.split(" "));
     }
 
+    private static List<Integer>parseInteger(String input){
+        return splitInput(input).stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
     public static List<String> parseOperand(List<String> parseInput) {
         List<String> operandList = new ArrayList<>();
         for (int i = 0; i < parseInput.size(); i = i + 2) {
