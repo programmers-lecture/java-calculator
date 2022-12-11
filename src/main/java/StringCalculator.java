@@ -1,16 +1,22 @@
 import java.util.Scanner;
 
 public class StringCalculator {
+
+    static Scanner sc;
+
     public static void main(String[] args) {
 
+        /*
+        1. 입력 (2.입력의 유효성 검사) 동시 처리
+        3. 연산
+        4. 결과를 출력
+         */
 
         while(true) {
 
             System.out.println("StringCalculator (quit : 'end')");
 
-            Scanner sc = new Scanner(System.in);
-
-            String str = sc.nextLine().replaceAll(" ","");
+            String str = insertExpression();
             if(str.equals("end")) break;
 
             char[] arr = str.toCharArray();
@@ -34,6 +40,11 @@ public class StringCalculator {
             }
             System.out.printf("결과 : %d\n\n", result);
         }
+    }
+
+    private static String insertExpression(){
+        sc = new Scanner(System.in);
+        return sc.nextLine().replaceAll(" ","");
     }
 
     private static int getDiv(int result, char c) {
