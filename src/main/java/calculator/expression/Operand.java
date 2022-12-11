@@ -13,7 +13,7 @@ public abstract class Operand<T> {
     }
 
     public Operand(T value, Operator<T> former, Operator<T> latter){
-        this.value = value;
+        this(value);
         this.former = former;
         this.latter = latter;
     }
