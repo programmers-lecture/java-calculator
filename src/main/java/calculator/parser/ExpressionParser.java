@@ -21,7 +21,7 @@ public abstract class ExpressionParser<T> {
                 isOperand = false;
                 continue;
             }
-            lastOperator = new Operator<>(s);
+            lastOperator = operatorFromSign(Sign.fromSignStr(s));
             connect(lastOperand, lastOperator);
             isOperand = true;
         }

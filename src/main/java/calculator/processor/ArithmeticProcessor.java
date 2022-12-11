@@ -24,14 +24,13 @@ public class ArithmeticProcessor<T> implements Processor<T> {
             }
             Operand<T> left = currentOperator.getFormer();
             Operand<T> right = currentOperator.getLatter();
-            currentOperand = left.calculate(currentOperator, right);
+            currentOperand = currentOperator.calculate(left, right);
             if(left.getFormer()!=null) left.getFormer().connectLatter(currentOperand);
             if(right.getLatter()!=null) right.getLatter().connectFormer(currentOperand);
             isOperand = true;
         }
 
         currentOperand = getFirstOperand(currentOperand);
-        isOperand = true;
 
         while(true){
             if(isOperand){
@@ -42,7 +41,7 @@ public class ArithmeticProcessor<T> implements Processor<T> {
             }
             Operand<T> left = currentOperator.getFormer();
             Operand<T> right = currentOperator.getLatter();
-            currentOperand = left.calculate(currentOperator, right);
+            currentOperand = currentOperator.calculate(left, right);
             if(right.getLatter()!=null) right.getLatter().connectFormer(currentOperand);
             isOperand = true;
         }

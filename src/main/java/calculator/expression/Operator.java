@@ -6,15 +6,11 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public class Operator<T> {
+public abstract class Operator<T> {
 
     private final Sign sign;
     private Operand<T> former;
     private Operand<T> latter;
-
-    public Operator(String signStr){
-        this.sign = Sign.fromSignStr(signStr);
-    }
 
     public void connectFormer(Operand<T> former){
         this.former = former;
@@ -24,5 +20,5 @@ public class Operator<T> {
         this.latter = latter;
     }
 
-
+    public abstract Operand<T> calculate(Operand<T> left, Operand<T> right);
 }

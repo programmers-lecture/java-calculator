@@ -18,8 +18,6 @@ public abstract class Operand<T> {
         this.latter = latter;
     }
 
-    public abstract Operand<T> calculate(Operator<T> operator, Operand<T> other);
-
     public void connectFormer(Operator<T> former){
         this.former = former;
     }
