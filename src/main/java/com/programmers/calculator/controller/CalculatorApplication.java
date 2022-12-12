@@ -6,9 +6,9 @@ import com.programmers.calculator.view.OutputView;
 
 public class CalculatorApplication {
     public void run() {
-        String[] expressions = new InputView().input();
+        String[] expressions = InputView.input();
         Calculator calculator = new Calculator();
         int result = calculator.calculate(expressions);
-        new OutputView().print(result);
+        OutputView.print(result);
     }
 }
