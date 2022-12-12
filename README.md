@@ -38,3 +38,15 @@ cf) 추가 요구사항은 순서대로 적용해보시고, 필수 요구사항�
 4. 객체지향 생활 체조를 지켜서 개발한다.
     
     [객체지향 생활 체조 총정리](https://developerfarm.wordpress.com/2012/02/03/object_calisthenics_summary/)
+
+## 다이어그램 및 클래스 설명
+
+- Postfix : 입력받은 문자열을 후위표기식으로 변경해주는 클래스
+- InputUtil : 사용자로부터 입력값을 받는 클래스
+- OutputUtil : 사용자에게 결과값을 출력해주는 클래스
+- Calculator : 실제 계산을 진행하는 클래스
+- Main : 메인 클래스
+- Operator : 연산자의 기능을 수행하는 클래스
+
+
+## 
