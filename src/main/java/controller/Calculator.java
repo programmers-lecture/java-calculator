@@ -2,20 +2,18 @@ package controller;
 
 import model.CalculatorType;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Calculator {
 
-    public int calculate(String[] expression){
+    private static Map<String, CalculatorType> calculatorTypeMap = new HashMap<>();
 
-        int result = Integer.parseInt(expression[0]);
-        CalculatorType calculatorType;
-        
-        for (int i = 2; i < expression.length; i += 2) {
-            int next_num = Integer.parseInt(expression[i]);
-
-
-            result = calculatorType.operate(result, next_num);
-        }
-        return result;
+    static {
+        for (CalculatorType value : CalculatorType.values())
+            calculatorTypeMap.put(value.getOperator(), value);
     }
-
+    public static double calculate(String operator, double left, double right) {
+        return calculatorTypeMap.get(operator).calculate(left, right);
+    }
 }
