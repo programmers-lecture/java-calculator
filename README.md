@@ -13,11 +13,19 @@
    1. 입력 메서드 (입력받는 기능)
    2. 연산 메서드 (매개변수 : 연산자 { enum을 이용해서 연산 })
    3. 출력 메서드 (연산결과를 출력하는 기능)
-   
+----------------------------------------------------------------
+# 메서드
+inputMethod()       : 입력메서드
+outputMethod()      : 출력메서드
+getPreOperand(String)     : 식에서 charAt을 이용해 첫번째 피연산자 추출
+getFixOperand(String)     : 식에서 charAt을 이용해 두번째 피연산자 추출
+getOperator(String)       : 식에서 charAt을 이용, enum Operator의 필드를 이용, 해당 enum Operator 객체 반환
+operateExpression(int, int, Operator) : 매개변수를 이용해 switch문을 통해 String형태로 연산결과 반환 
 
 [y] 입력 메서드
 [y] 피연산자 추출
 [y] 연산자 추출
 [y] enum생성
-[ ] 연산 메서드
-[ ] 출력 메서드
+[y] 연산 메서드
+[y] 출력 메서드
+
