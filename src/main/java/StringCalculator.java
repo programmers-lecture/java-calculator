@@ -4,63 +4,41 @@ public class StringCalculator {
 
     static Scanner sc;
 
-    public static void main(String[] args) {
+    /*
+    0. 문자열을 상수로 분리 - o
+    1. main메서드 분리 - o
+    2. enum으로 연산 처리 로직 구성하기
+    3. 입력 (2.입력의 유효성 검사) 동시 처리 / 연산 / 결과를 출력 - 메서드로 분리
+    4. 0번 클래스나 enum으로 분리해서 관리
+    5. 3번 분리된 메서드 클래스화 하기
+    */
 
-        /*
-        1. 입력 (2.입력의 유효성 검사) 동시 처리
-        3. 연산
-        4. 결과를 출력
-         */
+    private static int calculateExpression(int totalValue, int fixOperand, char operator){
+        int val = 0;
 
-        while(true) {
-
-            System.out.println("StringCalculator (quit : 'end')");
-
-            String str = insertExpression();
-            if(str.equals("end")) break;
-
-            char[] arr = str.toCharArray();
-
-            int result = Character.getNumericValue(arr[0]);
-            for(int i=1; i<arr.length-1; i+=2){                 // odd will be operator
-                    switch(arr[i]){
-                        case '+':
-                            result = getPlus(result,arr[i+1]);
-                            break;
-                        case '-':
-                            result = getMinus(result,arr[i+1]);
-                            break;
-                        case '*':
-                            result = getMul(result,arr[i+1]);
-                            break;
-                        case '/':
-                            result = getDiv(result,arr[i+1]);
-                            break;
-                    }
-            }
-            System.out.printf("결과 : %d\n\n", result);
-        }
+        return val;
     }
 
-    private static String insertExpression(){
+    static String insertExpression(){
         sc = new Scanner(System.in);
-        return sc.nextLine().replaceAll(" ","");
+        final String str = sc.nextLine().replaceAll(" ","");
+        return str;
     }
 
-    private static int getDiv(int result, char c) {
+    static int getDiv(int result, char c) {
         return result / Character.getNumericValue(c);
     }
 
-    private static int getMul(int result, char c) {
+    static int getMul(int result, char c) {
         System.out.println(result + " " + Character.getNumericValue(c));
         return result * Character.getNumericValue(c);
     }
 
-    private static int getMinus(int result, char c) {
+    static int getMinus(int result, char c) {
         return result - Character.getNumericValue(c);
     }
 
-    private static int getPlus(int result, char c) {
+    static int getPlus(int result, char c) {
         return result + Character.getNumericValue(c);
     }
 }
