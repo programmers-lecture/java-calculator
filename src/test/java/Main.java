@@ -8,7 +8,9 @@ public class Main {
 
        final String expression = inputMethod();
 
-
+       int preOperand =0;
+       int fixOperand =0;
+       Operator operator = null;
 
     }
 
@@ -21,5 +23,6 @@ public class Main {
 
         return str;
     }
+
 
 }
