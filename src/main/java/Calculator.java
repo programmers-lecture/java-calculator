@@ -6,7 +6,6 @@ public class Calculator {
     private Operator operator;
 
     private static final String NOT_NUMBER = "숫자가 아닙니다.";
-    private static final String NOT_FOUND_OPERATOR = "존재하지 않는 사칙연산 입니다.";
 
     public Calculator(Integer prevNumber, String operand, String operation) {
         this.prevNumber = prevNumber;
@@ -23,10 +22,7 @@ public class Calculator {
     }
 
     private Operator validateOperator(String operation) {
-        return Arrays.stream(Operator.values())
-                .filter(x -> x.getOperation().equals(operation))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_OPERATOR));
+        return operator.findOperation(operation);
     }
 
     public Integer calculateNumber() {
