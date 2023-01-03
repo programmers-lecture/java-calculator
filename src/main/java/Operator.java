@@ -1,13 +1,21 @@
 import java.util.Arrays;
+import java.util.function.BiFunction;
 
 public enum Operator {
-    ADD("+", 0), MINUS("-", 0), MULTIPLY("*", 1), DIVIDE("/", 1);
+    ADD("+", 0, (num1 , num2) -> num2 + num1),
+    MINUS("-", 0, (num1, num2) -> num2 - num1),
+    MULTIPLY("*", 1, (num1, num2) -> num2 * num1),
+    DIVIDE("/", 1, (num1, num2) -> num2 / num1);
 
     private final String op;
     private final int val;
-    Operator(String op , int val) {
+
+    private final BiFunction<Integer, Integer, Integer> expression;
+
+    Operator(String op, int val, BiFunction<Integer, Integer, Integer> expression) {
         this.op = op;
         this.val = val;
+        this.expression = expression;
     }
 
     public String getOp() {
@@ -22,17 +30,9 @@ public enum Operator {
     }
 
     //연산식 계산
-    public  int formula(int first , int second, String op) {
-        switch (op) {
-            case "+" :
-                return second + first;
-            case "-":
-                return second - first;
-            case "*":
-                return second * first;
-            case "/":
-                return second / first;
-        }
-        return 0;
+ 
+
+    public int calculate(int num1, int num2) {
+        return expression.apply(num1, num2);
     }
 }

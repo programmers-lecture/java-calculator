@@ -36,7 +36,9 @@ public class CalculatorMain {
                 st.push(expression);
             }else {
                 //연산식 계산
-                st.push(Operator.ADD.formula(Integer.parseInt(st.pop().toString()), Integer.parseInt(st.pop().toString()), expression));
+                st.push(Arrays.stream(Operator.values()).filter(i -> i.getOp().equals(expression))
+                        .findFirst().get().calculate(Integer.parseInt(st.pop().toString()),Integer.parseInt(st.pop().toString())));
+                //st.push(Operator.ADD.formula(Integer.parseInt(st.pop().toString()), Integer.parseInt(st.pop().toString()), expression));
             }
         });
         return Integer.parseInt(st.pop().toString());
