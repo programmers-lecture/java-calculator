@@ -41,11 +41,11 @@ cf) 추가 요구사항은 순서대로 적용해보시고, 필수 요구사항�
     
 
 ## 다이어그램
-Calculator : 입력된 수식에 대한 계산 결과를 출력합니다.
-Addition : 덧셈 연산을 수행합니다.
-Subtraction : 뺄셈 연산을 수행합니다.
-Multiplication : 곱셈 연산을 수행합니다.
-Division : 나눗셈 연산을 수행합니다.
+1. Calculator : 입력된 수식에 대한 계산 결과를 출력합니다.
+2. Addition : 덧셈 연산을 수행합니다.
+3. Subtraction : 뺄셈 연산을 수행합니다.
+4. Multiplication : 곱셈 연산을 수행합니다.
+5. Division : 나눗셈 연산을 수행합니다.
 
 ## 체크 리스트
 1. 덧셈 기능
