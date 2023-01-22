@@ -18,7 +18,7 @@ public class Calculator {
         this.expression = expression;
     }
 
-    private double calculate (List<Double> numbers, List<String> operators) {
+    private double calculate(List<Double> numbers, List<String> operators) {
         double num1 = numbers.remove(0);
         for(String operator : operators) {
             double num2 = numbers.remove(0);
