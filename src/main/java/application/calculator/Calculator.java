@@ -9,7 +9,7 @@ public class Calculator {
         this.expression = expression;
     }
 
-    private double calculate (List<Double> numbers, List<Operator> operators) {
+    private double calculate(List<Double> numbers, List<Operator> operators) {
         double num1 = numbers.remove(0);
         for(Operator operator : operators) {
             double num2 = numbers.remove(0);
