@@ -1,6 +1,8 @@
 package application.calculator;
 
+import java.util.Arrays;
 import java.util.function.BiFunction;
+
 
 public enum Operator {
     ADDITION("+", (num1, num2) -> num1 + num2),
@@ -15,12 +17,17 @@ public enum Operator {
         this.operatorAsString = operatorAsString;
         this.calculation = calculation;
     }
-
+    public static Operator findOperator(String str) {
+        return Arrays.stream(Operator.values())
+                .filter(operator -> operator.getOperatorAsString().equals(str))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException());
+    }
     public BiFunction<Double, Double, Double> getCalculation() {
         return calculation;
     }
 
-    public String getOperatorAsString() {
+    private String getOperatorAsString() {
         return operatorAsString;
     }
 }

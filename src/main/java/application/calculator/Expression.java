@@ -2,7 +2,6 @@ package application.calculator;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Expression {
@@ -22,19 +21,8 @@ public class Expression {
     public List<Operator> getOperators() {
         return Arrays.stream(expression)
                 .filter(element -> !(element.compareTo("0") >= 0 && element.compareTo("9") <= 0))
-                .map(stringToOperator())
+                .map(str -> Operator.findOperator(str))
                 .collect(Collectors.toList());
-    }
-
-    private Function<String, Operator> stringToOperator() {
-        return str -> {
-            for(Operator operator : Operator.values()) {
-                if(str.equals(operator.getOperatorAsString())) {
-                    return operator;
-                }
-            }
-            throw new IllegalArgumentException("Illegal Argument Exception\n" + "Illegal Argument : " + str);
-        };
     }
 }
 
