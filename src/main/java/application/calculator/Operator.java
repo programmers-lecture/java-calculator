@@ -19,15 +19,11 @@ public enum Operator {
     }
     public static Operator findOperator(String str) {
         return Arrays.stream(Operator.values())
-                .filter(operator -> operator.getOperatorAsString().equals(str))
+                .filter(operator -> operator.operatorAsString.equals(str))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException());
     }
     public BiFunction<Double, Double, Double> getCalculation() {
         return calculation;
-    }
-
-    private String getOperatorAsString() {
-        return operatorAsString;
     }
 }
