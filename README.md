@@ -38,3 +38,17 @@ cf) 추가 요구사항은 순서대로 적용해보시고, 필수 요구사항�
 4. 객체지향 생활 체조를 지켜서 개발한다.
     
     [객체지향 생활 체조 총정리](https://developerfarm.wordpress.com/2012/02/03/object_calisthenics_summary/)
+    
+
+## 다이어그램
+1. Calculation : 입력된 수식에 대한 계산 결과를 출력합니다.
+2. Addition : 덧셈 연산을 수행합니다.
+3. Subtraction : 뺄셈 연산을 수행합니다.
+4. Multiplication : 곱셈 연산을 수행합니다.
+5. Division : 나눗셈 연산을 수행합니다.
+
+## 체크 리스트
+1. 덧셈 기능
+2. 뺄셈 기능
+3. 곱셈 기능
+4. 나눗셈 기능
