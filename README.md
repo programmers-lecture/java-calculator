@@ -1,3 +1,13 @@
+## 다이어그램
+<img width="838" alt="image" src="https://user-images.githubusercontent.com/77106988/215942113-a09c8587-8ca6-431b-9552-4c974f11ceec.png">
+
+## 구현 기능
+- [X] 입력을 받았을 경우 사칙연산(+, -, *, /)이 가능해야 한다.
+
+- [ ] 숫자에 소수를 적용해본다.
+
+- [ ] 사칙연산 우선순위를 적용한다.
+
 ## 깃허브
 
 **[java-calculator](https://github.com/programmers-lecture/java-calculator)**
