@@ -1,3 +1,20 @@
+## 클래스 역할 설명
+
+- View
+    - 결과와 종료 여부를 묻는지 출력한다. 
+- Operator
+    - getOperator : 들어온 연산자에 맞는 enum을 찾는다.
+    - calaulate : 찾은 enum에서 BiFunction으로 연산자에 맞는 계산을 한다.
+
+## 구현 기능
+- [X] 입력을 받았을 경우 사칙연산(+, -, *, /)이 가능해야 한다.
+
+- [ ] 숫자에 소수를 적용해본다.
+
+- [ ] 사칙연산 우선순위를 적용한다.
+
+----
+
 ## 깃허브
 
 **[java-calculator](https://github.com/programmers-lecture/java-calculator)**
