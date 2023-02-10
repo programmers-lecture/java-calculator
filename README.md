@@ -1,5 +1,10 @@
-## 다이어그램
-<img width="482" alt="스크린샷 2023-01-23 오전 12 58 27" src="https://user-images.githubusercontent.com/83000829/213925773-c58bf079-639b-4048-8212-9df9682bc146.png">
+## 클래스 역할 설명
+
+- View
+    - 결과와 종료 여부를 묻는지 출력한다. 
+- Operator
+    - getOperator : 들어온 연산자에 맞는 enum을 찾는다.
+    - calaulate : 찾은 enum에서 BiFunction으로 연산자에 맞는 계산을 한다.
 
 ## 구현 기능
 - [X] 입력을 받았을 경우 사칙연산(+, -, *, /)이 가능해야 한다.

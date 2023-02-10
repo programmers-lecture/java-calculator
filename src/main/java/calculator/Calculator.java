@@ -1,49 +1,19 @@
 package calculator;
 
 public class Calculator {
-    int result;
-    private int firstNum;
-    private int secondNum;
-    String operation;
 
+    public int start(String input){
+        String[] values = input.split(" ");
 
-    Calculator(int firstNum, int secondNum, String operation){
-        this.firstNum = firstNum;
-        this.secondNum = secondNum;
-        this.operation = operation;
-    }
+        int result = Integer.parseInt(values[0]);
 
-    public int calculate(){
-        switch (operation){
-            case "+" :
-                result =add(firstNum, secondNum);
-                break;
-            case "-":
-                result = subtract(firstNum, secondNum);
-                break;
-            case "*":
-                result = multiply(firstNum, secondNum);
-                break;
-            case "/":
-                result = divide(firstNum, secondNum);
-                break;
+        for(int i = 0; i < values.length-2; i+=2){
+            int firstNum = result;
+            String operation = values[i+1];
+            int secondNum = Integer.parseInt(values[i+2]);
+            result = Operator.calculate(operation, firstNum, secondNum);
         }
+
         return result;
-    }
-
-    public int add(int a, int b){
-        return a+b;
-    }
-
-    public int subtract(int a, int b){
-        return a-b;
-    }
-
-    public int multiply(int a, int b){
-        return a*b;
-    }
-
-    public int divide(int a, int b){
-        return a/b;
     }
 }
